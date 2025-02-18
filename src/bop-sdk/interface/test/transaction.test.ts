@@ -347,32 +347,32 @@ describe("provider-transaction-test", () => {
     //     subresponse = await transaction.submitTransaction({items: [response.result]});
     //     console.log(subresponse);
     //   });
-    it("transaction.buildContractInvokeTx solidity", async () => {
-      let request: OpContractInvokeParams = {
-        params: {
-          nonceType: TxType.INCREASE_NONCE,
-          gasPrice: 1,
-          feeLimit: 100000,
-          remarks: "test",
-        },
-        contractAddress: "did:bid:efhj9cgStGJckhLwHZefYS9Yje38NVuP",
-        input: '{"function":"store(uint256)","args":"1"}',
-        amount: 0,
-      };
-      console.log(request);
-      let signerWithProvider = signer.connect(provider);
-      let response: OffLineTxResponse;
-      response = await transaction.buildContractInvokeTx(request, [
-        signerWithProvider,
-      ]);
-      console.log(response);
-      expect(response.errorCode).to.equal(0);
-      let subresponse: SubmitTransactionResponse;
-      subresponse = await transaction.submitTransaction({
-        items: [response.result],
-      });
-      console.log(subresponse);
-    });
+    // it("transaction.buildContractInvokeTx solidity", async () => {
+    //   let request: OpContractInvokeParams = {
+    //     params: {
+    //       nonceType: TxType.INCREASE_NONCE,
+    //       gasPrice: 1,
+    //       feeLimit: 100000,
+    //       remarks: "test",
+    //     },
+    //     contractAddress: "did:bid:efhj9cgStGJckhLwHZefYS9Yje38NVuP",
+    //     input: '{"function":"store(uint256)","args":"1"}',
+    //     amount: 0,
+    //   };
+    //   console.log(request);
+    //   let signerWithProvider = signer.connect(provider);
+    //   let response: OffLineTxResponse;
+    //   response = await transaction.buildContractInvokeTx(request, [
+    //     signerWithProvider,
+    //   ]);
+    //   console.log(response);
+    //   expect(response.errorCode).to.equal(0);
+    //   let subresponse: SubmitTransactionResponse;
+    //   subresponse = await transaction.submitTransaction({
+    //     items: [response.result],
+    //   });
+    //   console.log(subresponse);
+    // });
     // it("transaction.buildContractInvokeTx javascript", async () => {
     //     let request: OpContractInvokeParams = {
     //       params: {

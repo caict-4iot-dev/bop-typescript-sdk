@@ -11,22 +11,6 @@ module.exports = {
     CODE: 11004,
     MSG: "InitBalance must between 0 and Long.MAX_VALUE",
   },
-  INVALID_ADDRESS_ERROR: {
-    CODE: 11006,
-    MSG: "Invalid address",
-  },
-  METADATA_NOT_HEX_STRING_ERROR: {
-    CODE: 11008,
-    MSG: "AssetAmount this will be issued mustbetween 1 and max(int64)",
-  },
-  INVALID_DATAKEY_ERROR: {
-    CODE: 11011,
-    MSG: "The length of key must between 1 and 1024",
-  },
-  INVALID_DATAVALUE_ERROR: {
-    CODE: 11012,
-    MSG: "The length of value must between 0 and 256000",
-  },
   INVALID_DATAVERSION_ERROR: {
     CODE: 11013,
     MSG: "The version must be equal or bigger than 0",

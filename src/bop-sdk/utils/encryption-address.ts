@@ -69,7 +69,6 @@ export class EncryptionAddress {
 
     if (
       !this.isValidChainCode(chainCode) &&
-      chainCode !== undefined &&
       chainCode !== ""
     ) {
       const response: GetBidAndKeyPairResponse = {
@@ -80,8 +79,6 @@ export class EncryptionAddress {
     }
 
     let keypair = bifEncryption.getBidAndKeyPair(
-      chainCode,
-    ) as InternalAccountKeyInfo;
     const response: GetBidAndKeyPairResponse = {
       errorCode: SdkStatusCode.SUCCESS,
       errorDesc: "",

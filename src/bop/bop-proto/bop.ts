@@ -163,7 +163,10 @@ export enum StatusCodes {
   SPARKCHAIN_TIMEOUT_DISCARD = 1316,
   /** TOO_MANY_TRANSACTION_OPERATIONS - 交易操作频繁 */
   TOO_MANY_TRANSACTION_OPERATIONS = 1317,
+<<<<<<< HEAD
   URL_ERROR = 9999,
+=======
+>>>>>>> 6f9cdce ([feat] Functional development completed)
   UNRECOGNIZED = -1,
 }
 

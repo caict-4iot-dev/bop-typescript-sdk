@@ -30,13 +30,10 @@ export class EncryptionCrypto {
 
   private isValidChainCode(str: string): boolean {
     // 使用正则表达式来检查字符串是否仅包含数字和小写字母
-    const regex = /^[a-z0-9]{4}$/;
     return regex.test(str);
   }
 
   public generateKeyStore(
-    encPrivateKey: string,
-    passwd: string,
   ): GetKeyResponse {
     try {
       let result = bifEncryption.generateKeyStore(
