@@ -1,0 +1,581 @@
+syntax = "proto3";
+package bopsdkinterface;
+
+import "bop-sdk-common.proto";
+
+message ChainInfo {
+  string license_version = 1 [json_name = "license_version"];
+  int64 websocket_port = 2 [json_name = "websocket_port"];
+  string chain_version = 3 [json_name = "chain_version"];
+  string current_time = 4 [json_name = "current_time"];
+  string hash_type = 5 [json_name = "hash_type"];
+  string ledger_version = 6 [json_name = "ledger_version"];
+  string network_id = 7 [json_name = "network_id"];
+}
+
+message GetChainInfoResponse {
+    bopsdk.SdkStatusCode error_code = 1 [json_name = "error_code"];
+    string error_desc = 2 [json_name = "error_desc"];
+    ChainInfo result = 3;
+}
+
+message GetNetworkIdResponse {
+    bopsdk.SdkStatusCode error_code = 1 [json_name = "error_code"];
+    string error_desc = 2 [json_name = "error_desc"];
+    string result = 3;
+}
+
+message LedgerHeader
+{
+	int64	seq 		            = 1;
+	string	hash 					= 2;
+	string	previous_hash 			= 3 [json_name = "previous_hash"];
+	string	account_tree_hash		= 4 [json_name = "account_tree_hash"];
+	int64   close_time 				= 5 [json_name = "close_time"];
+	string   consensus_value_hash    = 6 [json_name = "consensus_value_hash"];
+	int64	version 			    = 7;
+	int64	tx_count 				= 8 [json_name = "tx_count"];
+	string   validators_hash = 9 [json_name = "validators_hash"];
+	string	fees_hash = 10 [json_name = "fees_hash"];
+}
+
+message LedgerResponse {
+    bopsdk.SdkStatusCode error_code = 1 [json_name = "error_code"];
+    string error_desc = 2 [json_name = "error_desc"];
+    LedgerHeader result = 3;
+}
+
+message LedgerNumberResponse {
+    bopsdk.SdkStatusCode error_code = 1 [json_name = "error_code"];
+    string error_desc = 2 [json_name = "error_desc"];
+    int64 result = 3;
+}
+
+message LedgerLeaderResponse {
+    bopsdk.SdkStatusCode error_code = 1 [json_name = "error_code"];
+    string error_desc = 2 [json_name = "error_desc"];
+    string result = 3;
+}
+
+message LedgerValidatorsResponse {
+    bopsdk.SdkStatusCode error_code = 1 [json_name = "error_code"];
+    string error_desc = 2 [json_name = "error_desc"];
+    repeated string result = 3;
+}
+
+message LedgerTxHashesResponse {
+    bopsdk.SdkStatusCode error_code = 1 [json_name = "error_code"];
+    string error_desc = 2 [json_name = "error_desc"];
+    repeated string result = 3;
+}
+
+enum ContractType{
+    JAVASCRIPT = 0;
+    EVM = 1;
+    SYSTEM = 2;
+}
+
+message Contract{
+	ContractType type = 1;
+	string payload = 2;
+}
+
+message Signer {
+	enum Limit{
+		SIGNER_NONE = 0;
+		SIGNER = 100;
+	};
+	string address = 1;
+	int64 weight = 2;
+}
+
+message OperationTypeThreshold{
+    enum Type {
+		UNKNOWN = 0;
+		CREATE_ACCOUNT 			= 1;
+		SET_METADATA			= 4;
+		SET_SIGNER_WEIGHT		= 5;
+		SET_THRESHOLD			= 6;
+		PAY_COIN                = 7;
+		LOG						= 8;
+		SET_PRIVILEGE			= 9;
+		UPGRADE_CONTRACT		= 10;
+		SET_CONTROLLED_AREA     = 11;
+        AUTHORIZE_TRANSFER      = 12;
+	};
+	Type type = 1;
+	int64 threshold = 2;
+}
+
+message AccountThreshold{
+	int64 tx_threshold = 1 [json_name = "tx_threshold"];
+	repeated OperationTypeThreshold type_thresholds = 2 [json_name = "type_thresholds"];
+}
+
+message AccountPrivilege {
+	int64 master_weight = 1 [json_name = "master_weight"];
+	repeated Signer signers = 2;
+	AccountThreshold thresholds = 3;
+}
+
+message AccountInfo {
+  string address = 1;
+  int64 balance = 2;
+  int64 nonce = 3;
+  bool auth_transfer = 4 [json_name = "auth_transfer"];
+  string metadatas_hash = 5 [json_name = "metadatas_hash"];
+  Contract contract = 6;
+  AccountPrivilege priv = 7;
+}
+
+message GetAccountResponse {
+    bopsdk.SdkStatusCode error_code = 1 [json_name = "error_code"];
+    string error_desc = 2 [json_name = "error_desc"];
+    AccountInfo result = 3;
+}
+
+message KeyPair{
+	string key = 1;
+	string value = 2;
+	int64 version = 3;
+}
+
+message GetAccountMetadataResponse {
+    bopsdk.SdkStatusCode error_code = 1 [json_name = "error_code"];
+    string error_desc = 2 [json_name = "error_desc"];
+    repeated KeyPair result = 3;
+}
+
+message GetAccountIncreaseNonceResponse {
+    bopsdk.SdkStatusCode error_code = 1 [json_name = "error_code"];
+    string error_desc = 2 [json_name = "error_desc"];
+    int64 result = 3;
+}
+
+message GetAccountBalanceResponse {
+    bopsdk.SdkStatusCode error_code = 1 [json_name = "error_code"];
+    string error_desc = 2 [json_name = "error_desc"];
+    int64 result = 3;
+}
+
+message GetAccountPrivResponse {
+    bopsdk.SdkStatusCode error_code = 1 [json_name = "error_code"];
+    string error_desc = 2 [json_name = "error_desc"];
+    AccountPrivilege result = 3;
+}
+
+message GetTxPoolSizeResponse {
+    bopsdk.SdkStatusCode error_code = 1 [json_name = "error_code"];
+    string error_desc = 2 [json_name = "error_desc"];
+    int64 result = 3;
+}
+
+message Signature {
+	string public_key = 1 [json_name = "public_key"];
+	string sign_data = 2 [json_name = "sign_data"];
+}
+
+message OperationCreateAccount{
+	string dest_address = 1 [json_name = "dest_address"];
+	Contract contract = 2;
+	AccountPrivilege priv = 3;
+	repeated KeyPair metadatas = 4;	
+	int64	init_balance = 5 [json_name = "init_balance"];
+	string  init_input = 6 [json_name = "init_input"];
+}
+
+message OperationPayCoin {
+  string dest_address = 1 [json_name = "dest_address"];
+  int64 amount = 2;
+  string input = 3;
+}
+
+message OperationSetMetadata{
+	string	key = 1;  
+	string  value = 2;
+	int64 	version = 3; //optional
+	bool    delete_flag = 4 [json_name = "delete_flag"];
+}
+
+message OperationUpgradeContract {
+	string dest_address = 1 [json_name = "dest_address"];
+	string payload = 2;
+	int64  type = 3;
+}
+
+message OperationSetSignerWeight{
+	int64 master_weight = 1 [json_name = "master_weight"]; //required, [-1,MAX(UINT32)] -1: indicates no setting
+	repeated Signer signers = 2; //address:weight, if weight is 0, it indicates deleting this signer
+}
+
+message OperationSetThreshold{
+	int64 tx_threshold = 1 [json_name = "tx_threshold"];
+	repeated OperationTypeThreshold type_thresholds = 4; //type:threshold, threshold:0 indicates deleting this type
+}
+
+message OperationLog{
+	string topic = 1;
+	repeated string datas = 2;
+    repeated string topics = 3; //for evm
+}
+
+message OperationSetPrivilege{
+	string master_weight = 1 [json_name = "master_weight"];
+	repeated Signer signers = 2;
+	string tx_threshold = 3 [json_name = "tx_threshold"];
+	repeated OperationTypeThreshold type_thresholds = 4;
+}
+
+message ControlledArea{
+	enum TRUST_FLAG {
+		UNCERT        = 0;
+		TRUSTED       = 1;
+		UNTRUSTED     = 2;
+	};
+	
+	enum STATUS_FALG {
+		ENABLED        = 0;
+		DISABLED       = 1;
+	};
+	
+    TRUST_FLAG trusted = 1;
+	STATUS_FALG status = 2;
+	repeated KeyPair attributes = 3 ;
+}
+
+message OperationSetControlledArea {
+	string dest_address = 1 [json_name = "dest_address"];
+	bool s_trusted = 2 [json_name = "s_trusted"];
+	bool s_status = 3 [json_name = "s_status"];
+    ControlledArea.TRUST_FLAG trusted = 4;
+	ControlledArea.STATUS_FALG status = 5;
+	repeated KeyPair attributes = 6; 
+}
+
+message OperationAuthorizeTransfer{
+    string dest_address = 1 [json_name = "dest_address"];
+    bool   auth = 2;
+}
+
+message Operation {
+	enum Type {
+		UNKNOWN = 0;
+		CREATE_ACCOUNT 			= 1;
+		SET_METADATA			= 4;
+		SET_SIGNER_WEIGHT		= 5;
+		SET_THRESHOLD			= 6;
+		PAY_COIN                = 7;
+		LOG						= 8;
+		SET_PRIVILEGE			= 9;
+		UPGRADE_CONTRACT		= 10;
+		SET_CONTROLLED_AREA     = 11;
+        AUTHORIZE_TRANSFER      = 12;
+	};
+	Type type = 1;
+	string source_address = 2 [json_name = "source_address"];
+	string metadata	= 3;
+
+	OperationCreateAccount		create_account 	   = 4 [json_name = "create_account"];
+	OperationSetMetadata		set_metadata	   = 7 [json_name = "set_metadata"];
+	OperationSetSignerWeight	set_signer_weight  = 8 [json_name = "set_signer_weight"];
+	OperationSetThreshold		set_threshold 	   = 9 [json_name = "set_threshold"];
+	OperationPayCoin			pay_coin           = 10 [json_name = "pay_coin"];
+	OperationLog				log				   = 11;
+	OperationSetPrivilege		set_privilege	   = 12 [json_name = "set_privilege"];
+	OperationUpgradeContract	upgrade_contract   = 13 [json_name = "upgrade_contract"];
+	OperationSetControlledArea	set_controlled_area   = 14 [json_name = "set_controlled_area"];
+    OperationAuthorizeTransfer  authorize_transfer  = 15 [json_name = "authorize_transfer"];
+}
+
+enum TxType{
+    INCREASE_NONCE   = 0;
+    RANDOM_NONCE   = 1;
+};
+
+message Transaction {
+  string source_address = 1 [json_name = "source_address"];
+  int64 fee_limit = 2 [json_name = "fee_limit"];
+  int64 gas_price = 3 [json_name = "gas_price"];
+  string nonce = 4;
+  string metadata = 5;
+  TxType nonce_type = 6 [json_name = "nonce_type"];
+  int64 max_ledger_seq = 7 [json_name = "max_ledger_seq"];
+  repeated Operation operations = 8;
+}
+
+message ChainTransaction{
+  string status = 1;
+  string incoming_time = 2 [json_name = "incoming_time"];
+  string hash = 3;
+  repeated Signature signatures = 4;
+  Transaction transaction = 5;
+}
+
+message TransactionCacheChain{
+  int64 total_count = 1 [json_name = "total_count"];
+  repeated ChainTransaction transactions = 3 [json_name = "transactions"];
+}
+
+message GetTransactionCacheResponse {
+    bopsdk.SdkStatusCode error_code = 1 [json_name = "error_code"];
+    string error_desc = 2 [json_name = "error_desc"];
+    TransactionCacheChain result = 3;
+}
+
+message TransactionEnv {
+  string hash = 1;
+  int64 actual_fee = 2 [json_name = "actual_fee"];
+  int64 close_time = 3 [json_name = "close_time"];
+  repeated string contract_tx_hashes = 4 [json_name = "contract_tx_hashes"];
+  bopsdk.SdkStatusCode error_code = 5 [json_name = "error_code"];
+  string error_desc = 6 [json_name = "error_desc"];
+  int64 ledger_seq = 7 [json_name = "ledger_seq"];
+  repeated Signature signatures = 8;
+  Transaction transaction = 9;
+  int64 tx_size = 10 [json_name = "tx_size"];
+  string blob = 11;
+}
+
+message TransactionHistory {
+  int64 total_count = 1 [json_name = "total_count"];
+  repeated TransactionEnv transactions = 2;
+}
+
+message GetTransactionHistoryResponse {
+    bopsdk.SdkStatusCode error_code = 1 [json_name = "error_code"];
+    string error_desc = 2 [json_name = "error_desc"];
+    TransactionHistory result = 3;
+}
+
+message opBaseParams {
+  TxType nonce_type = 1;
+  int64 ceil_ledger_seq = 2;
+  int64 gas_price = 3;
+  int64 fee_limit = 4;
+  string remarks = 5;
+}
+ 
+message GetTxResponse {
+    bopsdk.SdkStatusCode error_code = 1 [json_name = "error_code"];
+    string error_desc = 2 [json_name = "error_desc"];
+    string result = 3;
+}
+
+message OpCreateAccountParams {
+  opBaseParams params = 1;
+  string dest_address = 2;
+  int64 amount = 3;
+}
+
+message OpCreateContractParams {
+  opBaseParams params = 1;
+  int64 init_balance = 2;
+  ContractType type = 3;
+  string payload = 4;
+  string init_input = 5;
+}
+
+message OpGasSendParams {
+  opBaseParams params = 1;
+  string dest_address = 2;
+  int64 amount = 3;
+}
+
+message OpGasSend {
+  string dest_address = 1;
+  int64 amount = 2;
+}
+
+message OpContractInvokeParams {
+  opBaseParams params = 1;
+  string contract_address = 2;
+  string input = 3;
+  int64 amount = 4;
+}
+
+message OpContractInvoke {
+  string contract_address = 1;
+  string input = 2;
+  int64 amount = 3;
+}
+
+message OpSetMetadataParams {
+  opBaseParams params = 1;
+  string key = 2;
+  string value = 3;
+  int64 version = 4;
+  bool delete_flag = 5;
+}
+
+message OpSetPrivParams {
+  opBaseParams params = 1;
+  string master_weight = 2;
+  repeated Signer signers = 3;
+  string tx_threshold = 4;
+  repeated OperationTypeThreshold type_thresholds = 5;
+}
+
+message OpBatchGasSend {
+  opBaseParams base = 1;
+  repeated OpGasSend params = 2;
+}
+
+message OpBatchContractInvoke {
+  opBaseParams base = 1;
+  repeated OpContractInvoke params = 2;
+}
+
+message TxBlob {
+  string transaction_blob = 1 [json_name = "transaction_blob"];;
+  repeated Signature signatures = 2;
+}
+
+message SubmitTransactionParams {
+  repeated TxBlob items = 1;
+}
+
+message SubmitTransaction {
+  string hash = 1;
+  bopsdk.SdkStatusCode error_code = 4 [json_name = "error_code"];
+  string error_desc = 5 [json_name = "error_desc"];
+}
+
+message SubmitTransactionResponse {
+  int64 success_count = 1 [json_name = "success_count"];
+  repeated SubmitTransaction results = 2;
+}
+
+message CheckContractAccountResponse {
+    bopsdk.SdkStatusCode error_code = 1 [json_name = "error_code"];
+    string error_desc = 2 [json_name = "error_desc"];
+    bool result = 3;
+}
+
+message GetContractInfoResponse {
+    bopsdk.SdkStatusCode error_code = 1 [json_name = "error_code"];
+    string error_desc = 2 [json_name = "error_desc"];
+    Contract result = 3;
+}
+
+message SignerSignResponse {
+    bopsdk.SdkStatusCode error_code = 1 [json_name = "error_code"];
+    string error_desc = 2 [json_name = "error_desc"];
+    Signature result = 3;
+}
+
+message OffLineTxResponse {
+    bopsdk.SdkStatusCode error_code = 1 [json_name = "error_code"];
+    string error_desc = 2 [json_name = "error_desc"];
+    TxBlob result = 3;
+}
+
+message TestTransaction {
+  Transaction transaction_json = 1 [json_name = "transaction_json"];
+  int64 signature_number = 2 [json_name = "signature_number"];
+}
+
+message TestTransactionRequest {
+  repeated TestTransaction items = 1;
+}
+
+message TestTransactionResult {
+  message Stat {
+    int64 apply_time = 1 [json_name = "apply_time"];
+	int64 memory_usage = 2 [json_name = "memory_usage"];
+	int64 stack_usage = 3 [json_name = "stack_usage"];
+	int64 step = 4;
+  }
+  message Transaction_env {
+    Transaction transaction = 1;
+  }
+  message TestTx {
+    int64 gas = 1;
+	Transaction_env transaction_env = 2 [json_name = "transaction_env"];
+	int64 actual_fee = 3 [json_name = "actual_fee"];
+  }
+  Stat stat = 1;
+  string hash = 2;
+  repeated TestTx txs = 3;
+}
+
+message TestTransactionResponse {
+  bopsdk.SdkStatusCode error_code = 1 [json_name = "error_code"];
+  string error_desc = 2 [json_name = "error_desc"];
+  TestTransactionResult result = 3;
+}
+
+message CallContractRequest{
+  string contract_address = 1 [json_name = "contract_address"];
+  string input = 2;
+  int64 fee_limit = 4 [json_name = "fee_limit"];
+  int64 gas_price = 5 [json_name = "gas_price"];
+  string source_address = 6 [json_name = "source_address"];
+  int64 opt_type = 7 [json_name = "opt_type"];
+}
+
+message CallContractResultSystem {
+  repeated QueryReturnSystem query_rets = 1 [json_name = "query_rets"];
+}
+ 
+message QueryReturnSystem {
+  Error error = 1;
+  SystemContractResult result = 2;
+}
+
+message SystemContractResult {
+  string data = 1;
+}
+
+message CallContractResultJs {
+  repeated QueryReturnJs query_rets = 1 [json_name = "query_rets"];
+}
+ 
+// 查询返回消息
+message QueryReturnJs {
+  Error error = 1;
+  JsContractResult result = 2;
+}
+
+message JsContractResult {
+  string type = 1; // "string" 或 "bool"
+  string value = 2;
+}
+
+message CallContractResultEvm {
+  repeated QueryReturnEvm query_rets = 1 [json_name = "query_rets"];
+}
+ 
+message QueryReturnEvm {
+  Error error = 1;
+  EvmContractResult result = 2;
+}
+
+message EvmContractResult {
+  int32 code = 1;
+  string data = 2;
+  string desc = 3;
+  string eumcode = 4;
+  int64 gasused = 5;
+}
+ 
+// 错误消息
+message Error {
+  string data = 1;
+}
+
+message QueryReturn {
+  string error = 1;
+  string result = 2;
+}
+
+message CallContractResult {
+  repeated QueryReturn query_rets = 1 [json_name = "query_rets"];
+}
+
+message CallContractResponse {
+  string trace = 1;
+  CallContractResult result = 2; 
+  bool success = 3;
+  bopsdk.SdkStatusCode error_code = 4 [json_name = "error_code"];
+  string error_desc = 5 [json_name = "error_desc"];
+}

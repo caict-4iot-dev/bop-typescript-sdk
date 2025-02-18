@@ -1,0 +1,159 @@
+syntax = "proto3";
+package bopsdk;
+
+enum SdkStatusCode {
+    SUCCESS = 0;
+
+    INVALID_URL = 9999;
+
+    //utils相关错误码
+    INVALIDPRIVATEKEY = 10000;
+    INVALIDPUBLICKEY = 10001;
+    INVALIDADDRESS = 10002;
+    INVALIDPASSWD = 10003;
+    INVALIDKEYSTORE = 10004;
+    ERRORPASSWD = 10005;
+    INVALIDMESSAGE = 10006;
+    INVALIDSIGNATURE = 10007;
+    INVALIDENTROPY = 10008;
+    INVALIDMNEMONICS = 10009;
+    UNSUPPORTKEYTYPE = 10010;
+    INVALIDCHAINCODE = 10011;
+    INVALIDSERVICETYPE = 10012;
+    INVALIDINDEXVALUE = 10013;
+
+    //Signer相关错误码
+    UNCONNECTED_PROVIDER = 20000; //未连接provider
+    NO_PROVIDER_SET = 20001;
+
+    //构建离线交易异常
+    // 源地址无效错误
+    INVALID_SOURCEADDRESS_ERROR = 11002;
+    // 目标地址无效错误
+    INVALID_DESTADDRESS_ERROR = 11003;
+    // 初始余额无效错误
+    INVALID_INITBALANCE_ERROR = 11004;
+    // 地址无效错误
+    INVALID_ADDRESS_ERROR = 11006;
+    // 元数据不是十六进制字符串错误
+    METADATA_NOT_HEX_STRING_ERROR = 11008;
+    // 数据键无效错误
+    INVALID_DATAKEY_ERROR = 11011;
+    // 数据值无效错误
+    INVALID_DATAVALUE_ERROR = 11012;
+    // 数据版本无效错误
+    INVALID_DATAVERSION_ERROR = 11013;
+    // 主权重无效错误
+    INVALID_MASTERWEIGHT_ERROR = 11015;
+    // 签名者地址无效错误
+    INVALID_SIGNER_ADDRESS_ERROR = 11016;
+    // 签名者权重无效错误
+    INVALID_SIGNER_WEIGHT_ERROR = 11017;
+    // 交易阈值无效错误
+    INVALID_TX_THRESHOLD_ERROR = 11018;
+    // 操作类型无效错误
+    INVALID_OPERATION_TYPE_ERROR = 11019;
+    // 类型阈值无效错误
+    INVALID_TYPE_THRESHOLD_ERROR = 11020;
+    // 金额无效错误
+    INVALID_AMOUNT_ERROR = 11024;
+    // 合同地址无效错误
+    INVALID_CONTRACTADDRESS_ERROR = 11037;
+    // 合同地址不是合同账户错误
+    CONTRACTADDRESS_NOT_CONTRACTACCOUNT_ERROR = 11038;
+    // 起始地址无效错误
+    INVALID_FROMADDRESS_ERROR = 11041;
+    // 有效载荷为空错误
+    PAYLOAD_EMPTY_ERROR = 11044;
+    // 合同类型无效错误
+    INVALID_CONTRACT_TYPE_ERROR = 11047;
+    // nonce无效错误
+    INVALID_NONCE_ERROR = 11048;
+    // 气体价格无效错误
+    INVALID_GASPRICE_ERROR = 11049;
+    // 费用限制无效错误
+    INVALID_FEELIMIT_ERROR = 11050;
+    // 操作不能为空错误
+    OPERATIONS_EMPTY_ERROR = 11051;
+    // 最高账本序列号无效错误
+    INVALID_CEILLEDGERSEQ_ERROR = 11052;
+    // 随机数类型无效错误
+    INVALID_NONCE_TYPE_ERROR = 12008;
+
+
+    //链相关错误描述
+    INTERNAL_SERVER_ERROR = 1; //数据源异常
+    INVALID_PARAMETER = 2; //参数异常 -> 2
+    OBJECT_ALREADY_EXISTS = 3; //对象已存在 -> 3
+    OBJECT_NOT_FOUND = 4; //对象不存在
+    TX_TIMEOUT = 5; //交易超时
+    ACCOUNT_ACCESS_DENIED = 6; //账户禁止使用
+    MATH_OVERFLOW = 7; //数学计算溢出
+    ILLEGAL_PUBLIC_KEY = 90; //公钥非法
+    ILLEGAL_PRIVATE_KEY = 91; //私钥非法
+    INSUFFICIENT_SIGNATURE_WEIGHT = 93; // 签名权重不够，达不到操作的门限值
+    ILLEGAL_ADDRESS = 94; //地址非法
+    MISSING_TRANSACTION_OPERATION = 97; // 交易缺失操作
+    TOO_MANY_OPERATIONS = 98; // 单笔交易内超过了100个操作
+    INVALID_NONCE = 99; // 交易序号错误，nonce错误
+    ACCOUNT_LOW_RESERVE = 100; // 余额不足
+    SOURCE_AND_DESTINATION_EQUAL = 101; //源和目的账号相等
+    ACCOUNT_ALREADY_EXISTS = 102; //创建账号操作，目标账号已存在
+    ACCOUNT_NOT_FOUND = 103;  // 账户不存在
+    INSUFFICIENT_INITIAL_ASSETS = 106; // 创建账号初始化资产小于配置文件中最小费用
+    INSUFFICIENT_FEE = 111; // 费用不足
+    WEIGHT_OUT_OF_RANGE = 120; // 权重值不在有效范围
+    THRESHOLD_OUT_OF_RANGE = 121; // 门限值不在有效范围
+    MISMATCHING_METADATA_VERSION = 144; // metadata的version版本号不与已有的匹配
+    TRANSACTION_DATA_TOO_LARGE = 146; // 交易数据超出上限
+    CONTRACT_EXECUTION_FAILED = 151; //合约执行失败
+    CONTRACT_PARSE_FAILED = 152; // 合约语法分析失败
+    CONTRACT_RECURSION_DEPTH_EXCEEDED = 153; // 合约递归深度超出上限
+    CONTRACT_GENERATED_TOO_MANY_TRANSACTIONS = 154; // 合约产生的交易超出上限
+    CONTRACT_EXECUTION_TIMEOUT = 155; // 合约执行超时
+    NON_CONTRACT_ADDRESS = 156; // 目标地址非合约账户
+    FAILED_TO_INSERT_INTO_TX_QUEUE = 160;// 插入交易缓存队列失败
+    FORBIDDEN_SPARK_TOKEN_TRANSFER = 161; // 禁止转移星火令
+    DUPLICATE_NONCE_IN_CACHE = 183;// 交易nonce重复，nonce在缓存中 (需重新发送交易)
+    INVALID_MAX_BLOCK_NUMBER = 184;  // 交易最大区块数错误，小于当前区块高度 (需要重新获取区块高度序列化接口)
+
+    //开发平台相关错误码
+    PARAMETER_TYPE_PARSING_EXCEPTION = -3; // 参数类型解析异常
+    INVALID_PARAMETER_EXCEPTION = -6; // 无效参数异常
+    REQUEST_TYPE_EXCEPTION = -7; // 请求类型异常
+    UNIFIED_VALIDATION_EXCEPTION = -9; // 统一验证参数异常
+    METHOD_NOT_ALLOWED = 405; // 不支持当前请求类型
+    API_NOT_FOUND = 1013; // 请求的API不存在
+    API_DEPRECATED = 1015; // 请求的API已停用
+    TIMEOUT = 1016; // timeout
+    SENSITIVE_WORDS_IN_TRANSACTION = 1101;     // 交易数据中包含敏感词汇
+    CONTRACT_ADDRESS_NOT_IN_WHITELIST = 1102;     // 您的合约地址未在项目合约白名单
+    ILLEGAL_TRANSACTION_DATA = 1103;     // 请检查交易数据是否合规 
+    TRANSACTION_TYPE_NOT_FOUND = 1105;     // 交易类型不存在
+    REMOTE_CALL_FAILED = 1106;     // 远程调用失败
+    TRANSACTION_POOL_TYPE_NOT_FOUND = 1107;     // 交易池类型不存在
+    PARAMETER_OUT_OF_RANGE = 1108;     // 参数超出限制
+    ILLEGAL_PARAMETER = 1109;    // 非法参数
+    TX_TYPE_REQUIRED = 1110;    // 当bid 或 tx_id为不为空时，tx_type为必填
+    BUSINESS_PARAMETER_CANNOT_BE_EMPTY = 1111;     // 业务参数不能为空
+    API_KEY_NOT_FOUND = 1122;    // API Key不存在
+    REQUEST_RATE_EXCEEDED_PER_SECOND = 1200;     // 每秒请求频次超出限制
+    REQUEST_RATE_EXCEEDED_PER_DAY = 1201;     // 每日请求频次超出限制
+    NO_RESOURCES_AVAILABLE = 1202;     // 您已无资源可用
+    PROJECT_DELETED = 1203;     // 项目已被删除
+    PROJECT_DISABLED = 1204;     // 项目已禁用
+    PROJECT_BLACKLISTED = 1205;     // 项目被拉入黑名单
+    ACCOUNT_BLACKLISTED = 1206;     // 账户被拉入黑名单
+    API_SECRET_REQUIRED_IN_HEADER = 1207;     // 请在Header中传入API Secret
+    MISMATCHING_API_SECRET = 1208;     // 传入的API Secret与项目不匹配
+    ENHANCED_TRANSACTION_SERVICE_NOT_ENABLED = 1209;     // 增强交易服务未开启
+    MISMATCHING_PROJECT_AND_API_TYPE = 1210;    // 项目类型与API类型不一致
+    PROJECT_WITHOUT_MAINNET_PERMISSION = 1211;    // 当前项目还没有主网权限
+    IN_PLATFORM_QUEUE = 1311;    // 平台队列中
+    TRANSACTION_SUBMITTED_TO_SPARKCHAIN = 1312;    // 交易已提交到星火链
+    TRANSACTION_POOL_TIMEOUT_DISCARD = 1313;    // 平台交易池超时丢弃
+    NO_TRANSACTION_POOL_FOR_PROJECT = 1314;    // 项目暂无交易池(增强交易)
+    TRANSACTION_ALREADY_EXISTS = 1315;    // 交易已存在
+    SPARKCHAIN_TIMEOUT_DISCARD = 1316;    // 星火链超时丢弃
+    TOO_MANY_TRANSACTION_OPERATIONS = 1317;    // 交易操作频繁
+}

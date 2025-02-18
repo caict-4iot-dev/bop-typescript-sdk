@@ -1,0 +1,86 @@
+syntax = "proto3";
+package bopsdkutils;
+
+import "bop-sdk-common.proto";
+
+enum KeyType {
+    ED25519 = 0;
+    SM2 = 1;
+}
+
+message AccountKeyInfo {
+    KeyType key_type = 1 [json_name = "key_type"];
+    string enc_private_key = 2 [json_name = "enc_private_key"];
+    string enc_public_key = 3 [json_name = "enc_public_key"];
+    string raw_private_key = 4 [json_name = "raw_private_key"];
+    string raw_public_key = 5 [json_name = "raw_public_key"];
+    string enc_address = 6 [json_name = "enc_address"];
+}
+
+message GetBidAndKeyPairResponse {
+    bopsdk.SdkStatusCode error_code = 1 [json_name = "error_code"];
+    string error_desc = 2 [json_name = "error_desc"];
+    AccountKeyInfo result = 3;
+}
+
+message AccountPublicKeyInfo {
+    KeyType key_type = 1 [json_name = "key_type"];
+    string enc_public_key = 2 [json_name = "enc_public_key"];
+    string raw_public_key = 3 [json_name = "raw_public_key"];
+    string enc_address = 4 [json_name = "enc_address"];
+}
+
+message GetAccountPublicKeyInfoResponse {
+    bopsdk.SdkStatusCode error_code = 1 [json_name = "error_code"];
+    string error_desc = 2 [json_name = "error_desc"];
+    AccountPublicKeyInfo result = 3;
+}
+
+message AccountPrivateKeyInfo {
+    KeyType key_type = 1 [json_name = "key_type"];
+    string enc_private_key = 2 [json_name = "enc_private_key"];
+    string raw_private_key = 3 [json_name = "raw_private_key"];
+}
+
+message GetAccountPrivateKeyInfoResponse {
+    bopsdk.SdkStatusCode error_code = 1 [json_name = "error_code"];
+    string error_desc = 2 [json_name = "error_desc"];
+    AccountPrivateKeyInfo result = 3;
+}
+
+message GetKeyResponse {
+    bopsdk.SdkStatusCode error_code = 1 [json_name = "error_code"];
+    string error_desc = 2 [json_name = "error_desc"];
+    string result = 3;
+}
+
+message CheckKeyResponse {
+    bopsdk.SdkStatusCode error_code = 1 [json_name = "error_code"];
+    string error_desc = 2 [json_name = "error_desc"];
+    bool result = 3;
+}
+
+message ChildAccountKeyInfo {
+    string private_key = 1 [json_name = "private_key"];
+    string public_key = 2 [json_name = "public_key"];
+    string address = 3;
+    string path = 4;
+}
+
+message GetChildBidAndKeyPairResponse {
+    bopsdk.SdkStatusCode error_code = 1 [json_name = "error_code"];
+    string error_desc = 2 [json_name = "error_desc"];
+    ChildAccountKeyInfo result = 3;
+}
+
+message GetKeyTypeResponse {
+    bopsdk.SdkStatusCode error_code = 1 [json_name = "error_code"];
+    string error_desc = 2 [json_name = "error_desc"];
+    KeyType result = 3;
+}
+
+enum LanguageType {
+    CHINESE = 0;
+    ENGLISH = 1;
+}
+

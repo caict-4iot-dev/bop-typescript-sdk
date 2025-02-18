@@ -1,0 +1,898 @@
+syntax = "proto3";
+package bop;
+
+//账号备案 permit
+// 备案或取消备案的请求项
+message BidStatus {
+  string bid = 1;          // 申请账号（长度在1-64之间）
+  string status = 2;       // 账号状态，0：取消许可，1:许可（长度为1）
+}
+
+// 备案或取消备案的请求消息
+message ApplyRequest {
+  repeated BidStatus data = 1; // 申请备案、取消备案bid集合，上限100条
+}
+
+message ApplyResult {
+  string requestNo = 1;
+}
+
+message ApplyResponse {
+  string trace = 1;
+  ApplyResult result = 2;
+  bool success = 3;
+  StatusCodes error_code = 4 [json_name = "error_code"];
+  string error_desc = 5 [json_name = "error_desc"];
+}
+
+message ApplyStatusRequest {
+  string requestNo = 1;
+}
+
+message ApplyStatusResult {
+  string requestNo = 1;     // 请求的序号
+  string status = 2;        // 存储状态（0：待处理，1：处理中，2：处理成功，3：处理失败）
+  string txHash = 3;        // 数据上链交易hash
+  string errorDesc = 4;     // 错误描述（如果处理失败，则提供详细错误信息）
+}
+
+message ApplyStatusResponse {
+  string trace = 1;
+  ApplyStatusResult result = 2;
+  bool success = 3;
+  StatusCodes error_code = 4 [json_name = "error_code"];
+  string error_desc = 5 [json_name = "error_desc"];
+}
+
+message DetailRequest {
+  string requestNo = 1;
+}
+
+message DetailResult {
+  string requestNo = 1;     // 请求的序号
+  string txHash = 2;        // 数据上链交易hash（假设为字符串）
+  string bidList = 3; // bid集合（字符串列表）
+}
+
+message DetailResponse {
+  string trace = 1;
+  DetailResult result = 2;
+  bool success = 3;
+  StatusCodes error_code = 4 [json_name = "error_code"];
+  string error_desc = 5 [json_name = "error_desc"];
+}
+
+//base
+message HelloResult {
+  string chain_code = 1 [json_name = "chain_code"];
+  string license_version = 2 [json_name = "license_version"];
+  string monitor_version = 3 [json_name = "monitor_version"];
+  string overlay_version = 4 [json_name = "overlay_version"];
+  int64 websocket_port = 5 [json_name = "websocket_port"];
+  string address_prefix = 6 [json_name = "address_prefix"];
+  string chain_version = 7 [json_name = "chain_version"];
+  string current_time = 8 [json_name = "current_time"];
+  string hash_type = 9 [json_name = "hash_type"];
+  string ledger_version = 10 [json_name = "ledger_version"];
+  string network_id = 11 [json_name = "network_id"];
+}
+
+message HelloResponse {
+  string trace = 1;
+  HelloResult result = 2;
+  bool success = 3;
+  StatusCodes error_code = 4 [json_name = "error_code"];
+  string error_desc = 5 [json_name = "error_desc"];
+}
+
+//获取链上某个账户的信息
+message GetAccountRequest {
+  string address = 1;
+  int64 height = 2;
+  string key = 3;
+}
+
+message Contract{
+    enum ContractType{
+		JAVASCRIPT = 0;
+		EVM = 1;
+		SYSTEM = 2;
+	}
+	ContractType type = 1;
+	string payload = 2;
+}
+
+message Signer {
+	enum Limit{
+		SIGNER_NONE = 0;
+		SIGNER = 100;
+	};
+	string address = 1;
+	int64 weight = 2;
+}
+
+message AccountPrivilege {
+	int64 master_weight = 1 [json_name = "master_weight"];
+	repeated Signer signers = 2;
+	AccountThreshold thresholds = 3;
+}
+
+message OperationTypeThreshold{
+    enum Type {
+		UNKNOWN = 0;
+		CREATE_ACCOUNT 			= 1;
+		SET_METADATA			= 4;
+		SET_SIGNER_WEIGHT		= 5;
+		SET_THRESHOLD			= 6;
+		PAY_COIN                = 7;
+		LOG						= 8;
+		SET_PRIVILEGE			= 9;
+		UPGRADE_CONTRACT		= 10;
+		SET_CONTROLLED_AREA     = 11;
+        AUTHORIZE_TRANSFER      = 12;
+	};
+	Type type = 1;
+	int64 threshold = 2;
+}
+
+message AccountThreshold{
+	int64 tx_threshold = 1 [json_name = "tx_threshold"];
+	repeated OperationTypeThreshold type_thresholds = 2 [json_name = "type_thresholds"];
+}
+
+message KeyPair{
+	string key = 1;
+	string value = 2;
+	int64 version = 3;
+}
+
+message GetAccountResult {
+  string address = 1;
+  int64 balance = 2;
+  int64 nonce = 3;
+  bool auth_transfer = 4 [json_name = "auth_transfer"];
+  string metadatas_hash = 5 [json_name = "metadatas_hash"];
+  Contract contract = 6;
+  AccountPrivilege priv = 7;
+  repeated KeyPair metadatas = 8;
+}
+
+message GetAccountResponse {
+  string trace = 1;
+  GetAccountResult result = 2;
+  bool success = 3;
+  StatusCodes error_code = 4 [json_name = "error_code"];
+  string error_desc = 5 [json_name = "error_desc"];
+}
+
+message GetAccountBaseRequest {
+  string address = 1;
+}
+
+message GetAccountBaseResponse {
+  string trace = 1;
+  GetAccountResult result = 2;
+  bool success = 3;
+  StatusCodes error_code = 4 [json_name = "error_code"];
+  string error_desc = 5 [json_name = "error_desc"];
+}
+
+//获取指定账户metadata数据
+message GetAccountMetadataRequest {
+  string address = 1;
+  string key = 2;
+}
+
+message GetAccountMetadataResponse {
+  string trace = 1;
+  map<string, KeyPair> result = 2;
+  bool success = 3;
+  StatusCodes error_code = 4 [json_name = "error_code"];
+  string error_desc = 5 [json_name = "error_desc"];
+}
+
+message GetLedgerRequest {
+  int64 seq = 1;
+  bool with_validator = 2;
+  bool with_leader = 3;
+}
+
+message LedgerHeader
+{
+	int64	seq 		            = 1;
+	string	hash 					= 2;
+	string	previous_hash 			= 3 [json_name = "previous_hash"];
+	string	account_tree_hash		= 4 [json_name = "account_tree_hash"];
+	int64   close_time 				= 5 [json_name = "close_time"];
+	string   consensus_value_hash    = 6 [json_name = "consensus_value_hash"];
+	int64	version 			    = 7;
+	int64	tx_count 				= 8 [json_name = "tx_count"];
+	string   validators_hash = 9 [json_name = "validators_hash"];
+	string	fees_hash = 10 [json_name = "fees_hash"];
+}
+
+message GetLedgerResult {
+  string leader = 1;
+  repeated string validators = 2;
+  LedgerHeader header = 3;
+  int64 ledger_length = 4 [json_name = "ledger_length"];
+}
+
+message GetLedgerResponse {
+  string trace = 1;
+  GetLedgerResult result = 2;
+  bool success = 3;
+  StatusCodes error_code = 4 [json_name = "error_code"];
+  string error_desc = 5 [json_name = "error_desc"];
+}
+
+message Signature {
+	string public_key = 1 [json_name = "public_key"];
+	string sign_data = 2 [json_name = "sign_data"];
+}
+
+message TxBlob {
+  string transaction_blob = 1 [json_name = "transaction_blob"];;
+  repeated Signature signatures = 2;
+}
+
+message SubmitTransactionRequest {
+  repeated TxBlob items = 1;
+}
+
+message SubmitTransactionResult {
+  string hash = 1;
+  StatusCodes error_code = 4 [json_name = "error_code"];
+  string error_desc = 5 [json_name = "error_desc"];
+}
+
+message SubmitTransactionResponse {
+  repeated SubmitTransactionResult results = 1;
+  int64 success_count = 2 [json_name = "success_count"];
+}
+
+message GetTransactionHistoryRequest {
+  string hash = 1;
+  int64 ledger_seq = 2;
+  int64 start = 3;
+  int64 limit = 4;
+}
+
+message OperationCreateAccount{
+	string dest_address = 1 [json_name = "dest_address"];
+	Contract contract = 2;
+	AccountPrivilege priv = 3;
+	repeated KeyPair metadatas = 4;	
+	int64	init_balance = 5 [json_name = "init_balance"];
+	string  init_input = 6 [json_name = "init_input"];
+}
+
+message OperationPayCoin {
+  string dest_address = 1 [json_name = "dest_address"];
+  int64 amount = 2;
+  string input = 3;
+}
+
+message OperationSetMetadata{
+	string	key = 1;  
+	string  value = 2;
+	int64 	version = 3; //optional
+	bool    delete_flag = 4 [json_name = "delete_flag"];
+}
+
+message OperationUpgradeContract {
+	string dest_address = 1 [json_name = "dest_address"];
+	string payload = 2;
+	int64  type = 3;
+}
+
+message OperationSetSignerWeight{
+	int64 master_weight = 1 [json_name = "master_weight"]; //required, [-1,MAX(UINT32)] -1: indicates no setting
+	repeated Signer signers = 2; //address:weight, if weight is 0, it indicates deleting this signer
+}
+
+message OperationSetThreshold{
+	int64 tx_threshold = 1 [json_name = "tx_threshold"];
+	repeated OperationTypeThreshold type_thresholds = 4; //type:threshold, threshold:0 indicates deleting this type
+}
+
+message OperationLog{
+	string topic = 1;
+	repeated string datas = 2;
+    repeated string topics = 3; //for evm
+}
+
+message OperationSetPrivilege{
+	string master_weight = 1 [json_name = "master_weight"];
+	repeated Signer signers = 2;
+	string tx_threshold = 3 [json_name = "tx_threshold"];
+	repeated OperationTypeThreshold type_thresholds = 4;
+}
+
+message ControlledArea{
+	enum TRUST_FLAG {
+		UNCERT        = 0;
+		TRUSTED       = 1;
+		UNTRUSTED     = 2;
+	};
+	
+	enum STATUS_FALG {
+		ENABLED        = 0;
+		DISABLED       = 1;
+	};
+	
+    TRUST_FLAG trusted = 1;
+	STATUS_FALG status = 2;
+	repeated KeyPair attributes = 3 ;
+}
+
+message OperationSetControlledArea {
+	string dest_address = 1 [json_name = "dest_address"];
+	bool s_trusted = 2 [json_name = "s_trusted"];
+	bool s_status = 3 [json_name = "s_status"];
+    ControlledArea.TRUST_FLAG trusted = 4;
+	ControlledArea.STATUS_FALG status = 5;
+	repeated KeyPair attributes = 6; 
+}
+
+message OperationAuthorizeTransfer{
+    string dest_address = 1 [json_name = "dest_address"];
+    bool   auth = 2;
+}
+
+message Operation {
+	enum Type {
+		UNKNOWN = 0;
+		CREATE_ACCOUNT 			= 1;
+		SET_METADATA			= 4;
+		SET_SIGNER_WEIGHT		= 5;
+		SET_THRESHOLD			= 6;
+		PAY_COIN                = 7;
+		LOG						= 8;
+		SET_PRIVILEGE			= 9;
+		UPGRADE_CONTRACT		= 10;
+		SET_CONTROLLED_AREA     = 11;
+        AUTHORIZE_TRANSFER      = 12;
+	};
+	Type type = 1;
+	string source_address = 2 [json_name = "source_address"];
+	string metadata	= 3;
+
+	OperationCreateAccount		create_account 	   = 4 [json_name = "create_account"];
+	OperationSetMetadata		set_metadata	   = 7 [json_name = "set_metadata"];
+	OperationSetSignerWeight	set_signer_weight  = 8 [json_name = "set_signer_weight"];
+	OperationSetThreshold		set_threshold 	   = 9 [json_name = "set_threshold"];
+	OperationPayCoin			pay_coin           = 10 [json_name = "pay_coin"];
+	OperationLog				log				   = 11;
+	OperationSetPrivilege		set_privilege	   = 12 [json_name = "set_privilege"];
+	OperationUpgradeContract	upgrade_contract   = 13 [json_name = "upgrade_contract"];
+	OperationSetControlledArea	set_controlled_area   = 14 [json_name = "set_controlled_area"];
+    OperationAuthorizeTransfer  authorize_transfer  = 15 [json_name = "authorize_transfer"];
+}
+
+message Transaction {
+  enum TxType{
+    INCREASE_NONCE   = 0;
+    RANDOM_NONCE   = 1;
+  };
+  string source_address = 1 [json_name = "source_address"];
+  int64 fee_limit = 2 [json_name = "fee_limit"];
+  int64 gas_price = 3 [json_name = "gas_price"];
+  string nonce = 4;
+  string metadata = 5;
+  TxType nonce_type = 6 [json_name = "nonce_type"];
+  int64 max_ledger_seq = 7 [json_name = "max_ledger_seq"];
+  repeated Operation operations = 8;
+}
+
+message TransactionEnv {
+  string hash = 1;
+  int64 actual_fee = 2 [json_name = "actual_fee"];
+  int64 close_time = 3 [json_name = "close_time"];
+  repeated string contract_tx_hashes = 4 [json_name = "contract_tx_hashes"];
+  StatusCodes error_code = 5 [json_name = "error_code"];
+  string error_desc = 6 [json_name = "error_desc"];
+  int64 ledger_seq = 7 [json_name = "ledger_seq"];
+  repeated Signature signatures = 8;
+  Transaction transaction = 9;
+  int64 tx_size = 10 [json_name = "tx_size"];
+  string blob = 11;
+}
+
+message GetTransactionHistoryResult {
+  int64 total_count = 1 [json_name = "total_count"];
+  repeated TransactionEnv transactions = 2;
+}
+
+message GetTransactionHistoryResponse {
+  string trace = 1;
+  GetTransactionHistoryResult result = 2;
+  bool success = 3;
+  StatusCodes error_code = 4 [json_name = "error_code"];
+  string error_desc = 5 [json_name = "error_desc"];
+}
+
+message TestTransaction {
+  Transaction transaction_json = 1 [json_name = "transaction_json"];
+  int64 signature_number = 2 [json_name = "signature_number"];
+}
+
+message TestTransactionRequest {
+  repeated TestTransaction items = 1;
+}
+
+message TestTransactionResult {
+  message Stat {
+    int64 apply_time = 1 [json_name = "apply_time"];
+	int64 memory_usage = 2 [json_name = "memory_usage"];
+	int64 stack_usage = 3 [json_name = "stack_usage"];
+	int64 step = 4;
+  }
+  message Transaction_env {
+    Transaction transaction = 1;
+  }
+  message TestTx {
+    int64 gas = 1;
+	Transaction_env transaction_env = 2 [json_name = "transaction_env"];
+	int64 actual_fee = 3 [json_name = "actual_fee"];
+  }
+  Stat stat = 1;
+  string hash = 2;
+  repeated TestTx txs = 3;
+}
+
+message TestTransactionResponse {
+  string trace = 1;
+  TestTransactionResult result = 2;
+  bool success = 3;
+  StatusCodes error_code = 4 [json_name = "error_code"];
+  string error_desc = 5 [json_name = "error_desc"];
+}
+
+message CallContractRequest{
+  string contract_address = 1 [json_name = "contract_address"];
+  string input = 2;
+  int64 fee_limit = 4 [json_name = "fee_limit"];
+  int64 gas_price = 5 [json_name = "gas_price"];
+  string source_address = 6 [json_name = "source_address"];
+  int64 opt_type = 7 [json_name = "opt_type"];
+}
+
+message CallContractResultSystem {
+  repeated QueryReturnSystem query_rets = 1 [json_name = "query_rets"];
+}
+ 
+message QueryReturnSystem {
+  Error error = 1;
+  SystemContractResult result = 2;
+}
+
+message SystemContractResult {
+  string data = 1;
+}
+
+message CallContractResultJs {
+  repeated QueryReturnJs query_rets = 1 [json_name = "query_rets"];
+}
+ 
+// 查询返回消息
+message QueryReturnJs {
+  Error error = 1;
+  JsContractResult result = 2;
+}
+
+message JsContractResult {
+  string type = 1; // "string" 或 "bool"
+  string value = 2;
+}
+
+message CallContractResultEvm {
+  repeated QueryReturnEvm query_rets = 1 [json_name = "query_rets"];
+}
+ 
+message QueryReturnEvm {
+  Error error = 1;
+  EvmContractResult result = 2;
+}
+
+message EvmContractResult {
+  int32 code = 1;
+  string data = 2;
+  string desc = 3;
+  string eumcode = 4;
+  int64 gasused = 5;
+}
+ 
+// 错误消息
+message Error {
+  string data = 1;
+}
+
+message QueryReturn {
+  string error = 1;
+  string result = 2;
+}
+
+message CallContractResult {
+  repeated QueryReturn query_rets = 1 [json_name = "query_rets"];
+}
+
+message CallContractResponse {
+  string trace = 1;
+  CallContractResult result = 2; 
+  bool success = 3;
+  StatusCodes error_code = 4 [json_name = "error_code"];
+  string error_desc = 5 [json_name = "error_desc"];
+}
+
+message QueryRequest {
+  enum TxType{
+    BASE_TX   = 0;
+    ENHANCED_TX   = 1;
+  };
+  string bid = 1;
+  string hash = 2;
+  string tx_id = 3; //增强交易字段，暂时保留
+  string start_time = 4;
+  string end_time = 5;
+  TxType tx_type = 6;
+  int32 page = 7;
+  int32 page_size = 8;
+  int64 ledger_seq = 9;
+}
+
+message TransactionBase {
+  enum NetworkType {
+    UNKNOWN = 0;  // 保留0作为未知或默认值
+    DOMESTIC_SPARK_EXPERIENCE = 1;  // 国内星火体验网
+    DOMESTIC_SPARK_MAINNET = 2;     // 国内星火主网
+    INTERNATIONAL_SPARK_EXPERIENCE = 3;  // 国际星火体验网
+	INTERNATIONAL_SPARK_MAINNET = 4; //国际星火主网
+  }
+  
+  enum TxType{
+    BASE_TX   = 0;
+    ENHANCED_TX   = 1;
+  };
+  string id = 1;
+  string tx_id = 2 [json_name = "tx_id"];
+  string hash = 3;
+  string api_key = 4 [json_name = "api_key"];
+  TxType tx_type = 5 [json_name = "tx_type"];
+  string create_time = 6 [json_name = "create_time"];
+  int64 ledger_seq = 7 [json_name = "ledger_seq"];
+  string source_address = 8 [json_name = "source_address"];
+  int64 actual_fee = 9 [json_name = "actual_fee"];
+  StatusCodes status = 10;
+  string status_desc = 11 [json_name = "status_desc"];
+  TransactionEnv base_transaction = 12 [json_name = "base_transaction"];
+}
+
+message QueryResult{
+  int64 count = 1;
+  int64 total_page = 2 [json_name = "total_page"];
+  repeated TransactionBase transaction_bases = 3 [json_name = "transaction_bases"];
+}
+
+message QueryResponse{
+  string trace = 1;
+  QueryResult result = 2;
+  bool success = 3;
+  StatusCodes error_code = 4 [json_name = "error_code"];
+  string error_desc = 5 [json_name = "error_desc"];
+}
+
+message GetTransactionCacheRequest{
+  enum PoolType{
+    PLATFORM   = 0;
+    CHAIN   = 1;
+  };
+  int64 limit = 2;
+  string hash = 3;
+  string address = 4;
+}
+
+message PlatformTransaction{
+  TransactionBase transactions = 1;
+}
+
+message ChainTransaction{
+  string status = 1;
+  string incoming_time = 2 [json_name = "incoming_time"];
+  string hash = 3;
+  repeated Signature signatures = 4;
+  Transaction transaction = 5;
+}
+
+message GetTransactionCacheChainResult{
+  int64 total_count = 1 [json_name = "total_count"];
+  repeated ChainTransaction transactions = 3 [json_name = "transactions"];
+}
+
+message GetTransactionCachePlatResult{
+  int64 total_count = 1 [json_name = "total_count"];
+  repeated TransactionEnv transactions = 3 [json_name = "transactions"];
+}
+
+message GetTransactionCacheChainResponse{
+  string trace = 1;
+  GetTransactionCacheChainResult result = 2;
+  bool success = 3;
+  StatusCodes error_code = 4 [json_name = "error_code"];
+  string error_desc = 5 [json_name = "error_desc"];
+}
+
+message GetTransactionCachePlatResponse{
+  string trace = 1;
+  GetTransactionCachePlatResult result = 2;
+  bool success = 3;
+  StatusCodes error_code = 4 [json_name = "error_code"];
+  string error_desc = 5 [json_name = "error_desc"];
+}
+
+message DiscardRequest{
+  string hash = 1;
+  int32 page = 2;
+  int32 page_size = 3;
+}
+
+message DiscardResult {
+  int64 count = 1;
+  int64 total_page = 2 [json_name = "total_page"];
+  repeated TransactionBase transaction_bases = 3 [json_name = "transaction_bases"];
+}
+
+message DiscardResponse {
+  string trace = 1;
+  DiscardResult result = 2;
+  bool success = 3;
+  StatusCodes error_code = 4 [json_name = "error_code"];
+  string error_desc = 5 [json_name = "error_desc"];
+}
+
+message GetTxCacheSizeResult {
+  int64 queue_size = 1 [json_name = "queue_size"];
+}
+
+message GetTxCacheSizeResponse {
+  string trace = 1;
+  GetTxCacheSizeResult result = 2;
+  bool success = 3;
+  StatusCodes error_code = 4 [json_name = "error_code"];
+  string error_desc = 5 [json_name = "error_desc"];
+}
+
+
+
+//开放平台状态码定义
+enum StatusCodes {
+  // 成功状态
+    SUCCESS = 0;
+ 
+    // 服务内部错误
+    INTERNAL_SERVER_ERROR = 1;
+ 
+    // 参数错误
+    INVALID_PARAMETER = 2;
+ 
+    // 对象已存在，如重复提交交易
+    OBJECT_ALREADY_EXISTS = 3;
+ 
+    // 对象不存在，如查询不到账号、TX、区块等
+    OBJECT_NOT_FOUND = 4;
+ 
+    // TX 超时
+    TX_TIMEOUT = 5;
+ 
+    // 账户禁止使用
+    ACCOUNT_FORBIDDEN = 6;
+ 
+    // 数学计算溢出
+    MATH_OVERFLOW = 7;
+ 
+    // 公钥非法
+    ILLEGAL_PUBLIC_KEY = 90;
+ 
+    // 私钥非法
+    ILLEGAL_PRIVATE_KEY = 91;
+ 
+    // 签名权重不够，达不到操作的门限值
+    INSUFFICIENT_SIGNATURE_WEIGHT = 93;
+ 
+    // 地址非法
+    ILLEGAL_ADDRESS = 94;
+ 
+    // 交易缺失操作
+    MISSING_TRANSACTION_OPERATION = 97;
+ 
+    // 单笔交易内超过了100个操作
+    TOO_MANY_OPERATIONS = 98;
+ 
+    // 交易序号错误，nonce错误
+    INVALID_NONCE = 99;
+ 
+    // 余额不足
+    INSUFFICIENT_BALANCE = 100;
+ 
+    // 源和目的账号相等
+    SOURCE_AND_DESTINATION_EQUAL = 101;
+ 
+    // 创建账号操作，目标账号已存在
+    ACCOUNT_ALREADY_EXISTS = 102;
+ 
+    // 账户不存在
+    ACCOUNT_NOT_FOUND = 103;
+ 
+    // 创建账号初始化资产小于配置文件中最小费用
+    INSUFFICIENT_INITIAL_ASSETS = 106;
+ 
+    // 费用不足
+    INSUFFICIENT_FEE = 111;
+ 
+    // 权重值不在有效范围
+    WEIGHT_OUT_OF_RANGE = 120;
+ 
+    // 门限值不在有效范围
+    THRESHOLD_OUT_OF_RANGE = 121;
+ 
+    // metadata的version版本号不与已有的匹配
+    MISMATCHING_METADATA_VERSION = 144;
+ 
+    // 交易数据超出上限
+    TRANSACTION_DATA_TOO_LARGE = 146;
+ 
+    // 合约执行失败
+    CONTRACT_EXECUTION_FAILED = 151;
+ 
+    // 合约语法分析失败
+    CONTRACT_PARSE_FAILED = 152;
+ 
+    // 合约递归深度超出上限
+    CONTRACT_RECURSION_DEPTH_EXCEEDED = 153;
+ 
+    // 合约产生的交易超出上限
+    CONTRACT_GENERATED_TOO_MANY_TRANSACTIONS = 154;
+ 
+    // 合约执行超时
+    CONTRACT_EXECUTION_TIMEOUT = 155;
+ 
+    // 目标地址非合约账户
+    NON_CONTRACT_ADDRESS = 156;
+ 
+    // 插入交易缓存队列失败
+    FAILED_TO_INSERT_INTO_TX_QUEUE = 160;
+ 
+    // 禁止转移星火令
+    FORBIDDEN_SPARK_TOKEN_TRANSFER = 161;
+ 
+    // 服务域不存在
+    SERVICE_DOMAIN_NOT_FOUND = 170;
+ 
+    // 快速同步的快照不存在
+    SNAPSHOT_NOT_FOUND_FOR_FAST_SYNC = 180;
+ 
+    // 快速同步获取快照数据错误
+    ERROR_RETRIEVING_SNAPSHOT_FOR_FAST_SYNC = 181;
+ 
+    // 交易nonce重复，nonce在缓存中 (需重新发送交易)
+    DUPLICATE_NONCE_IN_CACHE = 183;
+ 
+    // 交易最大区块数错误，小于当前区块高度 (需要重新获取区块高度序列化接口)
+    INVALID_MAX_BLOCK_NUMBER = 184;
+ 
+    // 请求的API不存在
+    API_NOT_FOUND = 1013;
+ 
+    // 请求的API已停用
+    API_DEPRECATED = 1015;
+ 
+    // timeout
+    TIMEOUT = 1016;
+ 
+    // 参数类型解析异常
+    PARAMETER_TYPE_PARSING_EXCEPTION = -3;
+ 
+    // 无效参数异常
+    INVALID_PARAMETER_EXCEPTION = -6;
+ 
+    // 请求类型异常
+    REQUEST_TYPE_EXCEPTION = -7;
+ 
+    // 统一验证参数异常
+    UNIFIED_VALIDATION_EXCEPTION = -9;
+ 
+    // 不支持当前请求类型
+    METHOD_NOT_ALLOWED = 405;
+ 
+    // 交易数据中包含敏感词汇
+    SENSITIVE_WORDS_IN_TRANSACTION = 1101;
+ 
+    // 您的合约地址未在项目合约白名单
+    CONTRACT_ADDRESS_NOT_IN_WHITELIST = 1102;
+ 
+    // 请检查交易数据是否合规
+    ILLEGAL_TRANSACTION_DATA = 1103;
+ 
+    // 交易类型不存在
+    TRANSACTION_TYPE_NOT_FOUND = 1105;
+ 
+    // 远程调用失败
+    REMOTE_CALL_FAILED = 1106;
+ 
+    // 交易池类型不存在
+    TRANSACTION_POOL_TYPE_NOT_FOUND = 1107;
+ 
+    // 参数超出限制
+    PARAMETER_OUT_OF_RANGE = 1108;
+ 
+    // 非法参数
+    ILLEGAL_PARAMETER = 1109;
+ 
+    // 当bid 或 tx_id为不为空时，tx_type为必填
+    TX_TYPE_REQUIRED = 1110;
+ 
+    // 业务参数不能为空
+    BUSINESS_PARAMETER_CANNOT_BE_EMPTY = 1111;
+ 
+    // API Key不存在
+    API_KEY_NOT_FOUND = 1122;
+ 
+    // 每秒请求频次超出限制
+    REQUEST_RATE_EXCEEDED_PER_SECOND = 1200;
+ 
+    // 每日请求频次超出限制
+    REQUEST_RATE_EXCEEDED_PER_DAY = 1201;
+ 
+    // 您已无资源可用
+    NO_RESOURCES_AVAILABLE = 1202;
+ 
+    // 项目已被删除
+    PROJECT_DELETED = 1203;
+ 
+    // 项目已禁用
+    PROJECT_DISABLED = 1204;
+ 
+    // 项目被拉入黑名单
+    PROJECT_BLACKLISTED = 1205;
+ 
+    // 账户被拉入黑名单
+    ACCOUNT_BLACKLISTED = 1206;
+ 
+    // 请在Header中传入API Secret
+    API_SECRET_REQUIRED_IN_HEADER = 1207;
+ 
+    // 传入的API Secret与项目不匹配
+    MISMATCHING_API_SECRET = 1208;
+ 
+    // 增强交易服务未开启
+    ENHANCED_TRANSACTION_SERVICE_NOT_ENABLED = 1209;
+ 
+    // 项目类型与API类型不一致
+    MISMATCHING_PROJECT_AND_API_TYPE = 1210;
+ 
+    // 当前项目还没有主网权限
+    PROJECT_WITHOUT_MAINNET_PERMISSION = 1211;
+ 
+    // 平台队列中
+    IN_PLATFORM_QUEUE = 1311;
+ 
+    // 交易已提交到星火链
+    TRANSACTION_SUBMITTED_TO_SPARKCHAIN = 1312;
+ 
+    // 平台交易池超时丢弃
+    TRANSACTION_POOL_TIMEOUT_DISCARD = 1313;
+ 
+    // 项目暂无交易池(增强交易)
+    NO_TRANSACTION_POOL_FOR_PROJECT = 1314;
+ 
+    // 交易已存在
+    TRANSACTION_ALREADY_EXISTS = 1315;
+ 
+    // 星火链超时丢弃
+    SPARKCHAIN_TIMEOUT_DISCARD = 1316;
+ 
+    // 交易操作频繁
+    TOO_MANY_TRANSACTION_OPERATIONS = 1317;
+
+    URL_ERROR = 9999;
+}
