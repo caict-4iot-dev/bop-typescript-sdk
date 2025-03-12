@@ -1,5 +1,5 @@
 {
-  "name": "@caict/bif-bop-sdk",
+  "name": "@caict/bop-typescript-sdk",
   "version": "1.0.1",
   "description": "Xinghuo bop sdk",
   "main": "dist/index.js",
