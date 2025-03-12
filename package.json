@@ -24,10 +24,23 @@
     "caict",
     "bop"
   ],
-  "author": "maxufeng",
+  "author": {
+    "name": "maxufeng",
+    "email": "maxufeng@caict.ac.cn"
+  },
   "license": "apache2.0",
   "engines": {
     "node": "18.20.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caict-4iot-dev/bop-typescript-sdk"
+  },
+  "bugs": {
+    "url": "https://github.com/caict-4iot-dev/bop-typescript-sdk/issues"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "dependencies": {
     "@bifproject/bs58": "^5.0.0",
