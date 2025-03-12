@@ -1,4 +1,4 @@
-# bif-bop-sdk
+# bop-typescript-sdk
 
 [bop] sdk to develop with Xinghuo BIF Open Platform
 
@@ -11,19 +11,19 @@ The current package is primarily designed to implement interfaces for the Xinghu
 First, you need to install the sdk by running
 
 ```bash
-npm install @caict/bif-bop-sdk
+npm install @caict/bop-typescript-sdk
 ```
 
 And add the following statement to your file:
 
 ```js
-require("@caict/bif-bop-sdk");
+require("@caict/bop-typescript-sdk");
 ```
 
 Or, if you are using TypeScript, add this to your file:
 
 ```ts
-import "@caict/bif-bop-sdk";
+import "@caict/bop-typescript-sdk";
 ```
 
 ## Use example
@@ -36,7 +36,7 @@ import {
   ProviderByBop,
   BopInterface,
   SignerByBop,
-} from "@caict/bif-bop-sdk";
+} from "@caict/bop-typescript-sdk";
 
 (async () => {
   let config = new Config("https://bif-mainnet.bitfactory.cn", "xxx", "xxx");
@@ -57,7 +57,7 @@ import {
   BopWsInterface,
   WsConfig,
   bopwsprotocol,
-} from "@caict/bif-bop-sdk";
+} from "@caict/bop-typescript-sdk";
 
 async function main() {
   try {

@@ -3,7 +3,7 @@ import {
   ProviderByBop,
   BopInterface,
   SignerByBop,
-} from "@caict/bif-bop-sdk";
+} from "@caict/bop-typescript-sdk";
 
 // 初始化配置
 const config = new Config("https://bif-mainnet.bitfactory.cn", "xxx", "xxx");

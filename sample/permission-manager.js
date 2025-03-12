@@ -1,4 +1,4 @@
-import { Config, ProviderByBop, BopInterface } from "@caict/bif-bop-sdk";
+import { Config, ProviderByBop, BopInterface } from "@caict/bop-typescript-sdk";
 
 // 初始化配置
 const config = new Config("https://bif-mainnet.bitfactory.cn", "xxx", "xxx");

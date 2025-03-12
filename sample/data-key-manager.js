@@ -1,4 +1,4 @@
-import { defaultUtils } from "@caict/bif-bop-sdk";
+import { defaultUtils } from "@caict/bop-typescript-sdk";
 
 // 封装一个通用的日志记录函数，用于记录每个接口调用的结果
 const logResult = (methodName, result) => {

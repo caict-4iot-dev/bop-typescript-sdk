@@ -1,5 +1,5 @@
 // 引入所需的模块
-import { WsConfig, WsProviderByBop, bopwsprotocol } from "@caict/bif-bop-sdk";
+import { WsConfig, WsProviderByBop, bopwsprotocol } from "@caict/bop-typescript-sdk";
 
 //订阅区块头
 async function blockHeader() {

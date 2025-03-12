@@ -6,7 +6,7 @@
 
 ```javascript
 //调用代码
-import { SignerByBop } from "@caict/bif-bop-sdk";
+import { SignerByBop } from "@caict/bop-typescript-sdk";
 
 //当星火私钥存在异常时，SignerByBop构建失败，注意捕获异常
 try {
@@ -36,7 +36,7 @@ signer.getAddress()
 
 ```javascript
 //调用代码
-import { SignerByBop } from "@caict/bif-bop-sdk";
+import { SignerByBop } from "@caict/bop-typescript-sdk";
 
 const signer = new SignerByBop("your encprivate key");
 const address = signer.getAddress();
@@ -70,7 +70,7 @@ import {
   Config,
   ProviderByBop,
   BopInterface,
-} from "@caict/bif-bop-sdk";
+} from "@caict/bop-typescript-sdk";
 const config = new Config("https://bif-mainnet.bitfactory.cn", "xxx", "xxx");
 const provider = new ProviderByBop(new BopInterface(config));
 const signer = new SignerByBop("your encprivate key");
@@ -104,7 +104,7 @@ signer.signTransaction(message : string)
 
 ```javascript
 //调用代码
-import { SignerByBop } from '@caict/bif-bop-sdk';
+import { SignerByBop } from '@caict/bop-typescript-sdk';
 
 const signer = new SignerByBop("your encprivate key");
 const address = signer.signTransaction(”0x010203“);
@@ -142,7 +142,7 @@ signer.getBalance()
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -181,7 +181,7 @@ signer.getIncreaseNonce()
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -269,7 +269,7 @@ JS合约
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -324,7 +324,7 @@ signer.getAccount(address ?: string)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -375,7 +375,7 @@ signer.getLedgerNumber()
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -398,7 +398,7 @@ provider作为SDK数据提供源，直接对外提供操作接口。provider构�
 
 ```javascript
 //调用代码
-import { ProviderByBop, BopInterface } from "@caict/bif-bop-sdk";
+import { ProviderByBop, BopInterface } from "@caict/bop-typescript-sdk";
 
 const config = new Config("https://bif-mainnet.bitfactory.cn", "xxx", "xxx");
 const provider = new ProviderByBop(new BopInterface(config));
@@ -434,7 +434,7 @@ provider.chain.getChainInfo()
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -482,7 +482,7 @@ provider.chain.getNetworkId()
 
 ```javascript
 //调用代码
-import { Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -531,7 +531,7 @@ provider.ledger.getLedger(seq ?: number)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -582,7 +582,7 @@ provider.ledger.getLedgerNumber()
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -620,7 +620,7 @@ provider.ledger.getLedgerLeader(seq?:number)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -662,7 +662,7 @@ provider.ledger.getLedgerValidators(seq?:number)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -709,7 +709,7 @@ provider.ledger.getLedgerTxHashes(seq?:number)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -760,7 +760,7 @@ provider.account.getAccount(address:string)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -815,7 +815,7 @@ provider.account.getAccountMetadata(address: string)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -868,7 +868,7 @@ provider.account.getAccountIncreaseNonce(address: string)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -906,7 +906,7 @@ provider.account.getAccountBalance(address:string)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -944,7 +944,7 @@ provider.account.getAccountPriv(address : string)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -990,7 +990,7 @@ provider.transaction.getTxPoolSize()
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -1051,7 +1051,7 @@ provider.transaction.getTxPoolTransactions(limit?:number, address?:string, hash?
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -1115,7 +1115,7 @@ provider.transaction.getTransactionHistory(seq?:number, start?:number, limit?:nu
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -1216,7 +1216,7 @@ provider.transaction.buildAccountCreateTx(op: OpCreateAccountParams, signer: Sig
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -1280,7 +1280,7 @@ provider.transaction.buildContractCreateTx(op: OpCreateContractParams, signer: S
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -1350,7 +1350,7 @@ provider.transaction.buildGasSendTx(op: opGasSendParams, signer: Signer)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -1418,7 +1418,7 @@ provider.transaction.buildContractInvokeTx(op: opContractInvokeParams, signer: S
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -1488,7 +1488,7 @@ provider.transaction.buildSetMetadataTx(op: opSetMetadataParams, signer: Signer)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -1560,7 +1560,7 @@ provider.transaction.buildSetPrivilegeTx(op: opSetPrivParams, signer: Signer)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -1640,7 +1640,7 @@ provider.transaction.buildBatchGasSend(op: OpBatchGasSend, signer: Signer)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -1715,7 +1715,7 @@ provider.transaction.buildBatchContractInvoke(params: OpBatchContractInvoke, sig
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -1788,7 +1788,7 @@ provider.transaction.submitTransaction(params: SubmitTransactionParams)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -1959,7 +1959,7 @@ provider.transaction.estimateGas(params: TestTransactionRequest)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -2053,7 +2053,7 @@ provider.contract.checkContractAccount(address:string)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -2089,7 +2089,7 @@ provider.contract.getContractInfo(address:string)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -2134,7 +2134,7 @@ provider.contract.callContract(transaction: CallContractRequest)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -2188,7 +2188,7 @@ provider.bop.apply(params: ApplyRequest)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -2246,7 +2246,7 @@ provider.bop.status(params: ApplyStatusRequest)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -2298,7 +2298,7 @@ provider.bop.detail(params: DetailRequest)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -2347,7 +2347,7 @@ provider.bop.getTransactionCache(params: GetTransactionCacheRequest)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -2459,7 +2459,7 @@ provider.bop.discard(params: DiscardRequest)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -2586,7 +2586,7 @@ provider.bop.query(params: QueryRequest)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -2680,7 +2680,7 @@ utils.address.getBidAndKeyPair(chainCode? : string)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -2735,7 +2735,7 @@ utils.address.getBidAndKeyPairBySM2(chainCode ?: string)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -2791,7 +2791,7 @@ utils.address.privateKeyManager(type: KeyType, chainCode ?: string)
 
 ```javascript
 //调用代码-正确
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -2850,7 +2850,7 @@ utils.address.privateKeyManagerByKey(encPrivatekey : string)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -2905,7 +2905,7 @@ utils.address.publicKeyManager(encPublickey : string)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -2952,7 +2952,7 @@ utils.address.getEncPublicKey(encPrivatekey : string)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -2995,7 +2995,7 @@ utils.address.getEncPublicKeyByRaw(type: KeyType, rawPublicKey: string)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -3039,7 +3039,7 @@ utils.address.getEncPrivateKeyByRaw(type: KeyType, rawPrivateKey: string)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -3082,7 +3082,7 @@ utils.address.parsePrivateKey(encPrivateKey: string)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -3124,7 +3124,7 @@ utils.address.parsePublicKey(encPublicKey: string)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -3166,7 +3166,7 @@ utils.address.publicToAddress(encPublicKey: string)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -3208,7 +3208,7 @@ utils.address.isPrivateKey(encPrivateKey: string)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -3246,7 +3246,7 @@ utils.address.isPublicKey(encPublicKey: string)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -3284,7 +3284,7 @@ utils.address.encAddressToHex(encAddress: string)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -3326,7 +3326,7 @@ utils.address.hexToEncAddress(hexAddress: string)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -3371,7 +3371,7 @@ utils.crypto.generateKeyStore(encPrivateKey:string, passwd:string)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -3414,7 +3414,7 @@ utils.crypto.setSkeyStore(encPrivateKey:string, passwd:string)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -3457,7 +3457,7 @@ utils.crypto.decipherKeyStore(keystoreContent:string, passwd:string)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -3506,7 +3506,7 @@ utils.crypto.generateChild(encPrivateKey:string, chainCode:string, serviceType:s
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -3559,7 +3559,7 @@ utils.crypto.sign(encPrivateKey:string, message:string)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -3604,7 +3604,7 @@ utils.crypto.verify(encPublicKey:string, message:string, signature:string)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -3644,7 +3644,7 @@ utils.crypto.getCryptoTypeFromPrivKey(encPrivateKey:string)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -3682,7 +3682,7 @@ utils.crypto.getCryptoTypeFromPubKey(encPublicKey:string)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -3723,7 +3723,7 @@ utils.mnemonics.privKeyFromMCodeAndCrypto(type: KeyType, mnemonics: string)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -3768,7 +3768,7 @@ utils.mnemonics.generateMnemonicCode(type: KeyType, entropy: string, language: s
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -3818,7 +3818,7 @@ import {
   Config,
   ProviderByBop,
   BopInterface,
-} from "@caict/bif-bop-sdk";
+} from "@caict/bop-typescript-sdk";
 
 const config = new Config("https://bif-mainnet.bitfactory.cn", "xxx", "xxx");
 const provider = new ProviderByBop(new BopInterface(config));
@@ -3861,7 +3861,7 @@ utils.abi.decode(types: ReadonlyArray<string>, values: ReadonlyArray<any>)
 
 ```javascript
 //调用代码
-import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
 
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
@@ -3908,7 +3908,7 @@ interface Callback {
 SDK通过WsConfig，加载开放平台ws url数据；通过WsProviderByBop构建ws实例。构建完成后，通过waitForReady等待ws连接完成。
 
 ```javascript
-import { WsConfig, WsProviderByBop, bopwsprotocol } from "@caict/bif-bop-sdk";
+import { WsConfig, WsProviderByBop, bopwsprotocol } from "@caict/bop-typescript-sdk";
 
 // 创建 BopWsInterface 实例，这里假设已经有 bopWs 实例化代码，可根据实际情况修改
 const config = new WsConfig("https://bif-mainnet.bitfactory.cn/bif/subscribe"); // 替换为实际的 WebSocket 地址
@@ -3924,7 +3924,7 @@ provider.bop.subscribe(type: bopwsprotocol.MessageType, callback: Callback)
 ### 示例代码
 
 ```javascript
-import { WsConfig, WsProviderByBop, bopwsprotocol } from "@caict/bif-bop-sdk";
+import { WsConfig, WsProviderByBop, bopwsprotocol } from "@caict/bop-typescript-sdk";
 
 // 创建 BopWsInterface 实例，这里假设已经有 bopWs 实例化代码，可根据实际情况修改
 const config = new WsConfig("ws://bif-mainnet.bitfactory.cn/bif/subscribe"); // 替换为实际的 WebSocket 地址
@@ -3948,7 +3948,7 @@ provider.bop.subscribe(type: bopwsprotocol.MessageType, callback: Callback, acco
 ### 示例代码
 
 ```javascript
-import { WsConfig, WsProviderByBop, bopwsprotocol } from "@caict/bif-bop-sdk";
+import { WsConfig, WsProviderByBop, bopwsprotocol } from "@caict/bop-typescript-sdk";
 
 // 创建 BopWsInterface 实例，这里假设已经有 bopWs 实例化代码，可根据实际情况修改
 const config = new WsConfig("ws://bif-mainnet.bitfactory.cn/bif/subscribe"); // 替换为实际的 WebSocket 地址
@@ -3974,7 +3974,7 @@ provider.bop.subscribe(type: bopwsprotocol.MessageType, callback: Callback, acco
 ### 示例代码
 
 ```javascript
-import { WsConfig, WsProviderByBop, bopwsprotocol } from "@caict/bif-bop-sdk";
+import { WsConfig, WsProviderByBop, bopwsprotocol } from "@caict/bop-typescript-sdk";
 
 // 创建 BopWsInterface 实例，这里假设已经有 bopWs 实例化代码，可根据实际情况修改
 const config = new WsConfig("ws://bif-mainnet.bitfactory.cn/bif/subscribe"); // 替换为实际的 WebSocket 地址
@@ -3999,7 +3999,7 @@ provider.bop.subscribe(type: bopwsprotocol.MessageType, callback: Callback, acco
 ### 示例代码
 
 ```javascript
-import { WsConfig, WsProviderByBop, bopwsprotocol } from "@caict/bif-bop-sdk";
+import { WsConfig, WsProviderByBop, bopwsprotocol } from "@caict/bop-typescript-sdk";
 
 // 创建 BopWsInterface 实例，这里假设已经有 bopWs 实例化代码，可根据实际情况修改
 const config = new WsConfig("ws://bif-mainnet.bitfactory.cn/bif/subscribe"); // 替换为实际的 WebSocket 地址
