@@ -13,11 +13,7 @@ describe("BopInterface", () => {
   let permitServiceMock: sinon.SinonMock; // 假设 PermitService 有一些方法需要模拟
 
   beforeEach(() => {
-    config = new Config(
-      "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
-    );
+    config = new Config("https://bif-mainnet.bitfactory.cn", "xxx", "xxx");
     bopInterface = new BopInterface(config);
 
     // 模拟 PermitService

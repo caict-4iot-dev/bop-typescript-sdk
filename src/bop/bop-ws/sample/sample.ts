@@ -7,7 +7,7 @@ import {
   MessageType,
 } from "../../bop-proto/bop-ws";
 
-const config = new WsConfig("https://bif-testnet.bitfactory.cn/bif/subscribe");
+const config = new WsConfig("https://bif-mainnet.bitfactory.cn/bif/subscribe");
 const bopWs = new BopWsInterface(config.url, config.heartBeatInterval);
 
 async function blockHeader() {

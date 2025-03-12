@@ -21,11 +21,7 @@ describe("PermitService", () => {
   let permitService: PermitService;
 
   beforeEach(() => {
-    config = new Config(
-      "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
-    );
+    config = new Config("https://bif-mainnet.bitfactory.cn", "xxx", "xxx");
     permitService = new PermitService(config.host);
   });
 

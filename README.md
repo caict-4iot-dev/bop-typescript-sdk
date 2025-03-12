@@ -11,19 +11,19 @@ The current package is primarily designed to implement interfaces for the Xinghu
 First, you need to install the sdk by running
 
 ```bash
-npm install @bifproject/bif-bop-sdk
+npm install @caict/bif-bop-sdk
 ```
 
 And add the following statement to your file:
 
 ```js
-require("@bifproject/bif-bop-sdk");
+require("@caict/bif-bop-sdk");
 ```
 
 Or, if you are using TypeScript, add this to your file:
 
 ```ts
-import "@bifproject/bif-bop-sdk";
+import "@caict/bif-bop-sdk";
 ```
 
 ## Use example
@@ -36,20 +36,14 @@ import {
   ProviderByBop,
   BopInterface,
   SignerByBop,
-} from "@bifproject/bif-bop-sdk";
+} from "@caict/bif-bop-sdk";
 
 (async () => {
-  let config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-    "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-    "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
-  );
+  let config = new Config("https://bif-mainnet.bitfactory.cn", "xxx", "xxx");
   let provider = new ProviderByBop(new BopInterface(config));
   console.log(await provider.chain.getChainInfo());
 
-  let signer = new SignerByBop(
-    "priSrroXTmScmv9EmCcZMGKp155u5zxp6vxFvRRjVXZdATiS7a",
-  );
+  let signer = new SignerByBop("your enc private key");
   let signerWithProvider = signer.connect(provider);
   console.log(await signerWithProvider.getAccount());
 })();
@@ -63,20 +57,18 @@ import {
   BopWsInterface,
   WsConfig,
   bopwsprotocol,
-} from "@bifproject/bif-bop-sdk";
+} from "@caict/bif-bop-sdk";
 
 async function main() {
   try {
     // 创建 BopWsInterface 实例，这里假设已经有 bopWs 实例化代码，可根据实际情况修改
-    const config = new WsConfig(
-      "https://bif-testnet.bitfactory.cn/bif/subscribe",
-    ); // 替换为实际的 WebSocket 地址
+    const config = new WsConfig("ws://bif-mainnet.bitfactory.cn/bif/subscribe"); // 替换为实际的 WebSocket 地址
     const bopWs = new BopWsInterface(config.url, config.heartBeatInterval);
 
     // 标志位，用于判断 BLOCK_HEADER 回调是否已经发生
     let blockHeaderCallbackTriggered = false;
 
-    const subscriptionBlockHeaderId = await bopWs.subscribe(
+    const subscriptionBlockHeaderId = await bopWs.bop.subscribe(
       bopwsprotocol.MessageType.BLOCK_HEADER,
       (data) => {
         let message: LedgerHeaderMessage = {};
@@ -100,7 +92,7 @@ async function main() {
         }, 100); // 每 100 毫秒检查一次标志位
       });
       // 取消订阅
-      await bopWs.unsubscribe(
+      await bopWs.bop.unsubscribe(
         bopwsprotocol.MessageType.BLOCK_HEADER,
         subscriptionBlockHeaderId,
       );
@@ -108,7 +100,7 @@ async function main() {
     }
 
     // 断开连接
-    await bopWs.disconnect();
+    await bopWs.bop.disconnect();
     console.log("Disconnected from WebSocket");
   } catch (error) {
     console.error("An error occurred:", error);

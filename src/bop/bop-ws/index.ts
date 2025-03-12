@@ -87,12 +87,12 @@ export class BopWsInterface {
             type: MessageType;
             message: any;
           };
-          console.log(
-            "ws: type:",
-            data.type,
-            ",message:",
-            JSON.stringify(data.message),
-          );
+          //   console.log(
+          //     "ws: type:",
+          //     data.type,
+          //     ",message:",
+          //     JSON.stringify(data.message),
+          //   );
           for (const [_, subscription] of this.subscriptions) {
             if (subscription.type === data.type) {
               if (
@@ -113,15 +113,15 @@ export class BopWsInterface {
                   const tx = JSON.parse(data.message.tx);
                   sourceAccount = tx.transaction.source_address;
                 }
-                console.log("ws type:", data.type, "source:", sourceAccount);
+                //console.log("ws type:", data.type, "source:", sourceAccount);
 
                 if (subscription.accounts.includes(sourceAccount)) {
-                  console.log(
-                    "ws include source_address:",
-                    sourceAccount,
-                    "id:",
-                    subscription.id,
-                  );
+                  //   console.log(
+                  //     "ws include source_address:",
+                  //     sourceAccount,
+                  //     "id:",
+                  //     subscription.id,
+                  //   );
                   subscription.callback(data.message);
                 }
               } else {

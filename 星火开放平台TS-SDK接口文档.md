@@ -6,21 +6,20 @@
 
 ```javascript
 //调用代码
-const SignerByBop = require("@bifproject/bif-bop-sdk");
+import { SignerByBop } from "@caict/bif-bop-sdk";
 
 //当星火私钥存在异常时，SignerByBop构建失败，注意捕获异常
 try {
-    const signer = new SignerByBop("priSrrn11eaTMRNwtNPv57DnnoaEKVbQAmPAaXsuBMBKLLGqui");
+  const signer = new SignerByBop("your encprivate key");
 } catch (error) {
-    console.log("please check your privateKey")
+  console.log("please check your privateKey");
 }
-
 ```
 
-### 1.1 获取当前账户地址 
+### 1.1 获取当前账户地址
 
 ```
-signer.getAddress() 
+signer.getAddress()
 ```
 
 #### 请求参数
@@ -37,8 +36,9 @@ signer.getAddress()
 
 ```javascript
 //调用代码
-const SignerByBop = require("@bifproject/bif-bop-sdk");
-const signer = new SignerByBop("priSrrn11eaTMRNwtNPv57DnnoaEKVbQAmPAaXsuBMBKLLGqui");
+import { SignerByBop } from "@caict/bif-bop-sdk";
+
+const signer = new SignerByBop("your encprivate key");
 const address = signer.getAddress();
 console.log(address);
 ```
@@ -46,7 +46,7 @@ console.log(address);
 ### 1.2 连接provider获取signer实例
 
 ```
-signer.connect(provider: Provider) 
+signer.connect(provider: Provider)
 ```
 
 #### 请求参数
@@ -65,28 +65,25 @@ signer.connect(provider: Provider)
 
 ```javascript
 //调用代码
-const SignerByBop = require("@bifproject/bif-bop-sdk");
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
-
-const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
-    );
+import {
+  SignerByBop,
+  Config,
+  ProviderByBop,
+  BopInterface,
+} from "@caict/bif-bop-sdk";
+const config = new Config("https://bif-mainnet.bitfactory.cn", "xxx", "xxx");
 const provider = new ProviderByBop(new BopInterface(config));
-const signer = new SignerByBop("priSrrn11eaTMRNwtNPv57DnnoaEKVbQAmPAaXsuBMBKLLGqui");
+const signer = new SignerByBop("your encprivate key");
 
 const signerWithProvider = signer.connect(provider);
 ```
 
-### 
+###
 
-### 1.3 对交易请求数据进行签名 
+### 1.3 对交易请求数据进行签名
 
 ```
-signer.signTransaction(message : string) 
+signer.signTransaction(message : string)
 ```
 
 #### 请求参数
@@ -107,8 +104,9 @@ signer.signTransaction(message : string)
 
 ```javascript
 //调用代码
-const SignerByBop = require("@bifproject/bif-bop-sdk");
-const signer = new SignerByBop("priSrrn11eaTMRNwtNPv57DnnoaEKVbQAmPAaXsuBMBKLLGqui");
+import { SignerByBop } from '@caict/bif-bop-sdk';
+
+const signer = new SignerByBop("your encprivate key");
 const address = signer.signTransaction(”0x010203“);
 console.log(address);
 //响应数据
@@ -125,7 +123,7 @@ console.log(address);
 ### 1.4 获取当前账户余额
 
 ```
-signer.getBalance() 
+signer.getBalance()
 ```
 
 #### 请求参数
@@ -144,22 +142,18 @@ signer.getBalance()
 
 ```javascript
 //调用代码
-const SignerByBop = require("@bifproject/bif-bop-sdk");
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
-const sdkprotocol = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const signer = new SignerByBop("priSrrn11eaTMRNwtNPv57DnnoaEKVbQAmPAaXsuBMBKLLGqui");
+const signer = new SignerByBop("your encprivate key");
 
 const signerWithProvider = signer.connect(provider);
-const balance = await signerWithProvider.getBalance() as sdkprotocol.interface.GetAccountBalanceResponse;
+const balance = await signerWithProvider.getBalance();
 console.log(balance);
 //响应代码
 { errorCode: 0, errorDesc: 'ok', result: 11000000000 }
@@ -168,7 +162,7 @@ console.log(balance);
 ### 1.5 获取当前账户递增nonce值
 
 ```
-signer.getIncreaseNonce() 
+signer.getIncreaseNonce()
 ```
 
 #### 请求参数
@@ -187,19 +181,15 @@ signer.getIncreaseNonce()
 
 ```javascript
 //调用代码
-const SignerByBop = require("@bifproject/bif-bop-sdk");
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
-const sdkprotocol = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const signer = new SignerByBop("priSrrn11eaTMRNwtNPv57DnnoaEKVbQAmPAaXsuBMBKLLGqui") as sdkprotocol.interface.GetAccountIncreaseNonceResponse;
+const signer = new SignerByBop("your encprivate key");
 
 const signerWithProvider = signer.connect(provider);
 const nonce = await signerWithProvider.getIncreaseNonce();
@@ -211,7 +201,7 @@ console.log(nonce);
 ### 1.6 查询合约结果
 
 ```
-signer.callContract(contractAddress: string, input: string) 
+signer.callContract(contractAddress: string, input: string)
 ```
 
 #### 请求参数
@@ -260,16 +250,16 @@ JS合约
 
 ```
 "result": {
-        "data": [ //data为Json对象或Json数组对象，内容由合约自定义       
+        "data": [ //data为Json对象或Json数组对象，内容由合约自定义
                    {
                       "domainId": 0,
                       "status": true
                     }
-                ]             
+                ]
 }
 
 "result": {
-       "data": {  //data为Json对象或Json数组对象，内容由合约自定义   
+       "data": {  //data为Json对象或Json数组对象，内容由合约自定义
                   "nodeInfo": {}
                }
 }
@@ -279,22 +269,18 @@ JS合约
 
 ```javascript
 //调用代码
-const SignerByBop = require("@bifproject/bif-bop-sdk");
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
-const sdkprotocol = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const signer = new SignerByBop("priSrrn11eaTMRNwtNPv57DnnoaEKVbQAmPAaXsuBMBKLLGqui");
+const signer = new SignerByBop("your encprivate key");
 
 const signerWithProvider = signer.connect(provider);
-const response = await signerWithProvider.callContract("did:bid:efBcAumwRYrESbpRVTo4J4vYqXXfqBzu",'{"function":"balanceOf(address)","args":"did:bid:efBcAumwRYrESbpRVTo4J4vYqXXfqBzu","return":"returns(uint256)"',) as sdkprotocol.interface.CallContractResponse;
+const response = await signerWithProvider.callContract("did:bid:efBcAumwRYrESbpRVTo4J4vYqXXfqBzu",'{"function":"balanceOf(address)","args":"did:bid:efBcAumwRYrESbpRVTo4J4vYqXXfqBzu","return":"returns(uint256)"',);
 console.log(response);
 {
   result: { queryRets: [ {
@@ -309,7 +295,7 @@ console.log(response);
 ### 1.7 查询账户信息
 
 ```
-signer.getAccount(address ?: string) 
+signer.getAccount(address ?: string)
 ```
 
 #### 请求参数
@@ -338,22 +324,18 @@ signer.getAccount(address ?: string)
 
 ```javascript
 //调用代码
-const SignerByBop = require("@bifproject/bif-bop-sdk");
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
-const sdkprotocol = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const signer = new SignerByBop("priSrrn11eaTMRNwtNPv57DnnoaEKVbQAmPAaXsuBMBKLLGqui");
+const signer = new SignerByBop("your encprivate key");
 
 const signerWithProvider = signer.connect(provider);
-const response = await signerWithProvider.getAccount() as sdkprotocol.interface.GetAccountResponse;
+const response = await signerWithProvider.getAccount();
 console.log(response);
 //响应数据
 {
@@ -374,7 +356,7 @@ console.log(response);
 ### 1.8 查询区块高度信息
 
 ```
-signer.getLedgerNumber() 
+signer.getLedgerNumber()
 ```
 
 #### 请求参数
@@ -393,28 +375,22 @@ signer.getLedgerNumber()
 
 ```javascript
 //调用代码
-const SignerByBop = require("@bifproject/bif-bop-sdk");
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
-const sdkprotocol = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const signer = new SignerByBop("priSrrn11eaTMRNwtNPv57DnnoaEKVbQAmPAaXsuBMBKLLGqui");
+const signer = new SignerByBop("your encprivate key");
 
 const signerWithProvider = signer.connect(provider);
-const response = await signerWithProvider.getLedgerNumber() as sdkprotocol.interface.LedgerNumberResponse;
+const response = await signerWithProvider.getLedgerNumber();
 console.log(response);
 //响应数据
 { errorCode: 0, errorDesc: 'ok', result: 5793626 }
 ```
-
-
 
 # 二 provider
 
@@ -422,16 +398,9 @@ provider作为SDK数据提供源，直接对外提供操作接口。provider构�
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
-const sdkprotocol = require("@bifproject/bif-bop-sdk");
+import { ProviderByBop, BopInterface } from "@caict/bif-bop-sdk";
 
-const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
-    );
+const config = new Config("https://bif-mainnet.bitfactory.cn", "xxx", "xxx");
 const provider = new ProviderByBop(new BopInterface(config));
 ```
 
@@ -465,18 +434,15 @@ provider.chain.getChainInfo()
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
-const sdkprotocol = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const response = await provider.chain.getChainInfo() as sdkprotocol.interface.GetChainInfoResponse;
+const response = await provider.chain.getChainInfo();
 console.log(response);
 //响应数据
 {
@@ -497,7 +463,7 @@ console.log(response);
 #### 2.1.2 获取区块链networkid
 
 ```
-provider.chain.getChainNetworkId()
+provider.chain.getNetworkId()
 ```
 
 ##### 请求参数
@@ -516,18 +482,15 @@ provider.chain.getChainNetworkId()
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
-const sdkprotocol = require("@bifproject/bif-bop-sdk");
+import { Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const response = await provider.chain.getChainNetworkId() as sdkprotocol.interface.GetNetworkIdResponse;
+const response = await provider.chain.getNetworkId();
 console.log(response);
 //响应数据
 { errorCode: 0, errorDesc: 'ok', result: '16234539267878' }
@@ -568,18 +531,15 @@ provider.ledger.getLedger(seq ?: number)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
-const sdkprotocol = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const response = await provider.ledger.getLedger() as sdkprotocol.interface.LedgerResponse;
+const response = await provider.ledger.getLedger();
 console.log(response);
 //响应数据
 {
@@ -603,7 +563,7 @@ console.log(response);
 #### 2.2.2 获取区块链最新区块高度
 
 ```
-provider.ledger.getLedgerNumber() 
+provider.ledger.getLedgerNumber()
 ```
 
 ##### 请求参数
@@ -622,29 +582,24 @@ provider.ledger.getLedgerNumber()
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
-const sdkprotocol = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const response = await provider.ledger.getLedgerNumber() as sdkprotocol.interface.LedgerNumberResponse;
+const response = await provider.ledger.getLedgerNumber();
 console.log(response);
 //响应数据
 { errorCode: 0, errorDesc: 'ok', result: 5793921 }
 ```
 
-
-
 #### 2.2.3 获取指定高度区块leader
 
 ```
-provider.ledger.getLedgerLeader(seq?:number) 
+provider.ledger.getLedgerLeader(seq?:number)
 ```
 
 ##### 请求参数
@@ -665,18 +620,15 @@ provider.ledger.getLedgerLeader(seq?:number)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
-const sdkprotocol = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const response = await provider.ledger.getLedgerLeader() as sdkprotocol.interface.LedgerLeaderResponse;
+const response = await provider.ledger.getLedgerLeader();
 console.log(response);
 //响应数据
 {
@@ -685,8 +637,6 @@ console.log(response);
   result: 'did:bid:efk8iXFgo533n7waZAym6WVeZNPKKyX5'
 }
 ```
-
-
 
 #### 2.2.4 获取指定高度区块验证者列表
 
@@ -712,18 +662,15 @@ provider.ledger.getLedgerValidators(seq?:number)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
-const sdkprotocol = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const response = await provider.ledger.getLedgerValidators() as sdkprotocol.interface.LedgerValidatorsResponse;
+const response = await provider.ledger.getLedgerValidators();
 console.log(response);
 //响应数据
 {
@@ -738,8 +685,6 @@ console.log(response);
 }
 ```
 
-
-
 #### 2.2.5 获取指定高度区块下交易hash列表
 
 ```
@@ -748,8 +693,8 @@ provider.ledger.getLedgerTxHashes(seq?:number)
 
 ##### 请求参数
 
-| 参数 | 类型   | 是否必填 | 备注                                                         |
-| ---- | ------ | -------- | ------------------------------------------------------------ |
+| 参数 | 类型   | 是否必填 | 备注                                                                |
+| ---- | ------ | -------- | ------------------------------------------------------------------- |
 | seq  | number | 否       | 区块高度，如不填写，默认按照当前最新高度查询(最大返回100条交易hash) |
 
 ##### 响应参数
@@ -764,18 +709,15 @@ provider.ledger.getLedgerTxHashes(seq?:number)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
-const sdkprotocol = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const response = await provider.ledger.getLedgerTxHashes() as sdkprotocol.interface.LedgerTxHashesResponse;
+const response = await provider.ledger.getLedgerTxHashes();
 console.log(response);
 //响应数据
 {
@@ -788,14 +730,12 @@ console.log(response);
 }
 ```
 
-
-
 ### 2.3 账户相关接口
 
 #### 2.3.1 获取指定账户地址的账户数据
 
 ```
-provider.account.getAccount(address:string) 
+provider.account.getAccount(address:string)
 ```
 
 ##### 请求参数
@@ -820,18 +760,15 @@ provider.account.getAccount(address:string)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
-const sdkprotocol = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const response = await provider.account.getAccount("did:bid:efEnXEGWYjHRw1CzK4KpWTdusnaRokk8") as sdkprotocol.interface.GetAccountResponse;
+const response = await provider.account.getAccount("did:bid:efEnXEGWYjHRw1CzK4KpWTdusnaRokk8");
 console.log(response);
 //响应数据
 {
@@ -855,7 +792,7 @@ console.log(response);
 #### 2.3.2 获取指定账户及高度下的metadata信息
 
 ```
-provider.account.getAccountMetadata(address: string) 
+provider.account.getAccountMetadata(address: string)
 ```
 
 ##### 请求参数
@@ -878,18 +815,15 @@ provider.account.getAccountMetadata(address: string)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
-const sdkprotocol = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const response = await provider.account.getAccountMetadata("did:bid:efEnXEGWYjHRw1CzK4KpWTdusnaRokk8") as sdkprotocol.interface.GetAccountMetadataResponse;
+const response = await provider.account.getAccountMetadata("did:bid:efEnXEGWYjHRw1CzK4KpWTdusnaRokk8");
 console.log(response);
 //响应数据
 {
@@ -913,7 +847,7 @@ console.log(response);
 #### 2.3.3 获取指定账户下递增nonce值
 
 ```
-provider.account.getAccountIncreaseNonce(address: string) 
+provider.account.getAccountIncreaseNonce(address: string)
 ```
 
 ##### 请求参数
@@ -934,18 +868,15 @@ provider.account.getAccountIncreaseNonce(address: string)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
-const sdkprotocol = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const response = await provider.account.getAccountIncreaseNonce("did:bid:efEnXEGWYjHRw1CzK4KpWTdusnaRokk8") as sdkprotocol.interface.GetAccountIncreaseNonceResponse;
+const response = await provider.account.getAccountIncreaseNonce("did:bid:efEnXEGWYjHRw1CzK4KpWTdusnaRokk8");
 console.log(response);
 //响应数据
 { errorCode: 0, errorDesc: 'ok', result: 89701 }
@@ -954,7 +885,7 @@ console.log(response);
 #### 2.3.4 获取指定账户balance值
 
 ```
-provider.account.getAccountBalance(address:string) 
+provider.account.getAccountBalance(address:string)
 ```
 
 ##### 请求参数
@@ -975,18 +906,15 @@ provider.account.getAccountBalance(address:string)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
-const sdkprotocol = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const response = await provider.account.getAccountBalance("did:bid:efEnXEGWYjHRw1CzK4KpWTdusnaRokk8") as sdkprotocol.interface.GetAccountBalanceResponse;
+const response = await provider.account.getAccountBalance("did:bid:efEnXEGWYjHRw1CzK4KpWTdusnaRokk8");
 console.log(response);
 //响应数据
 { errorCode: 0, errorDesc: 'ok', result: 0 }
@@ -995,7 +923,7 @@ console.log(response);
 #### 2.3.5 获取指定账户的priv权限信息
 
 ```
-provider.account.getAccountPriv(address : string) 
+provider.account.getAccountPriv(address : string)
 ```
 
 ##### 请求参数
@@ -1016,18 +944,15 @@ provider.account.getAccountPriv(address : string)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
-const sdkprotocol = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const response = await provider.account.getAccountPriv("did:bid:efEnXEGWYjHRw1CzK4KpWTdusnaRokk8") as sdkprotocol.interface.GetAccountPrivResponse;
+const response = await provider.account.getAccountPriv("did:bid:efEnXEGWYjHRw1CzK4KpWTdusnaRokk8");
 console.log(response);
 //响应数据
 {
@@ -1065,29 +990,24 @@ provider.transaction.getTxPoolSize()
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
-const sdkprotocol = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const response = await provider.transaction.getTxPoolSize() as sdkprotocol.interface.GetTxPoolSizeResponse;
+const response = await provider.transaction.getTxPoolSize();
 console.log(response);
 //响应数据
 { errorCode: 0, errorDesc: 'ok', result: 0 }
 ```
 
-
-
 #### 2.4.2 获取链上交易缓存池交易列表
 
 ```
-provider.transaction.getTxPoolTransactions(limit?:number, address?:string, hash?:string) 
+provider.transaction.getTxPoolTransactions(limit?:number, address?:string, hash?:string)
 ```
 
 ##### 请求参数
@@ -1100,49 +1020,46 @@ provider.transaction.getTxPoolTransactions(limit?:number, address?:string, hash?
 
 ##### 响应参数
 
-| 类型                                                         | 类型             | 备注                                                         |
-| ------------------------------------------------------------ | ---------------- | ------------------------------------------------------------ |
-| errorCode                                                    | SdkStatusCode    | 接口调用错误码                                               |
-| errorDesc                                                    | string           | 接口调用描述信息                                             |
-| result.totalCount                                            | number           | 交易条数                                                     |
-| result.transactions                                          | array            |                                                              |
-| result.transactions[x].status                                | string           | 状态                                                         |
-| result.transactions[x].incomingTime                          | string           | 交易进入交易池时间                                           |
-| result.transactions[x].hash                                  | string           | 交易hash                                                     |
-| result.transactions[x].signatures                            | array<Signature> | 交易签名 Signature结构详见 通用结构定义                      |
-| result.transactions[x].transaction                           | object           |                                                              |
-| result.transactions[x].transaction.sourceAddress             | string           | 交易源账户地址                                               |
-| result.transactions[x].transaction.feeLimit                  | number           | feeLimit                                                     |
-| result.transactions[x].transaction.gasPrice                  | number           | gasPrice                                                     |
-| result.transactions[x].transaction.nonce                     | number           | nonce                                                        |
-| result.transactions[x].transaction.metadata                  | string           | metadata                                                     |
-| result.transactions[x].transaction.nonceType                 | number           | 0：递增nonce; 1:随机nonce                                    |
-| result.transactions[x].transaction.maxLedgerSeq              | number           | 交易最大处理区块高度，与随机Nonce一起使用                    |
-| result.transactions[x].transaction.operations                | array            |                                                              |
-| result.transactions[x].transaction.operations[x].type        | number           | 交易类型(交易池仅可能出现以下类型)：<br />1：create_account<br />4：set_metadata<br />7：pay_coin<br />9：set_privilege<br / |
-| result.transactions[x].transaction.operations[x].sourceAddress | string           | 当前操作源账户地址                                           |
-| result.transactions[x].transaction.operations[x].metadata    | string           | 当前操作metadata                                             |
-| result.transactions[x].transaction.operations[x].createAccount | object           | OperationCreateAccount 详见通用结构定义                      |
-| result.transactions[x].transaction.operations[x].setMetadata | object           | OperationSetMetadata 详见通用结构定义                        |
-| result.transactions[x].transaction.operations[x].payCoin     | object           | OperationPayCoin 详见通用结构定义                            |
-| result.transactions[x].transaction.operations[x].setPrivilege | object           | OperationSetPriviledge 详见通用结构定义                      |
+| 类型                                                           | 类型             | 备注                                                                                                                         |
+| -------------------------------------------------------------- | ---------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| errorCode                                                      | SdkStatusCode    | 接口调用错误码                                                                                                               |
+| errorDesc                                                      | string           | 接口调用描述信息                                                                                                             |
+| result.totalCount                                              | number           | 交易条数                                                                                                                     |
+| result.transactions                                            | array            |                                                                                                                              |
+| result.transactions[x].status                                  | string           | 状态                                                                                                                         |
+| result.transactions[x].incomingTime                            | string           | 交易进入交易池时间                                                                                                           |
+| result.transactions[x].hash                                    | string           | 交易hash                                                                                                                     |
+| result.transactions[x].signatures                              | array<Signature> | 交易签名 Signature结构详见 通用结构定义                                                                                      |
+| result.transactions[x].transaction                             | object           |                                                                                                                              |
+| result.transactions[x].transaction.sourceAddress               | string           | 交易源账户地址                                                                                                               |
+| result.transactions[x].transaction.feeLimit                    | number           | feeLimit                                                                                                                     |
+| result.transactions[x].transaction.gasPrice                    | number           | gasPrice                                                                                                                     |
+| result.transactions[x].transaction.nonce                       | number           | nonce                                                                                                                        |
+| result.transactions[x].transaction.metadata                    | string           | metadata                                                                                                                     |
+| result.transactions[x].transaction.nonceType                   | number           | 0：递增nonce; 1:随机nonce                                                                                                    |
+| result.transactions[x].transaction.maxLedgerSeq                | number           | 交易最大处理区块高度，与随机Nonce一起使用                                                                                    |
+| result.transactions[x].transaction.operations                  | array            |                                                                                                                              |
+| result.transactions[x].transaction.operations[x].type          | number           | 交易类型(交易池仅可能出现以下类型)：<br />1：create_account<br />4：set_metadata<br />7：pay_coin<br />9：set_privilege<br / |
+| result.transactions[x].transaction.operations[x].sourceAddress | string           | 当前操作源账户地址                                                                                                           |
+| result.transactions[x].transaction.operations[x].metadata      | string           | 当前操作metadata                                                                                                             |
+| result.transactions[x].transaction.operations[x].createAccount | object           | OperationCreateAccount 详见通用结构定义                                                                                      |
+| result.transactions[x].transaction.operations[x].setMetadata   | object           | OperationSetMetadata 详见通用结构定义                                                                                        |
+| result.transactions[x].transaction.operations[x].payCoin       | object           | OperationPayCoin 详见通用结构定义                                                                                            |
+| result.transactions[x].transaction.operations[x].setPrivilege  | object           | OperationSetPriviledge 详见通用结构定义                                                                                      |
 
 ##### 示例代码
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
-const sdkprotocol = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const response = await provider.transaction.getTxPoolTransactions() as sdkprotocol.interface.GetTransactionCacheResponse;
+const response = await provider.transaction.getTxPoolTransactions();
 console.log(response);
 //响应数据 - 交易池无交易
 {
@@ -1154,7 +1071,7 @@ console.log(response);
 #### 2.4.3 获取历史交易信息
 
 ```
-provider.transaction.getTransactionHistory(seq?:number, start?:number, limit?:number, hash?:string) 
+provider.transaction.getTransactionHistory(seq?:number, start?:number, limit?:number, hash?:string)
 ```
 
 ##### 请求参数
@@ -1168,48 +1085,45 @@ provider.transaction.getTransactionHistory(seq?:number, start?:number, limit?:nu
 
 ##### 响应参数
 
-| 类型                                                | 类型             | 备注                                                         |
-| --------------------------------------------------- | ---------------- | ------------------------------------------------------------ |
-| errorCode                                           | SdkStatusCode    | 接口调用错误码                                               |
-| errorDesc                                           | string           | 接口调用描述信息                                             |
-| result.totalCount                                   | number           | 交易条数                                                     |
-| result.transactions                                 | array            |                                                              |
-| result.transactions[x].hash                         | string           | 交易hash                                                     |
-| result.transactions[x].actualFee                    | number           | 交易费用                                                     |
-| result.transactions[x].closeTime                    | number           | 交易执行时间                                                 |
-| result.transactions[x].contractTxHashes             | array<string>    | 当前交易触发交易列表                                         |
-| result.transactions[x].errorCode                    | SdkStatusCode    | 交易处理错误码                                               |
-| result.transactions[x].errorDesc                    | string           | 交易处理错误描述信息                                         |
-| result.transactions[x].ledgerSeq                    | number           | 交易处理区块高度                                             |
-| result.transactions[x].signatures                   | array<Signature> | Signature详见通用结构定义                                    |
-| result.transactions[x].txSize                       | number           | 交易大小                                                     |
-| result.transactions[x].blob                         | string           | 交易序列化hex字符串                                          |
-| result.transactions[x].transaction                  | object           |                                                              |
-| result.transactions[x].transaction[x].sourceAddress | string           | 交易源账户地址                                               |
-| result.transactions[x].transaction[x].feeLimit      | number           | feeLimit                                                     |
-| result.transactions[x].transaction[x].gasPrice      | number           | gasPrice                                                     |
-| result.transactions[x].transaction[x].nonce         | number           |                                                              |
-| result.transactions[x].transaction[x].metadata      | string           |                                                              |
-| result.transactions[x].transaction[x].nonceType     | number           |                                                              |
-| result.transactions[x].transaction[x].maxLedgerSeq  | number           |                                                              |
+| 类型                                                | 类型             | 备注                                                                                                                                                                                                                                                  |
+| --------------------------------------------------- | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| errorCode                                           | SdkStatusCode    | 接口调用错误码                                                                                                                                                                                                                                        |
+| errorDesc                                           | string           | 接口调用描述信息                                                                                                                                                                                                                                      |
+| result.totalCount                                   | number           | 交易条数                                                                                                                                                                                                                                              |
+| result.transactions                                 | array            |                                                                                                                                                                                                                                                       |
+| result.transactions[x].hash                         | string           | 交易hash                                                                                                                                                                                                                                              |
+| result.transactions[x].actualFee                    | number           | 交易费用                                                                                                                                                                                                                                              |
+| result.transactions[x].closeTime                    | number           | 交易执行时间                                                                                                                                                                                                                                          |
+| result.transactions[x].contractTxHashes             | array<string>    | 当前交易触发交易列表                                                                                                                                                                                                                                  |
+| result.transactions[x].errorCode                    | SdkStatusCode    | 交易处理错误码                                                                                                                                                                                                                                        |
+| result.transactions[x].errorDesc                    | string           | 交易处理错误描述信息                                                                                                                                                                                                                                  |
+| result.transactions[x].ledgerSeq                    | number           | 交易处理区块高度                                                                                                                                                                                                                                      |
+| result.transactions[x].signatures                   | array<Signature> | Signature详见通用结构定义                                                                                                                                                                                                                             |
+| result.transactions[x].txSize                       | number           | 交易大小                                                                                                                                                                                                                                              |
+| result.transactions[x].blob                         | string           | 交易序列化hex字符串                                                                                                                                                                                                                                   |
+| result.transactions[x].transaction                  | object           |                                                                                                                                                                                                                                                       |
+| result.transactions[x].transaction[x].sourceAddress | string           | 交易源账户地址                                                                                                                                                                                                                                        |
+| result.transactions[x].transaction[x].feeLimit      | number           | feeLimit                                                                                                                                                                                                                                              |
+| result.transactions[x].transaction[x].gasPrice      | number           | gasPrice                                                                                                                                                                                                                                              |
+| result.transactions[x].transaction[x].nonce         | number           |                                                                                                                                                                                                                                                       |
+| result.transactions[x].transaction[x].metadata      | string           |                                                                                                                                                                                                                                                       |
+| result.transactions[x].transaction[x].nonceType     | number           |                                                                                                                                                                                                                                                       |
+| result.transactions[x].transaction[x].maxLedgerSeq  | number           |                                                                                                                                                                                                                                                       |
 | result.transactions[x].transaction[x].operations    | array            | 具体Operation结构详见通用结构定义：<br />OperationCreateAccount<br />OperationPayCoin<br />OperationSetMetadata<br />OperationSetPriviledger<br />OperationUpgradeContract<br />OperationSetSignerWeight<br />OperationSetThreshold<br />OperationLog |
 
 ##### 示例代码
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
-const sdkprotocol = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const response = await provider.transaction.getTransactionHistory(undefined, undefined, undefined, "b5cef0860f6000cdfb4fa0d2dc95a013632032a49764ade7c1d972a493307315",) as sdkprotocol.interface.GetTransactionHistoryResponse;
+const response = await provider.transaction.getTransactionHistory(undefined, undefined, undefined, "b5cef0860f6000cdfb4fa0d2dc95a013632032a49764ade7c1d972a493307315",);
 console.log(response);
 //响应数据
 {
@@ -1271,7 +1185,7 @@ console.log(response);
 ##### 2.4.4.1 账号激活
 
 ```
-provider.transaction.buildAccountCreateTx(op: OpCreateAccountParams, signer: Signer) 
+provider.transaction.buildAccountCreateTx(op: OpCreateAccountParams, signer: Signer)
 ```
 
 ###### 请求参数
@@ -1302,26 +1216,22 @@ provider.transaction.buildAccountCreateTx(op: OpCreateAccountParams, signer: Sig
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
-const sdkprotocol = require("@bifproject/bif-bop-sdk");
-const SignerByBop = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const request: sdkprotocol.interface.OpCreateAccountParams = {
+const request = {
         params: {},
         destAddress: "did:bid:efsdhXX7bNYxeYYVasatAi7DPE4nM3Lb",
         amount: 1,
       };
-const signer = new SignerByBop("priSrrn11eaTMRNwtNPv57DnnoaEKVbQAmPAaXsuBMBKLLGqui");
+const signer = new SignerByBop("your encprivate key");
 const signerWithProvider = signer.connect(provider);
-const response = await provider.transaction.buildAccountCreateTx(request, signerWithProvider, ) as sdkprotocol.interface.SignerSignResponse;
+const response = await provider.transaction.buildAccountCreateTx(request, signerWithProvider, );
 console.log(response);
 //响应数据
 {
@@ -1333,8 +1243,6 @@ console.log(response);
   }
 }
 ```
-
-
 
 ##### 2.4.4.2 合约创建
 
@@ -1372,21 +1280,17 @@ provider.transaction.buildContractCreateTx(op: OpCreateContractParams, signer: S
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
-const sdkprotocol = require("@bifproject/bif-bop-sdk");
-const SignerByBop = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const signer = new SignerByBop("priSrrn11eaTMRNwtNPv57DnnoaEKVbQAmPAaXsuBMBKLLGqui");
+const signer = new SignerByBop("your encprivate key");
 const signerWithProvider = signer.connect(provider);
-const request: sdkprotocol.interface.OpCreateContractParams = {
+const request = {
         params: {
           nonceType: TxType.INCREASE_NONCE,
           gasPrice: 1,
@@ -1399,7 +1303,7 @@ const request: sdkprotocol.interface.OpCreateContractParams = {
           "6080xxxx",
         initInput: "",
       };
-const response = await provider.transaction.buildContractCreateTx(request, signerWithProvider,) as sdkprotocol.interface.SignerSignResponse;
+const response = await provider.transaction.buildContractCreateTx(request, signerWithProvider,);
 console.log(response);
 //响应数据
 {
@@ -1411,8 +1315,6 @@ console.log(response);
   }
 }
 ```
-
-
 
 ##### 2.4.4.3 gasSend 转账
 
@@ -1448,21 +1350,17 @@ provider.transaction.buildGasSendTx(op: opGasSendParams, signer: Signer)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
-const sdkprotocol = require("@bifproject/bif-bop-sdk");
-const SignerByBop = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const signer = new SignerByBop("priSrrn11eaTMRNwtNPv57DnnoaEKVbQAmPAaXsuBMBKLLGqui");
+const signer = new SignerByBop("your encprivate key");
 const signerWithProvider = signer.connect(provider);
-const request: sdkprotocol.interface.OpGasSendParams = {
+const request = {
         params: {
           nonceType: TxType.INCREASE_NONCE,
           gasPrice: 1,
@@ -1472,7 +1370,7 @@ const request: sdkprotocol.interface.OpGasSendParams = {
         destAddress: "did:bid:efmHwsoavf2SWDkm4vwUJFwzZBWQnVV7",
         amount: 1,
       };
-const response = await provider.transaction.buildGasSendTx(request, signerWithProvider, ) as sdkprotocol.interface.SignerSignResponse;
+const response = await provider.transaction.buildGasSendTx(request, signerWithProvider, );
 console.log(response);
 //响应数据
 {
@@ -1485,12 +1383,10 @@ console.log(response);
 }
 ```
 
-
-
 ##### 2.4.4.4 合约调用
 
 ```
-provider.transaction.buildContractInvokeTx(op: opContractInvokeParams, signer: Signer) 
+provider.transaction.buildContractInvokeTx(op: opContractInvokeParams, signer: Signer)
 ```
 
 ###### 请求参数
@@ -1522,21 +1418,17 @@ provider.transaction.buildContractInvokeTx(op: opContractInvokeParams, signer: S
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
-const sdkprotocol = require("@bifproject/bif-bop-sdk");
-const SignerByBop = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const signer = new SignerByBop("priSrrn11eaTMRNwtNPv57DnnoaEKVbQAmPAaXsuBMBKLLGqui");
+const signer = new SignerByBop("your encprivate key");
 const signerWithProvider = signer.connect(provider);
-const request: sdkprotocol.interface.OpContractInvokeParams = {
+const request = {
         params: {
           nonceType: TxType.INCREASE_NONCE,
           gasPrice: 1,
@@ -1548,7 +1440,7 @@ const request: sdkprotocol.interface.OpContractInvokeParams = {
           '{"function":"balanceOf(address)","args":"did:bid:efBcAumwRYrESbpRVTo4J4vYqXXfqBzu","return":"returns(uint256)"',
         amount: 0,
       };
-const response = await provider.transaction.buildContractInvokeTx(request, signerWithProvider, ) as sdkprotocol.interface.SignerSignResponse;
+const response = await provider.transaction.buildContractInvokeTx(request, signerWithProvider, );
 console.log(response);
 //响应数据
 {
@@ -1561,12 +1453,10 @@ console.log(response);
 }
 ```
 
-
-
 ##### 2.4.5 设置账户metadata
 
 ```
-provider.transaction.buildSetMetadataTx(op: opSetMetadataParams, signer: Signer) 
+provider.transaction.buildSetMetadataTx(op: opSetMetadataParams, signer: Signer)
 ```
 
 ###### 请求参数
@@ -1598,21 +1488,17 @@ provider.transaction.buildSetMetadataTx(op: opSetMetadataParams, signer: Signer)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
-const sdkprotocol = require("@bifproject/bif-bop-sdk");
-const SignerByBop = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const signer = new SignerByBop("priSrrn11eaTMRNwtNPv57DnnoaEKVbQAmPAaXsuBMBKLLGqui");
+const signer = new SignerByBop("your encprivate key");
 const signerWithProvider = signer.connect(provider);
-const request: sdkprotocol.interface.OpSetMetadataParams = {
+const request = {
         params: {
           nonceType: TxType.INCREASE_NONCE,
           gasPrice: 1,
@@ -1623,7 +1509,7 @@ const request: sdkprotocol.interface.OpSetMetadataParams = {
         value: "B",
         version: 1,
       };
-const response = await provider.transaction.buildSetMetadataTx(request, signerWithProvider, ) as sdkprotocol.interface.SignerSignResponse;
+const response = await provider.transaction.buildSetMetadataTx(request, signerWithProvider, );
 console.log(response);
 //响应数据
 {
@@ -1639,26 +1525,26 @@ console.log(response);
 ##### 2.4.6 设置账户权限
 
 ```
-provider.transaction.buildSetPrivilegeTx(op: opSetPrivParams, signer: Signer) 
+provider.transaction.buildSetPrivilegeTx(op: opSetPrivParams, signer: Signer)
 ```
 
 ###### 请求参数
 
-| 参数                           | 类型          | 是否必填 | 备注                                                         |
-| ------------------------------ | ------------- | -------- | ------------------------------------------------------------ |
-| op.params                      | object        | 是       |                                                              |
-| op.params.nonceType            | number        | 否       | 0：递增nonce; 1:随机nonce，不填时默认为0                     |
-| op.params.ceilLedgerSeq        | number        | 否       |                                                              |
-| op.params.gasPrice             | number        | 否       | 默认为1                                                      |
-| op.params.feeLimit             | number        | 否       | 默认为10000000                                               |
-| op.params.remarks              | string        | 否       | metadata                                                     |
-| op.masterWeight                | string        | 是       |                                                              |
-| op.signers                     | array<Signer> | 否       | Signer详见通用结构定义                                       |
-| op.txThreshold                 | number        | 否       |                                                              |
-| op.typeThresholds              | array         | 否       |                                                              |
+| 参数                           | 类型          | 是否必填 | 备注                                                                                              |
+| ------------------------------ | ------------- | -------- | ------------------------------------------------------------------------------------------------- |
+| op.params                      | object        | 是       |                                                                                                   |
+| op.params.nonceType            | number        | 否       | 0：递增nonce; 1:随机nonce，不填时默认为0                                                          |
+| op.params.ceilLedgerSeq        | number        | 否       |                                                                                                   |
+| op.params.gasPrice             | number        | 否       | 默认为1                                                                                           |
+| op.params.feeLimit             | number        | 否       | 默认为10000000                                                                                    |
+| op.params.remarks              | string        | 否       | metadata                                                                                          |
+| op.masterWeight                | string        | 是       |                                                                                                   |
+| op.signers                     | array<Signer> | 否       | Signer详见通用结构定义                                                                            |
+| op.txThreshold                 | number        | 否       |                                                                                                   |
+| op.typeThresholds              | array         | 否       |                                                                                                   |
 | op.typeThresholds[x].type      | number        | 是       | 操作类型：<br />1: create_account; <br />4:set_metadata; <br />7:pay_coin; <br />9:set_privilege; |
-| op.typeThresholds[x].threshold | number        | 是       |                                                              |
-| signer                         | Signer        | 是       | Signer 详见第一章                                            |
+| op.typeThresholds[x].threshold | number        | 是       |                                                                                                   |
+| signer                         | Signer        | 是       | Signer 详见第一章                                                                                 |
 
 ###### 响应参数
 
@@ -1674,21 +1560,17 @@ provider.transaction.buildSetPrivilegeTx(op: opSetPrivParams, signer: Signer)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
-const sdkprotocol = require("@bifproject/bif-bop-sdk");
-const SignerByBop = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const signer = new SignerByBop("priSrrn11eaTMRNwtNPv57DnnoaEKVbQAmPAaXsuBMBKLLGqui");
+const signer = new SignerByBop("your encprivate key");
 const signerWithProvider = signer.connect(provider);
-const request: sdkprotocol.interface.OpSetPrivParams = {
+const request = {
         params: {
           nonceType: TxType.INCREASE_NONCE,
           gasPrice: 1,
@@ -1708,7 +1590,7 @@ const request: sdkprotocol.interface.OpSetPrivParams = {
           },
         ],
       };
-const response = await provider.transaction.buildSetPrivilegeTx(request, signerWithProvider, ) as sdkprotocol.interface.SignerSignResponse;
+const response = await provider.transaction.buildSetPrivilegeTx(request, signerWithProvider, );
 console.log(response);
 //响应数据
 {
@@ -1721,14 +1603,12 @@ console.log(response);
 }
 ```
 
-
-
 #### 2.4.7 批量处理交易
 
 ##### 2.4.7.1 批量转账
 
 ```
-provider.transaction.buildBatchGasSend(op: OpBatchGasSend, signer: Signer) 
+provider.transaction.buildBatchGasSend(op: OpBatchGasSend, signer: Signer)
 ```
 
 ###### 请求参数
@@ -1760,21 +1640,17 @@ provider.transaction.buildBatchGasSend(op: OpBatchGasSend, signer: Signer)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
-const sdkprotocol = require("@bifproject/bif-bop-sdk");
-const SignerByBop = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const signer = new SignerByBop("priSrrn11eaTMRNwtNPv57DnnoaEKVbQAmPAaXsuBMBKLLGqui");
+const signer = new SignerByBop("your encprivate key");
 const signerWithProvider = signer.connect(provider);
-const request: sdkprotocol.interface.OpBatchGasSend = {
+const request = {
         base: {
           nonceType: TxType.INCREASE_NONCE,
           gasPrice: 1,
@@ -1790,7 +1666,7 @@ const request: sdkprotocol.interface.OpBatchGasSend = {
         amount: 1,
       }],
       };
-const response = await provider.transaction.buildBatchGasSend(request, signerWithProvider, ) as sdkprotocol.interface.SignerSignResponse;
+const response = await provider.transaction.buildBatchGasSend(request, signerWithProvider, );
 console.log(response);
 //响应数据
 {
@@ -1806,7 +1682,7 @@ console.log(response);
 ##### 2.4.7.2 批量合约调用
 
 ```
-provider.transaction.buildBatchContractInvoke(params: OpBatchContractInvoke, signer: Signer) 
+provider.transaction.buildBatchContractInvoke(params: OpBatchContractInvoke, signer: Signer)
 ```
 
 ###### 请求参数
@@ -1839,21 +1715,17 @@ provider.transaction.buildBatchContractInvoke(params: OpBatchContractInvoke, sig
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
-const sdkprotocol = require("@bifproject/bif-bop-sdk");
-const SignerByBop = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const signer = new SignerByBop("priSrrn11eaTMRNwtNPv57DnnoaEKVbQAmPAaXsuBMBKLLGqui");
+const signer = new SignerByBop("your encprivate key");
 const signerWithProvider = signer.connect(provider);
-const request: sdkprotocol.interface.OpBatchContractInvoke = {
+const request = {
         base: {
           nonceType: TxType.INCREASE_NONCE,
           gasPrice: 1,
@@ -1875,7 +1747,7 @@ const request: sdkprotocol.interface.OpBatchContractInvoke = {
           },
         ],
       };
-const response = await provider.transaction.buildBatchContractInvoke(request, signerWithProvider, ) as sdkprotocol.interface.SignerSignResponse;
+const response = await provider.transaction.buildBatchContractInvoke(request, signerWithProvider, );
 console.log(response);
 //响应数据
 {
@@ -1888,12 +1760,10 @@ console.log(response);
 }
 ```
 
-
-
 #### 2.4.8 提交交易
 
 ```
-provider.transaction.submitTransaction(params: SubmitTransactionParams) 
+provider.transaction.submitTransaction(params: SubmitTransactionParams)
 ```
 
 ##### 请求参数
@@ -1918,18 +1788,15 @@ provider.transaction.submitTransaction(params: SubmitTransactionParams)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
-const sdkprotocol = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const request: sdkprotocol.interface.SubmitTransactionParams = {
+const request = {
         items: [
           {
             signatures: [
@@ -1945,7 +1812,7 @@ const request: sdkprotocol.interface.SubmitTransactionParams = {
           },
         ],
       };
-const response = await provider.transaction.submitTransaction(request) as sdkprotocol.interface.SubmitTransactionResponse;
+const response = await provider.transaction.submitTransaction(request);
 console.log(response);
 //响应数据
 {
@@ -1957,13 +1824,13 @@ console.log(response);
       errorDesc: ''
     }
   ]
-} 
+}
 ```
 
 #### 2.4.9 交易费用评估
 
 ```
-provider.transaction.estimateGas(params: TestTransactionRequest) 
+provider.transaction.estimateGas(params: TestTransactionRequest)
 ```
 
 ##### 请求参数
@@ -2063,47 +1930,44 @@ provider.transaction.estimateGas(params: TestTransactionRequest)
 | setPrivilege.signers.weight           | number | 是       | 可选，签名者的权力值                     |
 | setPrivilege.txThreshold              | string | 否       | 可选，发起交易需要权力值                 |
 | setPrivilege.typeThresholds           | array  | 否       | 可选，不同操作需要的权力值               |
-| setPrivilege.typeThresholds.type      | object | 是       | 1-创建账户操作类型  7-调用合约需要权限值 |
+| setPrivilege.typeThresholds.type      | object | 是       | 1-创建账户操作类型 7-调用合约需要权限值  |
 | setPrivilege.typeThresholds.threshold | number | 否       | 可选，该操作需要的权力值                 |
 
 #### 响应参数
 
-| 类型                                                   | 类型          | 备注                                                         |
-| ------------------------------------------------------ | ------------- | ------------------------------------------------------------ |
-| errorCode                                              | SdkStatusCode | 接口调用错误码                                               |
-| errorDesc                                              | string        | 接口调用描述信息                                             |
-| result.stat                                            | object        | 执行状态                                                     |
-| result.hash                                            | string        | 交易hash                                                     |
-| result.txs                                             | array         | 交易数组                                                     |
-| result.txs[x].gas                                      | number        | 交易消耗gas                                                  |
-| result.txs[x].transactionEnv                           | object        | 交易结构                                                     |
-| result.txs[x].actualFee                                | number        | 交易消耗费用                                                 |
-| result.txs[x].transactionEnv.transaction               | object        | 交易结构                                                     |
-| result.txs[x].transactionEnv.transaction.sourceAddress | string        | 交易源账户地址                                               |
-| result.txs[x].transactionEnv.transaction.feeLimit      | number        | feeLimit限制                                                 |
-| result.txs[x].transactionEnv.transaction.gasPrice      | number        | gasPrice                                                     |
-| result.txs[x].transactionEnv.transaction.nonce         | string        | 交易源递增账户nonce值                                        |
-| result.txs[x].transactionEnv.transaction.metadata      | string        | 交易元数据                                                   |
-| result.txs[x].transactionEnv.transaction.nonceType     | number        | 0:递增nonce;1:随机nonce                                      |
-| result.txs[x].transactionEnv.transaction.maxLedgerSeq  | number        | 交易最大处理高度，与随机nonce一期使用                        |
+| 类型                                                   | 类型          | 备注                                                                                                                    |
+| ------------------------------------------------------ | ------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| errorCode                                              | SdkStatusCode | 接口调用错误码                                                                                                          |
+| errorDesc                                              | string        | 接口调用描述信息                                                                                                        |
+| result.stat                                            | object        | 执行状态                                                                                                                |
+| result.hash                                            | string        | 交易hash                                                                                                                |
+| result.txs                                             | array         | 交易数组                                                                                                                |
+| result.txs[x].gas                                      | number        | 交易消耗gas                                                                                                             |
+| result.txs[x].transactionEnv                           | object        | 交易结构                                                                                                                |
+| result.txs[x].actualFee                                | number        | 交易消耗费用                                                                                                            |
+| result.txs[x].transactionEnv.transaction               | object        | 交易结构                                                                                                                |
+| result.txs[x].transactionEnv.transaction.sourceAddress | string        | 交易源账户地址                                                                                                          |
+| result.txs[x].transactionEnv.transaction.feeLimit      | number        | feeLimit限制                                                                                                            |
+| result.txs[x].transactionEnv.transaction.gasPrice      | number        | gasPrice                                                                                                                |
+| result.txs[x].transactionEnv.transaction.nonce         | string        | 交易源递增账户nonce值                                                                                                   |
+| result.txs[x].transactionEnv.transaction.metadata      | string        | 交易元数据                                                                                                              |
+| result.txs[x].transactionEnv.transaction.nonceType     | number        | 0:递增nonce;1:随机nonce                                                                                                 |
+| result.txs[x].transactionEnv.transaction.maxLedgerSeq  | number        | 交易最大处理高度，与随机nonce一期使用                                                                                   |
 | result.txs[x].transactionEnv.transaction.operations    | array         | 详见通用结构定义<br />OperationCreateAccount<br />OperationPayCoin<br />OperationSetMetadata<br />OperationSetPrivilege |
 
 ##### 示例代码
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
-const sdkprotocol = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const request: sdkprotocol.interface.TestTransactionRequest = {
+const request = {
         items: [
             {
               transactionJson: {
@@ -2132,7 +1996,7 @@ const request: sdkprotocol.interface.TestTransactionRequest = {
             },
           ],
       };
-const response = await provider.transaction.estimateGas(request) as sdkprotocol.interface.TestTransactionResponse;
+const response = await provider.transaction.estimateGas(request);
 console.log(response);
 //响应数据
 {
@@ -2163,14 +2027,12 @@ console.log(response);
 }
 ```
 
-
-
 ### 2.5 合约调用相关接口
 
 #### 2.5.1 判断指定账户是否为合约账户
 
 ```
-provider.contract.checkContractAccount(address:string) 
+provider.contract.checkContractAccount(address:string)
 ```
 
 ##### 请求参数
@@ -2191,24 +2053,19 @@ provider.contract.checkContractAccount(address:string)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
-const sdkprotocol = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const response = await provider.contract.checkContractAccount("did:bid:efEnXEGWYjHRw1CzK4KpWTdusnaRokk8") as sdkprotocol.interface.TestTransactionResponse;
+const response = await provider.contract.checkContractAccount("did:bid:efEnXEGWYjHRw1CzK4KpWTdusnaRokk8");
 console.log(response);
 //响应数据
 { errorCode: 0, errorDesc: 'ok', result: true }
 ```
-
-
 
 #### 2.5.2 获取指定合约账户信息
 
@@ -2232,18 +2089,15 @@ provider.contract.getContractInfo(address:string)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
-const sdkprotocol = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const response = await provider.contract.checkContractAccount("did:bid:efEnXEGWYjHRw1CzK4KpWTdusnaRokk8") as sdkprotocol.interface.TestTransactionResponse;
+const response = await provider.contract.checkContractAccount("did:bid:efEnXEGWYjHRw1CzK4KpWTdusnaRokk8");
 console.log(response);
 //响应数据
 {
@@ -2280,18 +2134,15 @@ provider.contract.callContract(transaction: CallContractRequest)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
-const sdkprotocol = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const response = await provider.contract.checkContractAccount("did:bid:efEnXEGWYjHRw1CzK4KpWTdusnaRokk8") as sdkprotocol.interface.TestTransactionResponse;
+const response = await provider.contract.checkContractAccount("did:bid:efEnXEGWYjHRw1CzK4KpWTdusnaRokk8");
 console.log(response);
 //响应数据
 {
@@ -2304,14 +2155,14 @@ console.log(response);
 }
 ```
 
-### 
+###
 
 ### 2.6 三方平台相关接口
 
 #### 2.6.1 账号备案上报
 
 ```
-provider.bop.apply(params: ApplyRequest) 
+provider.bop.apply(params: ApplyRequest)
 ```
 
 ##### 请求参数
@@ -2337,18 +2188,15 @@ provider.bop.apply(params: ApplyRequest)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
-const sdkprotocol = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const request: sdkprotocol.interface.ApplyRequest = {
+const request = {
         data: [
           {
             bid: "did:bid:efC5REiFesaBuu1UXbMJWvEsqFRkQKiq",
@@ -2356,7 +2204,7 @@ const request: sdkprotocol.interface.ApplyRequest = {
           },
         ],
       };
-const response = await provider.bop.apply(request) as sdkprotocol.interface.ApplyResponse;
+const response = await provider.bop.apply(request);
 console.log(response);
 //响应数据
 {
@@ -2365,13 +2213,13 @@ console.log(response);
   success: true,
   errorCode: 0,
   errorDesc: 'ok'
-} 
+}
 ```
 
 #### 2.6.2 数据上链状态查询
 
 ```
-provider.bop.status(params: ApplyStatusRequest) 
+provider.bop.status(params: ApplyStatusRequest)
 ```
 
 ##### 请求参数
@@ -2398,21 +2246,18 @@ provider.bop.status(params: ApplyStatusRequest)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
-const sdkprotocol = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const request: sdkprotocol.interface.ApplyStatusRequest = {
+const request = {
         requestNo: "ca3d2fa2-28ab-4322-b9f7-b018667acf87",
       };
-const response = await provider.bop.status(request) as sdkprotocol.interface.ApplyStatusResponse;
+const response = await provider.bop.status(request);
 console.log(response);
 //响应数据
 {
@@ -2427,7 +2272,7 @@ console.log(response);
 #### 2.6.3 获取平台存储数据
 
 ```
-provider.bop.detail(params: DetailRequest) 
+provider.bop.detail(params: DetailRequest)
 ```
 
 ##### 请求参数
@@ -2453,21 +2298,18 @@ provider.bop.detail(params: DetailRequest)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
-const sdkprotocol = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const request: sdkprotocol.interface.DetailRequest = {
+const request = {
         requestNo: "ca3d2fa2-28ab-4322-b9f7-b018667acf87",
       };
-const response = await provider.bop.detail(request) as sdkprotocol.interface.DetailResponse;
+const response = await provider.bop.detail(request);
 console.log(response);
 //响应数据
 {
@@ -2486,7 +2328,7 @@ console.log(response);
 #### 2.6.4 查询平台交易缓存池
 
 ```
-provider.bop.getTransactionCache(params: GetTransactionCacheRequest) 
+provider.bop.getTransactionCache(params: GetTransactionCacheRequest)
 ```
 
 ##### 请求参数
@@ -2505,24 +2347,21 @@ provider.bop.getTransactionCache(params: GetTransactionCacheRequest)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
-const sdkprotocol = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const request: sdkprotocol.interface.GetTransactionCacheRequest = {};
-const response = await provider.bop.getTransactionCache(request) as sdkprotocol.interface.GetTransactionCachePlatResponse;
+const request = {};
+const response = await provider.bop.getTransactionCache(request);
 console.log(response);
 //响应数据
 {
   trace: '9d1450d34aac419b887b84567300050f',
-  result: { totalCount: 1, transactions: [ 
+  result: { totalCount: 1, transactions: [
     {
   hash: 'e6366d3ae7231e8f59d44b710521dce671abd9d1c37c2e2b23736b12665e6547',
   actualFee: 0,
@@ -2550,18 +2389,18 @@ console.log(response);
   txSize: 0,
   blob: '0A286469643A6269643A6566433552456946657361427575315558624D4A577645737146526B514B697110F6880322330807522F0A296469643A6269643A65663262374A386141375044326D77535243754B4B4276423873726A4A7A32596F1080B51830C0843D3801'
 }
-  ] 
+  ]
   },
   success: true,
   errorCode: 0,
   errorDesc: 'ok'
-} 
+}
 ```
 
 #### 2.6.5 查询平台丢弃交易数据
 
 ```
-provider.bop.discard(params: DiscardRequest) 
+provider.bop.discard(params: DiscardRequest)
 ```
 
 ##### 请求参数
@@ -2574,72 +2413,69 @@ provider.bop.discard(params: DiscardRequest)
 
 ##### 响应参数
 
-| 类型                                                         | 类型             | 备注                                                         |
-| ------------------------------------------------------------ | ---------------- | ------------------------------------------------------------ |
-| errorCode                                                    | SdkStatusCode    | 接口调用错误码                                               |
-| errorDesc                                                    | string           | 接口调用描述信息                                             |
-| success                                                      | bool             | 是否成功                                                     |
-| trace                                                        | string           | 请求ID                                                       |
-| result                                                       | object           |                                                              |
-| result.count                                                 | number           | 交易数量                                                     |
-| result.totalPage                                             | number           | 页码数                                                       |
-| result.transactionBases                                      | array<object>    |                                                              |
-| result.transactionBases[x].id                                | string           | id                                                           |
-| result.transactionBases[x].txId                              | string           | txId                                                         |
-| result.transactionBases[x].hash                              | string           | 交易hash                                                     |
-| result.transactionBases[x].apiKey                            | string           | apiKey                                                       |
-| result.transactionBases[x].txType                            | number           | 交易类型 0- 基础交易 1- 增强交易; 目前仅支持0                |
-| result.transactionBases[x].createTime                        | string           | 创建时间                                                     |
-| result.transactionBases[x].ledgerSeq                         | number           | 区块高度                                                     |
-| result.transactionBases[x].sourceAddress                     | string           | 交易源账户地址                                               |
-| result.transactionBases[x].actualFee                         | number           | 交易实际花费费用                                             |
-| result.transactionBases[x].status                            | SdkStatusCode    | 交易错误码                                                   |
-| result.transactionBases[x].statusDesc                        | string           | 接口调用描述信息                                             |
-| result.transactionBases[x].baseTransaction                   | object           | 交易体                                                       |
-| result.transactionBases[x].baseTransaction.hash              | string           | 交易hash                                                     |
-| result.transactionBases[x].baseTransaction.actualFee         | number           | 交易执行费用                                                 |
-| result.transactionBases[x].baseTransaction.closeTime         | number           | 交易执行完成时间                                             |
-| result.transactionBases[x].baseTransaction.contractTxHashes  | array<string>    | 交易触发的新交易列表                                         |
-| result.transactionBases[x].baseTransaction.errorCode         | StatusCodes      | 错误码                                                       |
-| result.transactionBases[x].baseTransaction.errorDesc         | string           | 错误描述信息                                                 |
-| result.transactionBases[x].baseTransaction.ledgerSeq         | number           | 区块高度                                                     |
-| result.transactionBases[x].baseTransaction.signatures        | array<Signature> | Signature结构详见通用结构定义                                |
-| result.transactionBases[x].baseTransaction.txSize            | number           | 交易大小                                                     |
-| result.transactionBases[x].baseTransaction.blob              | string           | 序列化后交易hex字符串                                        |
-| result.transactionBases[x].baseTransaction.transaction       | object           |                                                              |
-| result.transactionBases[x].baseTransaction.transaction.sourceAddress | string           | 交易源账户                                                   |
-| result.transactionBases[x].baseTransaction.transaction.feeLimit | number           | feeLimit                                                     |
-| result.transactionBases[x].baseTransaction.transaction.gasPrice | number           | gasPrice                                                     |
-| result.transactionBases[x].baseTransaction.transaction.nonce | number           | nonce                                                        |
-| result.transactionBases[x].baseTransaction.transaction.metadata | string           | metadata                                                     |
-| result.transactionBases[x].baseTransaction.transaction.nonceType | number           | 0: 递增nonce; 1:随机nonce                                    |
-| result.transactionBases[x].baseTransaction.transaction.maxLedgerSeq | number           | 最大交易处理高度，与随机Nonce一起使用                        |
-| result.transactionBases[x].baseTransaction.transaction.operations | array            | 具体Operation结构详见通用结构定义：<br />OperationCreateAccount<br />OperationPayCoin<br />OperationSetMetadata<br />OperationSetPriviledger<br />OperationUpgradeContract<br />OperationSetSignerWeight<br />OperationSetThreshold<br />OperationLog |
+| 类型                                                                 | 类型             | 备注                                                                                                                                                                                                                                                  |
+| -------------------------------------------------------------------- | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| errorCode                                                            | SdkStatusCode    | 接口调用错误码                                                                                                                                                                                                                                        |
+| errorDesc                                                            | string           | 接口调用描述信息                                                                                                                                                                                                                                      |
+| success                                                              | bool             | 是否成功                                                                                                                                                                                                                                              |
+| trace                                                                | string           | 请求ID                                                                                                                                                                                                                                                |
+| result                                                               | object           |                                                                                                                                                                                                                                                       |
+| result.count                                                         | number           | 交易数量                                                                                                                                                                                                                                              |
+| result.totalPage                                                     | number           | 页码数                                                                                                                                                                                                                                                |
+| result.transactionBases                                              | array<object>    |                                                                                                                                                                                                                                                       |
+| result.transactionBases[x].id                                        | string           | id                                                                                                                                                                                                                                                    |
+| result.transactionBases[x].txId                                      | string           | txId                                                                                                                                                                                                                                                  |
+| result.transactionBases[x].hash                                      | string           | 交易hash                                                                                                                                                                                                                                              |
+| result.transactionBases[x].apiKey                                    | string           | apiKey                                                                                                                                                                                                                                                |
+| result.transactionBases[x].txType                                    | number           | 交易类型 0- 基础交易 1- 增强交易; 目前仅支持0                                                                                                                                                                                                         |
+| result.transactionBases[x].createTime                                | string           | 创建时间                                                                                                                                                                                                                                              |
+| result.transactionBases[x].ledgerSeq                                 | number           | 区块高度                                                                                                                                                                                                                                              |
+| result.transactionBases[x].sourceAddress                             | string           | 交易源账户地址                                                                                                                                                                                                                                        |
+| result.transactionBases[x].actualFee                                 | number           | 交易实际花费费用                                                                                                                                                                                                                                      |
+| result.transactionBases[x].status                                    | SdkStatusCode    | 交易错误码                                                                                                                                                                                                                                            |
+| result.transactionBases[x].statusDesc                                | string           | 接口调用描述信息                                                                                                                                                                                                                                      |
+| result.transactionBases[x].baseTransaction                           | object           | 交易体                                                                                                                                                                                                                                                |
+| result.transactionBases[x].baseTransaction.hash                      | string           | 交易hash                                                                                                                                                                                                                                              |
+| result.transactionBases[x].baseTransaction.actualFee                 | number           | 交易执行费用                                                                                                                                                                                                                                          |
+| result.transactionBases[x].baseTransaction.closeTime                 | number           | 交易执行完成时间                                                                                                                                                                                                                                      |
+| result.transactionBases[x].baseTransaction.contractTxHashes          | array<string>    | 交易触发的新交易列表                                                                                                                                                                                                                                  |
+| result.transactionBases[x].baseTransaction.errorCode                 | StatusCodes      | 错误码                                                                                                                                                                                                                                                |
+| result.transactionBases[x].baseTransaction.errorDesc                 | string           | 错误描述信息                                                                                                                                                                                                                                          |
+| result.transactionBases[x].baseTransaction.ledgerSeq                 | number           | 区块高度                                                                                                                                                                                                                                              |
+| result.transactionBases[x].baseTransaction.signatures                | array<Signature> | Signature结构详见通用结构定义                                                                                                                                                                                                                         |
+| result.transactionBases[x].baseTransaction.txSize                    | number           | 交易大小                                                                                                                                                                                                                                              |
+| result.transactionBases[x].baseTransaction.blob                      | string           | 序列化后交易hex字符串                                                                                                                                                                                                                                 |
+| result.transactionBases[x].baseTransaction.transaction               | object           |                                                                                                                                                                                                                                                       |
+| result.transactionBases[x].baseTransaction.transaction.sourceAddress | string           | 交易源账户                                                                                                                                                                                                                                            |
+| result.transactionBases[x].baseTransaction.transaction.feeLimit      | number           | feeLimit                                                                                                                                                                                                                                              |
+| result.transactionBases[x].baseTransaction.transaction.gasPrice      | number           | gasPrice                                                                                                                                                                                                                                              |
+| result.transactionBases[x].baseTransaction.transaction.nonce         | number           | nonce                                                                                                                                                                                                                                                 |
+| result.transactionBases[x].baseTransaction.transaction.metadata      | string           | metadata                                                                                                                                                                                                                                              |
+| result.transactionBases[x].baseTransaction.transaction.nonceType     | number           | 0: 递增nonce; 1:随机nonce                                                                                                                                                                                                                             |
+| result.transactionBases[x].baseTransaction.transaction.maxLedgerSeq  | number           | 最大交易处理高度，与随机Nonce一起使用                                                                                                                                                                                                                 |
+| result.transactionBases[x].baseTransaction.transaction.operations    | array            | 具体Operation结构详见通用结构定义：<br />OperationCreateAccount<br />OperationPayCoin<br />OperationSetMetadata<br />OperationSetPriviledger<br />OperationUpgradeContract<br />OperationSetSignerWeight<br />OperationSetThreshold<br />OperationLog |
 
 ##### 示例代码
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
-const sdkprotocol = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const request: sdkprotocol.interface.DiscardRequest = {
+const request = {
     hash: "6eff3a70b7794578641ab7a5e56e3e14347a37b857174f3f92112e769b32f575",
 };
-const response = await provider.bop.discard(request) as sdkprotocol.interface.DiscardResponse;
+const response = await provider.bop.discard(request);
 console.log(response);
 //响应数据
 {
   trace: '731aaaab040e491394d1ec1daea0cc22',
-  result: { count: 1, totalPage: 1, transactionBases: [ 
+  result: { count: 1, totalPage: 1, transactionBases: [
     {
   id: '845f53a6bdf5468a8808884b80fdaeb9',
   txId: '',
@@ -2685,91 +2521,88 @@ console.log(response);
 #### 2.6.6 查询平台交易数据列表
 
 ```
-provider.bop.query(params: QueryRequest) 
+provider.bop.query(params: QueryRequest)
 ```
 
 ##### 请求参数
 
-| 参数             | 类型   | 是否必填 | 备注                                                         |
-| ---------------- | ------ | -------- | ------------------------------------------------------------ |
-| params.bid       | string | 否       | 交易hash                                                     |
-| params.hash      | string | 否       | 页码 默认1                                                   |
-| params.txId      | string | 否       | 每页记录数 默认10                                            |
-| params.startTime | string | 否       | 开始时间 yyyy-MM-dd HH:mm:ss 例：2023-09-14 21:21:41         |
-| params.endTime   | string | 否       | 结束时间 yyyy-MM-dd HH:mm:ss 例：2023-09-14 21:21:41         |
+| 参数             | 类型   | 是否必填 | 备注                                                                                   |
+| ---------------- | ------ | -------- | -------------------------------------------------------------------------------------- |
+| params.bid       | string | 否       | 交易hash                                                                               |
+| params.hash      | string | 否       | 页码 默认1                                                                             |
+| params.txId      | string | 否       | 每页记录数 默认10                                                                      |
+| params.startTime | string | 否       | 开始时间 yyyy-MM-dd HH:mm:ss 例：2023-09-14 21:21:41                                   |
+| params.endTime   | string | 否       | 结束时间 yyyy-MM-dd HH:mm:ss 例：2023-09-14 21:21:41                                   |
 | params.txType    | number | 否       | 交易类型 0- 基础交易 1- 增强交易，当bid或tx_id不为空时，此参数必填，目前不支持增强交易 |
-| params.page      | number | 是       | 页码                                                         |
-| params.pageSize  | number | 是       | 每页记录数                                                   |
-| params.ledgerSeq | number | 否       | 块高度                                                       |
+| params.page      | number | 是       | 页码                                                                                   |
+| params.pageSize  | number | 是       | 每页记录数                                                                             |
+| params.ledgerSeq | number | 否       | 块高度                                                                                 |
 
 ##### 响应参数
 
-| 类型                                                         | 类型             | 备注                                                         |
-| ------------------------------------------------------------ | ---------------- | ------------------------------------------------------------ |
-| errorCode                                                    | SdkStatusCode    | 接口调用错误码                                               |
-| errorDesc                                                    | string           | 接口调用描述信息                                             |
-| success                                                      | bool             | 是否成功                                                     |
-| trace                                                        | string           | 请求ID                                                       |
-| result                                                       | object           |                                                              |
-| result.count                                                 | number           | 交易数量                                                     |
-| result.totalPage                                             | number           | 页码数                                                       |
-| result.transactionBases                                      | array<object>    |                                                              |
-| result.transactionBases[x].id                                | string           | id                                                           |
-| result.transactionBases[x].txId                              | string           | txId                                                         |
-| result.transactionBases[x].hash                              | string           | 交易hash                                                     |
-| result.transactionBases[x].apiKey                            | string           | apiKey                                                       |
-| result.transactionBases[x].txType                            | number           | 交易类型 0- 基础交易 1- 增强交易; 目前仅支持0                |
-| result.transactionBases[x].createTime                        | string           | 创建时间                                                     |
-| result.transactionBases[x].ledgerSeq                         | number           | 区块高度                                                     |
-| result.transactionBases[x].sourceAddress                     | string           | 交易源账户地址                                               |
-| result.transactionBases[x].actualFee                         | number           | 交易实际花费费用                                             |
-| result.transactionBases[x].status                            | SdkStatusCode    | 交易错误码                                                   |
-| result.transactionBases[x].statusDesc                        | string           | 接口调用描述信息                                             |
-| result.transactionBases[x].baseTransaction                   | object           | base 交易体                                                  |
-| result.transactionBases[x].baseTransaction.hash              | string           | 交易hash                                                     |
-| result.transactionBases[x].baseTransaction.actualFee         | number           | 交易执行费用                                                 |
-| result.transactionBases[x].baseTransaction.closeTime         | number           | 交易执行完成时间                                             |
-| result.transactionBases[x].baseTransaction.contractTxHashes  | array<string>    | 交易触发的新交易列表                                         |
-| result.transactionBases[x].baseTransaction.errorCode         | StatusCodes      | 错误码                                                       |
-| result.transactionBases[x].baseTransaction.errorDesc         | string           | 错误描述信息                                                 |
-| result.transactionBases[x].baseTransaction.ledgerSeq         | number           | 区块高度                                                     |
-| result.transactionBases[x].baseTransaction.signatures        | array<Signature> | Signature结构详见通用结构定义                                |
-| result.transactionBases[x].baseTransaction.txSize            | number           | 交易大小                                                     |
-| result.transactionBases[x].baseTransaction.blob              | string           | 序列化后交易hex字符串                                        |
-| result.transactionBases[x].baseTransaction.transaction       | object           |                                                              |
-| result.transactionBases[x].baseTransaction.transaction.sourceAddress | string           | 交易源账户                                                   |
-| result.transactionBases[x].baseTransaction.transaction.feeLimit | number           | feeLimit                                                     |
-| result.transactionBases[x].baseTransaction.transaction.gasPrice | number           | gasPrice                                                     |
-| result.transactionBases[x].baseTransaction.transaction.nonce | number           | nonce                                                        |
-| result.transactionBases[x].baseTransaction.transaction.metadata | string           | metadata                                                     |
-| result.transactionBases[x].baseTransaction.transaction.nonceType | number           | 0: 递增nonce; 1:随机nonce                                    |
-| result.transactionBases[x].baseTransaction.transaction.maxLedgerSeq | number           | 最大交易处理高度，与随机Nonce一起使用                        |
-| result.transactionBases[x].baseTransaction.transaction.operations | array            | 具体Operation结构详见通用结构定义：<br />OperationCreateAccount<br />OperationPayCoin<br />OperationSetMetadata<br />OperationSetPriviledger<br />OperationUpgradeContract<br />OperationSetSignerWeight<br />OperationSetThreshold<br />OperationLog |
+| 类型                                                                 | 类型             | 备注                                                                                                                                                                                                                                                  |
+| -------------------------------------------------------------------- | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| errorCode                                                            | SdkStatusCode    | 接口调用错误码                                                                                                                                                                                                                                        |
+| errorDesc                                                            | string           | 接口调用描述信息                                                                                                                                                                                                                                      |
+| success                                                              | bool             | 是否成功                                                                                                                                                                                                                                              |
+| trace                                                                | string           | 请求ID                                                                                                                                                                                                                                                |
+| result                                                               | object           |                                                                                                                                                                                                                                                       |
+| result.count                                                         | number           | 交易数量                                                                                                                                                                                                                                              |
+| result.totalPage                                                     | number           | 页码数                                                                                                                                                                                                                                                |
+| result.transactionBases                                              | array<object>    |                                                                                                                                                                                                                                                       |
+| result.transactionBases[x].id                                        | string           | id                                                                                                                                                                                                                                                    |
+| result.transactionBases[x].txId                                      | string           | txId                                                                                                                                                                                                                                                  |
+| result.transactionBases[x].hash                                      | string           | 交易hash                                                                                                                                                                                                                                              |
+| result.transactionBases[x].apiKey                                    | string           | apiKey                                                                                                                                                                                                                                                |
+| result.transactionBases[x].txType                                    | number           | 交易类型 0- 基础交易 1- 增强交易; 目前仅支持0                                                                                                                                                                                                         |
+| result.transactionBases[x].createTime                                | string           | 创建时间                                                                                                                                                                                                                                              |
+| result.transactionBases[x].ledgerSeq                                 | number           | 区块高度                                                                                                                                                                                                                                              |
+| result.transactionBases[x].sourceAddress                             | string           | 交易源账户地址                                                                                                                                                                                                                                        |
+| result.transactionBases[x].actualFee                                 | number           | 交易实际花费费用                                                                                                                                                                                                                                      |
+| result.transactionBases[x].status                                    | SdkStatusCode    | 交易错误码                                                                                                                                                                                                                                            |
+| result.transactionBases[x].statusDesc                                | string           | 接口调用描述信息                                                                                                                                                                                                                                      |
+| result.transactionBases[x].baseTransaction                           | object           | base 交易体                                                                                                                                                                                                                                           |
+| result.transactionBases[x].baseTransaction.hash                      | string           | 交易hash                                                                                                                                                                                                                                              |
+| result.transactionBases[x].baseTransaction.actualFee                 | number           | 交易执行费用                                                                                                                                                                                                                                          |
+| result.transactionBases[x].baseTransaction.closeTime                 | number           | 交易执行完成时间                                                                                                                                                                                                                                      |
+| result.transactionBases[x].baseTransaction.contractTxHashes          | array<string>    | 交易触发的新交易列表                                                                                                                                                                                                                                  |
+| result.transactionBases[x].baseTransaction.errorCode                 | StatusCodes      | 错误码                                                                                                                                                                                                                                                |
+| result.transactionBases[x].baseTransaction.errorDesc                 | string           | 错误描述信息                                                                                                                                                                                                                                          |
+| result.transactionBases[x].baseTransaction.ledgerSeq                 | number           | 区块高度                                                                                                                                                                                                                                              |
+| result.transactionBases[x].baseTransaction.signatures                | array<Signature> | Signature结构详见通用结构定义                                                                                                                                                                                                                         |
+| result.transactionBases[x].baseTransaction.txSize                    | number           | 交易大小                                                                                                                                                                                                                                              |
+| result.transactionBases[x].baseTransaction.blob                      | string           | 序列化后交易hex字符串                                                                                                                                                                                                                                 |
+| result.transactionBases[x].baseTransaction.transaction               | object           |                                                                                                                                                                                                                                                       |
+| result.transactionBases[x].baseTransaction.transaction.sourceAddress | string           | 交易源账户                                                                                                                                                                                                                                            |
+| result.transactionBases[x].baseTransaction.transaction.feeLimit      | number           | feeLimit                                                                                                                                                                                                                                              |
+| result.transactionBases[x].baseTransaction.transaction.gasPrice      | number           | gasPrice                                                                                                                                                                                                                                              |
+| result.transactionBases[x].baseTransaction.transaction.nonce         | number           | nonce                                                                                                                                                                                                                                                 |
+| result.transactionBases[x].baseTransaction.transaction.metadata      | string           | metadata                                                                                                                                                                                                                                              |
+| result.transactionBases[x].baseTransaction.transaction.nonceType     | number           | 0: 递增nonce; 1:随机nonce                                                                                                                                                                                                                             |
+| result.transactionBases[x].baseTransaction.transaction.maxLedgerSeq  | number           | 最大交易处理高度，与随机Nonce一起使用                                                                                                                                                                                                                 |
+| result.transactionBases[x].baseTransaction.transaction.operations    | array            | 具体Operation结构详见通用结构定义：<br />OperationCreateAccount<br />OperationPayCoin<br />OperationSetMetadata<br />OperationSetPriviledger<br />OperationUpgradeContract<br />OperationSetSignerWeight<br />OperationSetThreshold<br />OperationLog |
 
 ##### 示例代码
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
-const sdkprotocol = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const request: sdkprotocol.interface.QueryRequest = {
+const request = {
     hash: "1b96779dab06c39c5a4d173bf0033000bd25076c7007dd03623a764ae60c9b48",
 };
-const response = await provider.bop.query(request) as sdkprotocol.interface.QueryResponse;
+const response = await provider.bop.query(request);
 console.log(response);
 //响应数据
 {
   trace: '45addbff6f8c4d44957c5b3df8002459',
-  result: { count: 1, totalPage: 1, transactionBases: [ 
+  result: { count: 1, totalPage: 1, transactionBases: [
     {
   id: '94c9a2e728774d138fddd47e3ef36da6',
   txId: '',
@@ -2818,7 +2651,7 @@ console.log(response);
 
 ## 3.1 星火地址处理
 
-### 3.1.1  离线创建账户 ed25519
+### 3.1.1 离线创建账户 ed25519
 
 ```
 utils.address.getBidAndKeyPair(chainCode? : string)
@@ -2847,14 +2680,12 @@ utils.address.getBidAndKeyPair(chainCode? : string)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = provider.utils.address.getBidAndKeyPair("hello");
@@ -2866,21 +2697,19 @@ console.log(response);
   errorDesc: '',
   result: {
     keyType: 0,
-    encPrivateKey: 'priSPKhbPo58HS7skrbXRQCHqyzHDG6EKzky2FgVNjDh5zagGh',
+    encPrivateKey: 'your encprivate key',
     encPublicKey: 'b0656675feebec04c0d4f6d7c738be18d45086a2a275401403590190dc60b1306fb5fc',
     encAddress: 'did:bid:hello:ef29NdnwpPPXX5jnv6Uob4PJUM39bK162',
-    rawPrivateKey: '3883cd956569d7ec6122553b9154675f701f34362382051b48699cd5d54a0e42',
+    rawPrivateKey: 'xxx',
     rawPublicKey: '75feebec04c0d4f6d7c738be18d45086a2a275401403590190dc60b1306fb5fc'
   }
 }
 ```
 
-
-
-### 3.1.2  离线创建账户 sm2
+### 3.1.2 离线创建账户 sm2
 
 ```
-utils.address.getBidAndKeyPairBySM2(chainCode ?: string) 
+utils.address.getBidAndKeyPairBySM2(chainCode ?: string)
 ```
 
 #### 请求参数
@@ -2906,14 +2735,12 @@ utils.address.getBidAndKeyPairBySM2(chainCode ?: string)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = provider.utils.address.getBidAndKeyPairBySM2("hello");
@@ -2925,21 +2752,19 @@ console.log(response);
   errorDesc: '',
   result: {
     keyType: 1,
-    encPrivateKey: 'priSrro6A3Cmw22uT6YWLUApidnwtHEYKrrBkT7u7SYu9x1job',
+    encPrivateKey: 'your encprivate key',
     encPublicKey: 'b07a6604142fbed0957a988b4a7158b16528f9268a0f1ad3cdba3e73d3af1fd4917f1f467c87995b0bf2495851e2c3ef2caf66cfd6ee024d6f334b62fdf517886bb56a1d',
     encAddress: 'did:bid:hello:zfWuBBH1qH4mY8Vg5WBGMbRGg9xwjQKR',
-    rawPrivateKey: '8b83b4dfa8ae8e72b3c82b11b1245b3400c9a7b160f60fb112566e844b7b0d0e',
+    rawPrivateKey: 'xxx',
     rawPublicKey: '04142fbed0957a988b4a7158b16528f9268a0f1ad3cdba3e73d3af1fd4917f1f467c87995b0bf2495851e2c3ef2caf66cfd6ee024d6f334b62fdf517886bb56a1d'
   }
 }
 ```
 
-
-
 ### 3.1.3 离线创建指定类型的账户
 
 ```
-utils.address.privateKeyManager(type: KeyType, chainCode ?: string) 
+utils.address.privateKeyManager(type: KeyType, chainCode ?: string)
 ```
 
 #### 请求参数
@@ -2951,29 +2776,27 @@ utils.address.privateKeyManager(type: KeyType, chainCode ?: string)
 
 #### 响应参数
 
-| 类型                 | 类型                                             | 备注                                                         |
-| -------------------- | ------------------------------------------------ | ------------------------------------------------------------ |
+| 类型                 | 类型                                             | 备注                                                                 |
+| -------------------- | ------------------------------------------------ | -------------------------------------------------------------------- |
 | errorCode            | SdkStatusCode                                    | 接口调用错误码，当调用时type为KeyType.UNRECOGNIZED，errorCode返回100 |
-| errorDesc            | string                                           | 接口调用描述信息                                             |
-| result.keyType       | KeyType(ED25519 = 0, SM2 = 1, UNRECOGNIZED = -1) | 账户类型                                                     |
-| result.encPrivateKey | string                                           | 星火格式私钥                                                 |
-| result.encPublicKey  | string                                           | 星火格式公钥                                                 |
-| result.rawPrivateKey | string                                           | hex 原生私钥                                                 |
-| result.rawPublicKey  | string                                           | hex 原生公钥                                                 |
-| result.encAddress    | string                                           | 星火格式地址                                                 |
+| errorDesc            | string                                           | 接口调用描述信息                                                     |
+| result.keyType       | KeyType(ED25519 = 0, SM2 = 1, UNRECOGNIZED = -1) | 账户类型                                                             |
+| result.encPrivateKey | string                                           | 星火格式私钥                                                         |
+| result.encPublicKey  | string                                           | 星火格式公钥                                                         |
+| result.rawPrivateKey | string                                           | hex 原生私钥                                                         |
+| result.rawPublicKey  | string                                           | hex 原生公钥                                                         |
+| result.encAddress    | string                                           | 星火格式地址                                                         |
 
 #### 示例代码
 
 ```javascript
 //调用代码-正确
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = provider.utils.address.privateKeyManager(KeyType.ED25519, "hello");
@@ -2984,10 +2807,10 @@ console.log(response);
   errorDesc: '',
   result: {
     keyType: 1,
-    encPrivateKey: 'priSPKiH6Z2J7fXwN3WvXSHUYrSnFr3VwTMe2s3nmvLp4osgi8',
+    encPrivateKey: 'your encprivate key',
     encPublicKey: 'b065663bbce79ee9ca5b6e3933f4aa3909832f225dc63ac52415d110c49ddad2c20d14',
     encAddress: 'did:bid:hello:efVTedjtJgt3FnqdfnVSE2dTdnGvviov',
-    rawPrivateKey: '48d57a9fc7820fb04532c01e462c577b86ee54aa258c0877a8d1ffafe441bd9d',
+    rawPrivateKey: 'xxx',
     rawPublicKey: '3bbce79ee9ca5b6e3933f4aa3909832f225dc63ac52415d110c49ddad2c20d14'
   }
 }
@@ -2998,12 +2821,10 @@ console.log(response);
 { errorCode: 100, errorDesc: 'unsupport key type' }
 ```
 
-
-
 ### 3.1.4 根据给定的星火格式私钥，生成星火相关参数
 
 ```
-utils.address.privateKeyManagerByKey(encPrivatekey : string) 
+utils.address.privateKeyManagerByKey(encPrivatekey : string)
 ```
 
 #### 请求参数
@@ -3029,17 +2850,15 @@ utils.address.privateKeyManagerByKey(encPrivatekey : string)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const response = provider.utils.address.privateKeyManagerByKey("priSPKiH6Z2J7fXwN3WvXSHUYrSnFr3VwTMe2s3nmvLp4osgi8");
+const response = provider.utils.address.privateKeyManagerByKey("your encprivate key");
 console.log(response);
 //响应数据 - 正确
 {
@@ -3047,10 +2866,10 @@ console.log(response);
   errorDesc: '',
   result: {
     keyType: 0,
-    encPrivateKey: 'priSPKiH6Z2J7fXwN3WvXSHUYrSnFr3VwTMe2s3nmvLp4osgi8',
-    encPublicKey: 'b065663bbce79ee9ca5b6e3933f4aa3909832f225dc63ac52415d110c49ddad2c20d14',
+    encPrivateKey: 'your encprivate key',
+    encPublicKey: 'b0xxx',
     encAddress: 'did:bid:efVTedjtJgt3FnqdfnVSE2dTdnGvviov',
-    rawPrivateKey: '48d57a9fc7820fb04532c01e462c577b86ee54aa258c0877a8d1ffafe441bd9d',
+    rawPrivateKey: 'xxx',
     rawPublicKey: '3bbce79ee9ca5b6e3933f4aa3909832f225dc63ac52415d110c49ddad2c20d14'
   }
 }
@@ -3058,8 +2877,6 @@ console.log(response);
 //响应数据 - 错误
 { errorCode: 10000, errorDesc: 'invalid privateKey' }
 ```
-
-
 
 ### 3.1.5 根据给定的星火格式公钥，生成星火相关参数
 
@@ -3088,14 +2905,12 @@ utils.address.publicKeyManager(encPublickey : string)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = provider.utils.address.publicKeyManager("b065663bbce79ee9ca5b6e3933f4aa3909832f225dc63ac52415d110c49ddad2c20d14");
@@ -3137,17 +2952,15 @@ utils.address.getEncPublicKey(encPrivatekey : string)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const response = provider.utils.address.getEncPublicKey("priSPKiH6Z2J7fXwN3WvXSHUYrSnFr3VwTMe2s3nmvLp4osgi8");
+const response = provider.utils.address.getEncPublicKey("your encprivate key");
 console.log(response);
 //响应数据
 {
@@ -3182,14 +2995,12 @@ utils.address.getEncPublicKeyByRaw(type: KeyType, rawPublicKey: string)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = provider.utils.address.getEncPublicKeyByRaw(KeyType.ED25519,
@@ -3206,7 +3017,7 @@ console.log(response);
 ### 3.1.8 根据给定的原生私钥及私钥类型生成星火格式私钥
 
 ```
-utils.address.getEncPrivateKeyByRaw(type: KeyType, rawPrivateKey: string) 
+utils.address.getEncPrivateKeyByRaw(type: KeyType, rawPrivateKey: string)
 ```
 
 #### 请求参数
@@ -3228,14 +3039,12 @@ utils.address.getEncPrivateKeyByRaw(type: KeyType, rawPrivateKey: string)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = provider.utils.address.getEncPrivateKeyByRaw(KeyType.ED25519,
@@ -3245,7 +3054,7 @@ console.log(response);
 {
   errorCode: 0,
   errorDesc: '',
-  result: 'priSPKrxmNR9p5aBjH1kxyXdRrvoksRSkbTTwsrVKb9A1HbcEd'
+  result: 'your encprivate key'
 }
 ```
 
@@ -3273,17 +3082,15 @@ utils.address.parsePrivateKey(encPrivateKey: string)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const response = provider.utils.address.parsePrivateKey("priSPKrxmNR9p5aBjH1kxyXdRrvoksRSkbTTwsrVKb9A1HbcEd");
+const response = provider.utils.address.parsePrivateKey("your encprivate key");
 console.log(response);
 //响应数据
 {
@@ -3317,17 +3124,15 @@ utils.address.parsePublicKey(encPublicKey: string)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const response = provider.utils.address.parsePublicKey("b065665f61ee0d776e4b139d109abf7af2f12199bd21bf44121952affdb83d2b310ecb");
+const response = provider.utils.address.parsePublicKey("b0xxx");
 console.log(response);
 //响应数据
 {
@@ -3361,17 +3166,15 @@ utils.address.publicToAddress(encPublicKey: string)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const response = provider.utils.address.publicToAddress("b065665f61ee0d776e4b139d109abf7af2f12199bd21bf44121952affdb83d2b310ecb");
+const response = provider.utils.address.publicToAddress("b0xxx");
 console.log(response);
 //响应数据
 {
@@ -3405,17 +3208,15 @@ utils.address.isPrivateKey(encPrivateKey: string)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const response = provider.utils.address.isPrivateKey("priSPKrxmNR9p5aBjH1kxyXdRrvoksRSkbTTwsrVKb9A1HbcEd");
+const response = provider.utils.address.isPrivateKey("your encprivate key");
 console.log(response);
 //响应数据
 { errorCode: 0, errorDesc: '', result: true }
@@ -3445,17 +3246,15 @@ utils.address.isPublicKey(encPublicKey: string)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const response = provider.utils.address.isPublicKey("b065665f61ee0d776e4b139d109abf7af2f12199bd21bf44121952affdb83d2b310ecb");
+const response = provider.utils.address.isPublicKey("b0xxx");
 console.log(response);
 //响应数据
 { errorCode: 0, errorDesc: '', result: true }
@@ -3485,17 +3284,15 @@ utils.address.encAddressToHex(encAddress: string)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const response = provider.utils.address.encAddressToHex("b065665f61ee0d776e4b139d109abf7af2f12199bd21bf44121952affdb83d2b310ecb");
+const response = provider.utils.address.encAddressToHex("b0xxx");
 console.log(response);
 //响应数据
 {
@@ -3529,14 +3326,12 @@ utils.address.hexToEncAddress(hexAddress: string)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = provider.utils.address.hexToEncAddress("0x7a6624286133aa44ac2a24511a5f88131c3c8b11ed609350");
@@ -3576,23 +3371,21 @@ utils.crypto.generateKeyStore(encPrivateKey:string, passwd:string)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const response = provider.utils.crypto.generateKeyStore("priSPKrxmNR9p5aBjH1kxyXdRrvoksRSkbTTwsrVKb9A1HbcEd", "123");
+const response = provider.utils.crypto.generateKeyStore("your encprivate key", "123");
 console.log(response);
 //响应数据
 {
   errorCode: 0,
   errorDesc: '',
-  result: '{"cypher_text":"e266f9b14306650d6888718b445e60afee48efcfb9a83fa244a6f4572b5e0d070f316c4f474b2024485e92eced1591039eba","aesctr_iv":"5dc0742b4b6a108b705d9b7872a089cf","scrypt_params":{"n":16384,"p":1,"r":8,"salt":"5138c9bf0388a66c23c8bd581476656f69aa20e28ed3d395776e75a00bac8901"},"version":2,"address":"did:bid:efeXUvhpPNEfxNxgx1DvkHBAYon2xGjJ"}'
+  result: '{"cypher_text":"xxx","aesctr_iv":"xxx","scrypt_params":{"n":16384,"p":1,"r":8,"salt":"xxx"},"version":2,"address":"did:bid:efeXUvhpPNEfxNxgx1DvkHBAYon2xGjJ"}'
 }
 ```
 
@@ -3621,30 +3414,28 @@ utils.crypto.setSkeyStore(encPrivateKey:string, passwd:string)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const response = provider.utils.crypto.setSkeyStore("priSPKrxmNR9p5aBjH1kxyXdRrvoksRSkbTTwsrVKb9A1HbcEd", "123");
+const response = provider.utils.crypto.setSkeyStore("your encprivate key", "123");
 console.log(response);
 //响应数据
 {
   errorCode: 0,
   errorDesc: '',
-  result: '{"cypher_text":"65bc515fab9b24ae3d309779cc9931f92a462eb8f2edcb6a55d4bb54652e24ac6540affca9cc5d5b28f75637cb985a21f338","aesctr_iv":"18d24e0b23048f69a3cb2fe1d99c8d96","scrypt_params":{"n":16384,"p":1,"r":8,"salt":"89345fb839d87a6148864f60b9648fb18b8e5ae9d7b393d8027ad5faf6d2f10b"},"version":2}'
+  result: '{"cypher_text":"xxx","aesctr_iv":"xxx","scrypt_params":{"n":16384,"p":1,"r":8,"salt":"xxx"},"version":2}'
 }
 ```
 
 ### 3.2.3 根据给定的keystore内容及密钥解析星火私钥
 
 ```
-utils.crypto.decipherKeyStore(keystoreContent:string, passwd:string) 
+utils.crypto.decipherKeyStore(keystoreContent:string, passwd:string)
 ```
 
 #### 请求参数
@@ -3666,24 +3457,22 @@ utils.crypto.decipherKeyStore(keystoreContent:string, passwd:string)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const response = provider.utils.crypto.decipherKeyStore('{"cypher_text":"b5da35be6383c271cfa3527f01e70aac0b469cadfbc546fd1e8004ab24210efde698c12a60e8b9f0f7ecfd149185412a67d0","aesctr_iv":"c3020e443efdd9cf97530ac5c8ae6521","scrypt_params":{"n":16384,"p":1,"r":8,"salt":"9af8e2e62eff7debae9c37755d276c07e25efc00471f49e0ffed3823b2d4691a"},"version":2,"address":"did:bid:zfFqez6uWDXzdmfqgmPPy2YYRnFDGtZh"}',
+const response = provider.utils.crypto.decipherKeyStore('{"cypher_text":"xxx","aesctr_iv":"xxx","scrypt_params":{"n":16384,"p":1,"r":8,"salt":"xxx"},"version":2,"address":"did:bid:zfFqez6uWDXzdmfqgmPPy2YYRnFDGtZh"}',
         "123");
 console.log(response);
 //响应数据
 {
   errorCode: 0,
   errorDesc: '',
-  result: 'priSrrn11eaTMRNwtNPv57DnnoaEKVbQAmPAaXsuBMBKLLGqui'
+  result: 'xxx'
 }
 ```
 
@@ -3717,17 +3506,15 @@ utils.crypto.generateChild(encPrivateKey:string, chainCode:string, serviceType:s
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const response = provider.utils.crypto.generateChild("priSrrn11eaTMRNwtNPv57DnnoaEKVbQAmPAaXsuBMBKLLGqui",
+const response = provider.utils.crypto.generateChild("xxx",
         "",
         "test",
         0,);
@@ -3737,7 +3524,7 @@ console.log(response);
   errorCode: 0,
   errorDesc: '',
   result: {
-    privateKey: 'priSrrkDxs1dsyEbzVt5s1jMoVNA7Rcp7ZXSQnKTMxRTirHRNd',
+    privateKey: 'your encprivate key',
     publicKey: 'b07a66049b5112d102c83f43b3494f410271a69559d823d2b0ee9467d7679fdb766f4977d2c25f1b9d9e4553b88fcf918588741c178cb18dbdcc914f70a79795b7b40d18',
     address: 'did:bid:zfVuGTBmr5VNvwfqwBRVkmSkCRGiMoFJ',
     path: '/0//test/0'
@@ -3748,7 +3535,7 @@ console.log(response);
 ### 3.2.5 使用给定的星火私钥对数据进行签名
 
 ```
-utils.crypto.sign(encPrivateKey:string, message:string) 
+utils.crypto.sign(encPrivateKey:string, message:string)
 ```
 
 #### 请求参数
@@ -3772,17 +3559,15 @@ utils.crypto.sign(encPrivateKey:string, message:string)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const response = provider.utils.crypto.sign("priSrrn11eaTMRNwtNPv57DnnoaEKVbQAmPAaXsuBMBKLLGqui",
+const response = provider.utils.crypto.sign("xxx",
         "0x6080",);
 console.log(response);
 //响应数据
@@ -3796,7 +3581,7 @@ console.log(response);
 ### 3.2.6 根据给定的消息、签名及星火公钥验证签名数据
 
 ```
-utils.crypto.verify(encPublicKey:string, message:string, signature:string) 
+utils.crypto.verify(encPublicKey:string, message:string, signature:string)
 ```
 
 #### 请求参数
@@ -3819,14 +3604,12 @@ utils.crypto.verify(encPublicKey:string, message:string, signature:string)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = provider.utils.crypto.verify("b065663bbce79ee9ca5b6e3933f4aa3909832f225dc63ac52415d110c49ddad2c20d14",
@@ -3840,7 +3623,7 @@ console.log(response);
 ### 3.2.7 根据给定的星火私钥获取私钥类型
 
 ```
-utils.crypto.getCryptoTypeFromPrivKey(encPrivateKey:string) 
+utils.crypto.getCryptoTypeFromPrivKey(encPrivateKey:string)
 ```
 
 #### 请求参数
@@ -3861,17 +3644,15 @@ utils.crypto.getCryptoTypeFromPrivKey(encPrivateKey:string)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
-const response = provider.utils.crypto.getCryptoTypeFromPrivKey("priSrrn11eaTMRNwtNPv57DnnoaEKVbQAmPAaXsuBMBKLLGqui",);
+const response = provider.utils.crypto.getCryptoTypeFromPrivKey("xxx",);
 console.log(response);
 //响应数据
 { errorCode: 0, errorDesc: '', result: 1 }
@@ -3880,7 +3661,7 @@ console.log(response);
 ### 3.2.8 根据给定的星火公钥获取公钥类型
 
 ```
-utils.crypto.getCryptoTypeFromPubKey(encPublicKey:string) 
+utils.crypto.getCryptoTypeFromPubKey(encPublicKey:string)
 ```
 
 #### 请求参数
@@ -3901,14 +3682,12 @@ utils.crypto.getCryptoTypeFromPubKey(encPublicKey:string)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = provider.utils.crypto.getCryptoTypeFromPubKey("b07a6604d964f18cc1ac9bc73189c46a80934f3e94cc011af1907ede771f61b2c0ae0e55e23e05a2fd00b341afd2eb0927d7588189fdace4b1327e6bb22bc232a772d723",);
@@ -3917,14 +3696,12 @@ console.log(response);
 { errorCode: 0, errorDesc: '', result: 1 }
 ```
 
-
-
 ## 3.3 助记词
 
 ### 3.3.1 根据给定的星火账户类型、助记词解析出星火格式私钥
 
 ```
-utils.mnemonics.privKeyFromMCodeAndCrypto(type: KeyType, mnemonics: string)  
+utils.mnemonics.privKeyFromMCodeAndCrypto(type: KeyType, mnemonics: string)
 ```
 
 #### 请求参数
@@ -3946,14 +3723,12 @@ utils.mnemonics.privKeyFromMCodeAndCrypto(type: KeyType, mnemonics: string)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = provider.utils.crypto.privKeyFromMCodeAndCrypto(KeyType.SM2,
@@ -3963,14 +3738,14 @@ console.log(response);
 {
   errorCode: 0,
   errorDesc: '',
-  result: 'priSrroTRWYpRPQT8QQKsWnUsNtDBunb2qkzo3amT3v6dyA6U1'
+  result: 'your encprivate key'
 }
 ```
 
 ### 3.3.2 根据给定的星火账户类型、熵值及语言类型生成助记词
 
 ```
-utils.mnemonics.generateMnemonicCode(type: KeyType, entropy: string, language: string) 
+utils.mnemonics.generateMnemonicCode(type: KeyType, entropy: string, language: string)
 ```
 
 #### 请求参数
@@ -3993,14 +3768,12 @@ utils.mnemonics.generateMnemonicCode(type: KeyType, entropy: string, language: s
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = provider.utils.crypto.generateMnemonicCode(KeyType.ED25519,
@@ -4020,7 +3793,7 @@ console.log(response);
 ### 3.4.1 ABI编码
 
 ```
-utils.abi.encode(types: ReadonlyArray<string>, values: ReadonlyArray<any>) 
+utils.abi.encode(types: ReadonlyArray<string>, values: ReadonlyArray<any>)
 ```
 
 #### 请求参数
@@ -4040,33 +3813,35 @@ utils.abi.encode(types: ReadonlyArray<string>, values: ReadonlyArray<any>)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
+import {
+  SignerByBop,
+  Config,
+  ProviderByBop,
+  BopInterface,
+} from "@caict/bif-bop-sdk";
 
-const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
-    );
+const config = new Config("https://bif-mainnet.bitfactory.cn", "xxx", "xxx");
 const provider = new ProviderByBop(new BopInterface(config));
 try {
-    const response = provider.utils.abi.encode(["address", "uint256"],["did:bid:efVTedjtJgt3FnqdfnVSE2dTdnGvviov", 10],);
-    console.log(response);
+  const response = provider.utils.abi.encode(
+    ["address", "uint256"],
+    ["did:bid:efVTedjtJgt3FnqdfnVSE2dTdnGvviov", 10],
+  );
+  console.log(response);
 } catch (error) {
-    console.log(error.code)
+  console.log(error.code);
 }
 
 //响应代码 - 成功
-0x0000000000000000656668db810f448b4119c8e1dad481fdbf352f74f4e5199d000000000000000000000000000000000000000000000000000000000000000a
+0x0000000000000000656668db810f448b4119c8e1dad481fdbf352f74f4e5199d000000000000000000000000000000000000000000000000000000000000000a;
 //响应代码 - 失败
-INVALID_ARGUMENT
+INVALID_ARGUMENT;
 ```
 
 ### 3.4.2 ABI解码
 
 ```
-utils.abi.decode(types: ReadonlyArray<string>, values: ReadonlyArray<any>) 
+utils.abi.decode(types: ReadonlyArray<string>, values: ReadonlyArray<any>)
 ```
 
 #### 请求参数
@@ -4086,14 +3861,12 @@ utils.abi.decode(types: ReadonlyArray<string>, values: ReadonlyArray<any>)
 
 ```javascript
 //调用代码
-const Config = require("@bifproject/bif-bop-sdk");
-const ProviderByBop = require("@bifproject/bif-bop-sdk");
-const BopInterface = require("@bifproject/bif-bop-sdk");
+import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bif-bop-sdk';
 
 const config = new Config(
-    "https://bif-testnet.bitfactory.cn",
-      "LDEDIXHWT2VOISUY1BC6VV1YH9QE4Q62",
-      "HV8YcumAAJpLI+Q7SV7BhpI5AFClArxtBZ9dJZnPCgY=",
+    "https://bif-mainnet.bitfactory.cn",
+      "xxx",
+      "xxx",
     );
 const provider = new ProviderByBop(new BopInterface(config));
 try {
@@ -4130,21 +3903,15 @@ interface Callback {
 }
 ```
 
-
-
 ## 4.1 订阅实例构建
 
 SDK通过WsConfig，加载开放平台ws url数据；通过WsProviderByBop构建ws实例。构建完成后，通过waitForReady等待ws连接完成。
 
 ```javascript
-const WsConfig = require("@bifproject/bif-bop-sdk");
-const WsProviderByBop = require("@bifproject/bif-bop-sdk")
-const bopwsprotocol = require("@bifproject/bif-bop-sdk")
+import { WsConfig, WsProviderByBop, bopwsprotocol } from "@caict/bif-bop-sdk";
 
 // 创建 BopWsInterface 实例，这里假设已经有 bopWs 实例化代码，可根据实际情况修改
-const config = new WsConfig(
-    "https://bif-testnet.bitfactory.cn/bif/subscribe",
-); // 替换为实际的 WebSocket 地址
+const config = new WsConfig("https://bif-mainnet.bitfactory.cn/bif/subscribe"); // 替换为实际的 WebSocket 地址
 const bopWs = new BopWsInterface(config.url, config.heartBeatInterval);
 ```
 
@@ -4157,24 +3924,18 @@ provider.bop.subscribe(type: bopwsprotocol.MessageType, callback: Callback)
 ### 示例代码
 
 ```javascript
-const WsConfig = require("@bifproject/bif-bop-sdk");
-const WsProviderByBop = require("@bifproject/bif-bop-sdk")
-const bopwsprotocol = require("@bifproject/bif-bop-sdk")
-
+import { WsConfig, WsProviderByBop, bopwsprotocol } from "@caict/bif-bop-sdk";
 
 // 创建 BopWsInterface 实例，这里假设已经有 bopWs 实例化代码，可根据实际情况修改
-const config = new WsConfig(
-    "https://bif-testnet.bitfactory.cn/bif/subscribe",
-); // 替换为实际的 WebSocket 地址
-const bopWs = new BopWsInterface(config.url, config.heartBeatInterval);
-const subscriptionBlockHeaderId = await bopWs.subscribe(
-      bopwsprotocol.MessageType.BLOCK_HEADER,
-      (data) => {
-        let message: LedgerHeaderMessage = {};
-        message = LedgerHeaderMessage.fromJSON(data);
-        console.log("dealBlockHeader ing...", message);
-      },
-    );
+const config = new WsConfig("ws://bif-mainnet.bitfactory.cn/bif/subscribe"); // 替换为实际的 WebSocket 地址
+const bopWs = new WsProviderByBop(config);
+const subscriptionBlockHeaderId = await bopWs.bop.subscribe(
+  bopwsprotocol.MessageType.BLOCK_HEADER,
+  (data) => {
+    let message = LedgerHeaderMessage.fromJSON(data);
+    console.log("dealBlockHeader ing...", message);
+  },
+);
 console.log("Subscription BlockHeader ID:", subscriptionBlockHeaderId);
 ```
 
@@ -4187,26 +3948,21 @@ provider.bop.subscribe(type: bopwsprotocol.MessageType, callback: Callback, acco
 ### 示例代码
 
 ```javascript
-const WsConfig = require("@bifproject/bif-bop-sdk");
-const WsProviderByBop = require("@bifproject/bif-bop-sdk")
-const bopwsprotocol = require("@bifproject/bif-bop-sdk")
-
+import { WsConfig, WsProviderByBop, bopwsprotocol } from "@caict/bif-bop-sdk";
 
 // 创建 BopWsInterface 实例，这里假设已经有 bopWs 实例化代码，可根据实际情况修改
-const config = new WsConfig(
-    "https://bif-testnet.bitfactory.cn/bif/subscribe",
-); // 替换为实际的 WebSocket 地址
-const bopWs = new BopWsInterface(config.url, config.heartBeatInterval);
-const subscriptionBidTransactionId = await bopWs.subscribe(
-      MessageType.BID_TRANSACTION,
-      (data) => {
-        let val = TransactionEnvStoreMessage.fromJSON(data);
-        console.log("dealtransaction ing...", val);
-      },
-      ["did:bid:zfVHJnop875UMPmskam4JC4kLW4tAaDK"],
-    );
+const config = new WsConfig("ws://bif-mainnet.bitfactory.cn/bif/subscribe"); // 替换为实际的 WebSocket 地址
+const bopWs = new WsProviderByBop(config);
+const subscriptionBidTransactionId = await bopWs.bop.subscribe(
+  MessageType.BID_TRANSACTION,
+  (data) => {
+    let val = bopwsprotocol.TransactionEnvStoreMessage.fromJSON(data);
+    console.log("dealtransaction ing...", val);
+  },
+  ["did:bid:zfVHJnop875UMPmskam4JC4kLW4tAaDK"],
+);
 
-    console.log("Subscription transaction ID:", subscriptionBidTransactionId);
+console.log("Subscription transaction ID:", subscriptionBidTransactionId);
 ```
 
 ## 4.4 订阅TLOG
@@ -4218,24 +3974,20 @@ provider.bop.subscribe(type: bopwsprotocol.MessageType, callback: Callback, acco
 ### 示例代码
 
 ```javascript
-const WsConfig = require("@bifproject/bif-bop-sdk");
-const WsProviderByBop = require("@bifproject/bif-bop-sdk")
-const bopwsprotocol = require("@bifproject/bif-bop-sdk")
+import { WsConfig, WsProviderByBop, bopwsprotocol } from "@caict/bif-bop-sdk";
 
 // 创建 BopWsInterface 实例，这里假设已经有 bopWs 实例化代码，可根据实际情况修改
-const config = new WsConfig(
-    "https://bif-testnet.bitfactory.cn/bif/subscribe",
-); // 替换为实际的 WebSocket 地址
-const bopWs = new BopWsInterface(config.url, config.heartBeatInterval);
-const subscriptionTlogTransactionId = await bopWs.subscribe(
-      MessageType.TLOG,
-      (data) => {
-        let val = TransactionEnvStoreMessage.fromJSON(data);
-        console.log("deal tlogTransaction ing...", val);
-      },
-      ["did:bid:efhj9cgStGJckhLwHZefYS9Yje38NVuP"],
-    );
-    console.log("Subscription transaction ID:", subscriptionTlogTransactionId);
+const config = new WsConfig("ws://bif-mainnet.bitfactory.cn/bif/subscribe"); // 替换为实际的 WebSocket 地址
+const bopWs = new WsProviderByBop(config);
+const subscriptionTlogTransactionId = await bopWs.bop.subscribe(
+  MessageType.TLOG,
+  (data) => {
+    let val = bopwsprotocol.TransactionEnvStoreMessage.fromJSON(data);
+    console.log("deal tlogTransaction ing...", val);
+  },
+  ["did:bid:efhj9cgStGJckhLwHZefYS9Yje38NVuP"],
+);
+console.log("Subscription transaction ID:", subscriptionTlogTransactionId);
 ```
 
 ## 4.5 订阅丢弃交易
@@ -4247,152 +3999,145 @@ provider.bop.subscribe(type: bopwsprotocol.MessageType, callback: Callback, acco
 ### 示例代码
 
 ```javascript
-const WsConfig = require("@bifproject/bif-bop-sdk");
-const WsProviderByBop = require("@bifproject/bif-bop-sdk")
-const bopwsprotocol = require("@bifproject/bif-bop-sdk")
+import { WsConfig, WsProviderByBop, bopwsprotocol } from "@caict/bif-bop-sdk";
 
 // 创建 BopWsInterface 实例，这里假设已经有 bopWs 实例化代码，可根据实际情况修改
-const config = new WsConfig(
-    "https://bif-testnet.bitfactory.cn/bif/subscribe",
-); // 替换为实际的 WebSocket 地址
-const bopWs = new BopWsInterface(config.url, config.heartBeatInterval);
-const subscriptionDiscardTransactionId = await bopWs.subscribe(
-      MessageType.DISCARD_TRANSACTION,
-      (data) => {
-        let val = DropTxMessage.fromJSON(data);
-        console.log("deal discardTransaction ing...", val);
-      },
-      ["did:bid:zfVHJnop875UMPmskam4JC4kLW4tAaDK"],
-    );
-    console.log(
-      "Subscription transaction ID:",
-      subscriptionDiscardTransactionId,
-    );
+const config = new WsConfig("ws://bif-mainnet.bitfactory.cn/bif/subscribe"); // 替换为实际的 WebSocket 地址
+const bopWs = new WsProviderByBop(config);
+const subscriptionDiscardTransactionId = await bopWs.bop.subscribe(
+  MessageType.DISCARD_TRANSACTION,
+  (data) => {
+    let val = bopwsprotocol.DropTxMessage.fromJSON(data);
+    console.log("deal discardTransaction ing...", val);
+  },
+  ["did:bid:zfVHJnop875UMPmskam4JC4kLW4tAaDK"],
+);
+console.log("Subscription transaction ID:", subscriptionDiscardTransactionId);
 ```
 
 # 五 全局定义
 
 ## 5.1 错误码定义-SdkStatusCode
 
-| 错误码 | 描述                                                         | 备注            |                            |
-| ------ | ------------------------------------------------------------ | --------------- | -------------------------- |
-| 0      | 操作成功                                                     |                 | 通用                       |
-| -1     | 未知错误                                                     |                 |                            |
-| 10000  | 私钥格式异常                                                 |                 | utils 错误码               |
-| 10001  | 公钥格式异常                                                 |                 |                            |
-| 10002  | 地址格式异常                                                 |                 |                            |
-| 10003  | 密码格式异常                                                 |                 |                            |
-| 10004  | keyStore格式异常                                             |                 |                            |
-| 10005  | 密码与keyStore文件不匹配                                     |                 |                            |
-| 10006  | 消息格式异常                                                 |                 |                            |
-| 10007  | 签名不合法                                                   |                 |                            |
-| 10008  | 熵值格式异常                                                 |                 |                            |
-| 10009  | 助记词格式异常                                               |                 |                            |
-| 10010  | 不支持该账户类型                                             |                 |                            |
-| 10011  | 非法chaincode                                                |                 |                            |
-| 10012  | 非法serviceType                                              |                 |                            |
-| 10013  | 非法index                                                    |                 |                            |
-| 20000  | Signer未连接Provider                                         |                 | signer错误码               |
-| 20001  | 未设置provider                                               |                 |                            |
-| 11002  | 源地址无效错误                                               |                 | provider构建离线交易错误码 |
-| 11003  | 目标地址无效错误                                             |                 |                            |
-| 11004  | 初始余额无效错误                                             |                 |                            |
-| 11006  | 地址格式错误                                                 |                 |                            |
-| 11008  | 元数据不是16进制字符串错误                                   |                 |                            |
-| 11011  | 数据键无效错误                                               |                 |                            |
-| 11012  | 数据值无效错误                                               |                 |                            |
-| 11013  | 数据版本无效错误                                             |                 |                            |
-| 11015  | 主权重无效错误                                               |                 |                            |
-| 11016  | 签名者地址无效错误                                           |                 |                            |
-| 11017  | 签名者权重无效错误                                           |                 |                            |
-| 11018  | 交易阈值无效错误                                             |                 |                            |
-| 11019  | 操作类型无效错误                                             |                 |                            |
-| 11020  | 类型阈值无效错误                                             |                 |                            |
-| 11024  | amount值非法                                                 |                 |                            |
-| 11037  | 合约地址无效错误                                             |                 |                            |
-| 11038  | 目的地址不是合约账户错误                                     |                 |                            |
-| 11041  | 发送者地址无效错误                                           |                 |                            |
-| 11044  | payload为空                                                  |                 |                            |
-| 11047  | 合约类型无效错误                                             | contract_type   |                            |
-| 11048  | nonce无效错误                                                | nonce值非法     |                            |
-| 11049  | 气体价格无效错误                                             | gasprice        |                            |
-| 11050  | 费用限制无效错误                                             | feelimit        |                            |
-| 11051  | 操作不能为空错误                                             | operations      |                            |
-| 11052  | 最高账本序列号无效错误                                       | ceil_ledger_seq |                            |
-| 12008  | 随机数类型无效错误                                           | nonce_type 异常 |                            |
-| 1      | 开放平台内部错误                                             |                 | 底层链相关错误码           |
-| 2      | 参数异常                                                     |                 |                            |
-| 3      | 对象已存在                                                   |                 |                            |
-| 4      | 对象不存在                                                   |                 |                            |
-| 5      | 交易超时                                                     |                 |                            |
-| 6      | 账户禁止使用                                                 |                 |                            |
-| 7      | 数学计算溢出                                                 |                 |                            |
-| 90     | 公钥非法                                                     |                 |                            |
-| 91     | 私钥非法                                                     |                 |                            |
-| 93     | 签名权重不足，达不到操作门限                                 |                 |                            |
-| 94     | 地址非法                                                     |                 |                            |
-| 97     | 交易确实操作                                                 |                 |                            |
-| 98     | 单比交易超过100个操作                                        |                 |                            |
-| 99     | nonce异常                                                    |                 |                            |
-| 100    | 余额不足                                                     |                 |                            |
-| 101    | 源和目的账户相等                                             |                 |                            |
-| 102    | 创建账户操作，目的账户已存在                                 |                 |                            |
-| 103    | 账户不存在                                                   |                 |                            |
-| 106    | 创建账号初始化资产小于配置文件中最小费用                     |                 |                            |
-| 111    | 费用不足                                                     |                 |                            |
-| 120    | 权重值不在有效范围                                           |                 |                            |
-| 121    | 门限值不在有效范围                                           |                 |                            |
-| 144    | metadata的version版本号不与已有的匹配                        |                 |                            |
-| 146    | 交易数据大小超出上限                                         |                 |                            |
-| 151    | 合约执行失败                                                 |                 |                            |
-| 152    | 合约语法分析失败                                             |                 |                            |
-| 153    | 合约递归深度超出上限                                         |                 |                            |
-| 154    | 合约产生的交易超出上限                                       |                 |                            |
-| 155    | 合约执行超时                                                 |                 |                            |
-| 156    | 目标地址非合约账户                                           |                 |                            |
-| 160    | 插入交易缓存队列失败                                         |                 |                            |
-| 161    | 禁止转移星火令                                               |                 |                            |
-| 183    | 交易nonce重复，nonce在缓存中 (需重新发送交易)                |                 |                            |
+| 错误码 | 描述                                                                  | 备注            |                            |
+| ------ | --------------------------------------------------------------------- | --------------- | -------------------------- |
+| 0      | 操作成功                                                              |                 | 通用                       |
+| -1     | 未知错误                                                              |                 |                            |
+| 10000  | 私钥格式异常                                                          |                 | utils 错误码               |
+| 10001  | 公钥格式异常                                                          |                 |                            |
+| 10002  | 地址格式异常                                                          |                 |                            |
+| 10003  | 密码格式异常                                                          |                 |                            |
+| 10004  | keyStore格式异常                                                      |                 |                            |
+| 10005  | 密码与keyStore文件不匹配                                              |                 |                            |
+| 10006  | 消息格式异常                                                          |                 |                            |
+| 10007  | 签名不合法                                                            |                 |                            |
+| 10008  | 熵值格式异常                                                          |                 |                            |
+| 10009  | 助记词格式异常                                                        |                 |                            |
+| 10010  | 不支持该账户类型                                                      |                 |                            |
+| 10011  | 非法chaincode                                                         |                 |                            |
+| 10012  | 非法serviceType                                                       |                 |                            |
+| 10013  | 非法index                                                             |                 |                            |
+| 20000  | Signer未连接Provider                                                  |                 | signer错误码               |
+| 20001  | 未设置provider                                                        |                 |                            |
+| 11002  | 源地址无效错误                                                        |                 | provider构建离线交易错误码 |
+| 11003  | 目标地址无效错误                                                      |                 |                            |
+| 11004  | 初始余额无效错误                                                      |                 |                            |
+| 11006  | 地址格式错误                                                          |                 |                            |
+| 11008  | 元数据不是16进制字符串错误                                            |                 |                            |
+| 11011  | 数据键无效错误                                                        |                 |                            |
+| 11012  | 数据值无效错误                                                        |                 |                            |
+| 11013  | 数据版本无效错误                                                      |                 |                            |
+| 11015  | 主权重无效错误                                                        |                 |                            |
+| 11016  | 签名者地址无效错误                                                    |                 |                            |
+| 11017  | 签名者权重无效错误                                                    |                 |                            |
+| 11018  | 交易阈值无效错误                                                      |                 |                            |
+| 11019  | 操作类型无效错误                                                      |                 |                            |
+| 11020  | 类型阈值无效错误                                                      |                 |                            |
+| 11024  | amount值非法                                                          |                 |                            |
+| 11037  | 合约地址无效错误                                                      |                 |                            |
+| 11038  | 目的地址不是合约账户错误                                              |                 |                            |
+| 11041  | 发送者地址无效错误                                                    |                 |                            |
+| 11044  | payload为空                                                           |                 |                            |
+| 11047  | 合约类型无效错误                                                      | contract_type   |                            |
+| 11048  | nonce无效错误                                                         | nonce值非法     |                            |
+| 11049  | 气体价格无效错误                                                      | gasprice        |                            |
+| 11050  | 费用限制无效错误                                                      | feelimit        |                            |
+| 11051  | 操作不能为空错误                                                      | operations      |                            |
+| 11052  | 最高账本序列号无效错误                                                | ceil_ledger_seq |                            |
+| 12008  | 随机数类型无效错误                                                    | nonce_type 异常 |                            |
+| 1      | 开放平台内部错误                                                      |                 | 底层链相关错误码           |
+| 2      | 参数异常                                                              |                 |                            |
+| 3      | 对象已存在                                                            |                 |                            |
+| 4      | 对象不存在                                                            |                 |                            |
+| 5      | 交易超时                                                              |                 |                            |
+| 6      | 账户禁止使用                                                          |                 |                            |
+| 7      | 数学计算溢出                                                          |                 |                            |
+| 90     | 公钥非法                                                              |                 |                            |
+| 91     | 私钥非法                                                              |                 |                            |
+| 93     | 签名权重不足，达不到操作门限                                          |                 |                            |
+| 94     | 地址非法                                                              |                 |                            |
+| 97     | 交易确实操作                                                          |                 |                            |
+| 98     | 单比交易超过100个操作                                                 |                 |                            |
+| 99     | nonce异常                                                             |                 |                            |
+| 100    | 余额不足                                                              |                 |                            |
+| 101    | 源和目的账户相等                                                      |                 |                            |
+| 102    | 创建账户操作，目的账户已存在                                          |                 |                            |
+| 103    | 账户不存在                                                            |                 |                            |
+| 106    | 创建账号初始化资产小于配置文件中最小费用                              |                 |                            |
+| 111    | 费用不足                                                              |                 |                            |
+| 120    | 权重值不在有效范围                                                    |                 |                            |
+| 121    | 门限值不在有效范围                                                    |                 |                            |
+| 144    | metadata的version版本号不与已有的匹配                                 |                 |                            |
+| 146    | 交易数据大小超出上限                                                  |                 |                            |
+| 151    | 合约执行失败                                                          |                 |                            |
+| 152    | 合约语法分析失败                                                      |                 |                            |
+| 153    | 合约递归深度超出上限                                                  |                 |                            |
+| 154    | 合约产生的交易超出上限                                                |                 |                            |
+| 155    | 合约执行超时                                                          |                 |                            |
+| 156    | 目标地址非合约账户                                                    |                 |                            |
+| 160    | 插入交易缓存队列失败                                                  |                 |                            |
+| 161    | 禁止转移星火令                                                        |                 |                            |
+| 183    | 交易nonce重复，nonce在缓存中 (需重新发送交易)                         |                 |                            |
 | 184    | 交易最大区块数错误，小于当前区块高度 (需要重新获取区块高度序列化接口) |                 |                            |
-| -3     | 参数类型解析异常                                             |                 | 开放平台错误码             |
-| -6     | 无效参数异常                                                 |                 |                            |
-| -7     | 请求类型异常                                                 |                 |                            |
-| -9     | 统一验证参数异常                                             |                 |                            |
-| 405    | 不支持当前请求类型                                           |                 |                            |
-| 1013   | 请求的API不存在                                              |                 |                            |
-| 1015   | 请求的API已停用                                              |                 |                            |
-| 1016   | timeout                                                      |                 |                            |
-| 1101   | 交易数据中包含敏感词汇                                       |                 |                            |
-| 1102   | 您的合约地址未在项目合约白名单                               |                 |                            |
-| 1103   | 请检查交易数据是否合规                                       |                 |                            |
-| 1105   | 交易类型不存在                                               |                 |                            |
-| 1106   | 远程调用失败                                                 |                 |                            |
-| 1107   | 交易池类型不存在                                             |                 |                            |
-| 1108   | 参数超出限制                                                 |                 |                            |
-| 1109   | 非法参数                                                     |                 |                            |
-| 1110   | 当bid 或 tx_id为不为空时，tx_type为必填                      |                 |                            |
-| 1111   | 业务参数不能为空                                             |                 |                            |
-| 1122   | API Key不存在                                                |                 |                            |
-| 1200   | 每秒请求频次超出限制                                         |                 |                            |
-| 1201   | 每日请求频次超出限制                                         |                 |                            |
-| 1202   | 您已无资源可用                                               |                 |                            |
-| 1203   | 项目已被删除                                                 |                 |                            |
-| 1204   | 项目已禁用                                                   |                 |                            |
-| 1205   | 项目被拉入黑名单                                             |                 |                            |
-| 1206   | 账户被拉入黑名单                                             |                 |                            |
-| 1207   | 请在Header中传入API Secret                                   |                 |                            |
-| 1208   | 传入的API Secret与项目不匹配                                 |                 |                            |
-| 1209   | 增强交易服务未开启                                           |                 |                            |
-| 1210   | 项目类型与API类型不一致                                      |                 |                            |
-| 1211   | 当前项目还没有主网权限                                       |                 |                            |
-| 1311   | 平台队列中                                                   |                 |                            |
-| 1312   | 交易已提交到星火链                                           |                 |                            |
-| 1313   | 平台交易池超时丢弃                                           |                 |                            |
-| 1314   | 项目暂无交易池(增强交易)                                     |                 |                            |
-| 1315   | 交易已存在                                                   |                 |                            |
-| 1316   | 星火链超时丢弃                                               |                 |                            |
-| 1317   | 交易操作频繁                                                 |                 |                            |
-| 9999   | url 连接异常                                                 |                 |                            |
+| -3     | 参数类型解析异常                                                      |                 | 开放平台错误码             |
+| -6     | 无效参数异常                                                          |                 |                            |
+| -7     | 请求类型异常                                                          |                 |                            |
+| -9     | 统一验证参数异常                                                      |                 |                            |
+| 405    | 不支持当前请求类型                                                    |                 |                            |
+| 1013   | 请求的API不存在                                                       |                 |                            |
+| 1015   | 请求的API已停用                                                       |                 |                            |
+| 1016   | timeout                                                               |                 |                            |
+| 1101   | 交易数据中包含敏感词汇                                                |                 |                            |
+| 1102   | 您的合约地址未在项目合约白名单                                        |                 |                            |
+| 1103   | 请检查交易数据是否合规                                                |                 |                            |
+| 1105   | 交易类型不存在                                                        |                 |                            |
+| 1106   | 远程调用失败                                                          |                 |                            |
+| 1107   | 交易池类型不存在                                                      |                 |                            |
+| 1108   | 参数超出限制                                                          |                 |                            |
+| 1109   | 非法参数                                                              |                 |                            |
+| 1110   | 当bid 或 tx_id为不为空时，tx_type为必填                               |                 |                            |
+| 1111   | 业务参数不能为空                                                      |                 |                            |
+| 1122   | API Key不存在                                                         |                 |                            |
+| 1200   | 每秒请求频次超出限制                                                  |                 |                            |
+| 1201   | 每日请求频次超出限制                                                  |                 |                            |
+| 1202   | 您已无资源可用                                                        |                 |                            |
+| 1203   | 项目已被删除                                                          |                 |                            |
+| 1204   | 项目已禁用                                                            |                 |                            |
+| 1205   | 项目被拉入黑名单                                                      |                 |                            |
+| 1206   | 账户被拉入黑名单                                                      |                 |                            |
+| 1207   | 请在Header中传入API Secret                                            |                 |                            |
+| 1208   | 传入的API Secret与项目不匹配                                          |                 |                            |
+| 1209   | 增强交易服务未开启                                                    |                 |                            |
+| 1210   | 项目类型与API类型不一致                                               |                 |                            |
+| 1211   | 当前项目还没有主网权限                                                |                 |                            |
+| 1311   | 平台队列中                                                            |                 |                            |
+| 1312   | 交易已提交到星火链                                                    |                 |                            |
+| 1313   | 平台交易池超时丢弃                                                    |                 |                            |
+| 1314   | 项目暂无交易池(增强交易)                                              |                 |                            |
+| 1315   | 交易已存在                                                            |                 |                            |
+| 1316   | 星火链超时丢弃                                                        |                 |                            |
+| 1317   | 交易操作频繁                                                          |                 |                            |
+| 9999   | url 连接异常                                                          |                 |                            |
 
 ## 5.2 通用结构定义
 
@@ -4412,17 +4157,17 @@ const subscriptionDiscardTransactionId = await bopWs.subscribe(
 
 ### 5.2.3 AccountPrivilege
 
-| 参数                                   | 类型   | 备注                                                         |
-| -------------------------------------- | ------ | ------------------------------------------------------------ |
-| masterWeight                           | number | 本地址私钥拥有的权限值                                       |
-| signers                                | array  | Signer                                                       |
-| signers[x].address                     | string | 可操作当前账户的地址                                         |
-| signers[x].weight                      | number | 对应地址可操作的权重                                         |
-| thresholds                             | object |                                                              |
-| thresholds.txThreshold                 | number | 发起交易需要的权限值                                         |
-| thresholds.typeThresholds              | array  |                                                              |
+| 参数                                   | 类型   | 备注                                                                                              |
+| -------------------------------------- | ------ | ------------------------------------------------------------------------------------------------- |
+| masterWeight                           | number | 本地址私钥拥有的权限值                                                                            |
+| signers                                | array  | Signer                                                                                            |
+| signers[x].address                     | string | 可操作当前账户的地址                                                                              |
+| signers[x].weight                      | number | 对应地址可操作的权重                                                                              |
+| thresholds                             | object |                                                                                                   |
+| thresholds.txThreshold                 | number | 发起交易需要的权限值                                                                              |
+| thresholds.typeThresholds              | array  |                                                                                                   |
 | thresholds.typeThresholds[x].type      | number | 操作类型：<br />1: create_account; <br />4:set_metadata; <br />7:pay_coin; <br />9:set_privilege; |
-| thresholds.typeThresholds[x].threshold | number | 可选该操作需要的权重值                                       |
+| thresholds.typeThresholds[x].threshold | number | 可选该操作需要的权重值                                                                            |
 
 ### 5.2.4 KeyPair
 
@@ -4479,12 +4224,12 @@ const subscriptionDiscardTransactionId = await bopWs.subscribe(
 
 ### 5.2.9 OperationSetThreshold
 
-| 参数                        | 类型   | 备注                                                         |
-| --------------------------- | ------ | ------------------------------------------------------------ |
-| txThreshold                 | number | 发起交易需要的权限值                                         |
-| typeThresholds              | array  |                                                              |
+| 参数                        | 类型   | 备注                                                                                              |
+| --------------------------- | ------ | ------------------------------------------------------------------------------------------------- |
+| txThreshold                 | number | 发起交易需要的权限值                                                                              |
+| typeThresholds              | array  |                                                                                                   |
 | typeThresholds[x].type      | number | 操作类型：<br />1: create_account; <br />4:set_metadata; <br />7:pay_coin; <br />9:set_privilege; |
-| typeThresholds[x].threshold | number | 可选该操作需要的权重值                                       |
+| typeThresholds[x].threshold | number | 可选该操作需要的权重值                                                                            |
 
 ### 5.2.10 OperationLog
 
@@ -4496,13 +4241,13 @@ const subscriptionDiscardTransactionId = await bopWs.subscribe(
 
 ### 5.2.11 OperationSetPrivilege
 
-| 参数                        | 类型          | 备注                                                         |
-| --------------------------- | ------------- | ------------------------------------------------------------ |
-| masterWeight                | string        | 本地址私钥拥有的权限值                                       |
-| signers                     | array<Signer> |                                                              |
-| txThreshold                 | string        | 发起交易需要的权限值                                         |
-| typeThresholds              | array         |                                                              |
+| 参数                        | 类型          | 备注                                                                                              |
+| --------------------------- | ------------- | ------------------------------------------------------------------------------------------------- |
+| masterWeight                | string        | 本地址私钥拥有的权限值                                                                            |
+| signers                     | array<Signer> |                                                                                                   |
+| txThreshold                 | string        | 发起交易需要的权限值                                                                              |
+| typeThresholds              | array         |                                                                                                   |
 | typeThresholds[x].type      | number        | 操作类型：<br />1: create_account; <br />4:set_metadata; <br />7:pay_coin; <br />9:set_privilege; |
-| typeThresholds[x].threshold | number        | 可选该操作需要的权重值                                       |
+| typeThresholds[x].threshold | number        | 可选该操作需要的权重值                                                                            |
 
-# 
+#
