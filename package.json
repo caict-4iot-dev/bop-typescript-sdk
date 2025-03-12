@@ -1,6 +1,6 @@
 {
   "name": "@caict/bop-typescript-sdk",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "Xinghuo bop sdk",
   "main": "dist/index.js",
   "files": [
@@ -25,7 +25,7 @@
     "bop"
   ],
   "author": "maxufeng",
-  "license": "MIT",
+  "license": "apache2.0",
   "engines": {
     "node": "18.20.4"
   },
