@@ -7,7 +7,7 @@ import {
   KeyType,
 } from "../proto/bop-sdk-utils";
 import { SdkStatusCode } from "../proto/bop-sdk-common";
-import base58, * as bs58 from "@bifproject/bs58";
+import base58, * as bs58 from "@caict/bs58";
 
 export class EncryptionAddress {
   constructor() {}

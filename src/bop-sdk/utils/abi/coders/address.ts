@@ -4,7 +4,7 @@ import { Logger } from "../../logger";
 
 import { Coder, Reader, Writer } from "./abstract-coder";
 
-import bs58 from "@bifproject/bs58";
+import bs58 from "@caict/bs58";
 import { Buffer } from "buffer";
 
 const version = "address/5.7.0";

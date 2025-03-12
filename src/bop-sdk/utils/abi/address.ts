@@ -6,7 +6,7 @@ import { BigNumberish } from "./bignumber";
 import { Logger } from "../logger";
 
 import * as cryptoJs from "crypto-js";
-import * as bs58 from "@bifproject/bs58";
+import * as bs58 from "@caict/bs58";
 
 const version = "address/5.7.0";
 const logger = new Logger(version);
