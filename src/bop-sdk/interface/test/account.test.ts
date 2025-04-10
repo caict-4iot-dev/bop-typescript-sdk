@@ -12,6 +12,9 @@ import {
 
 // 使用 Sinon 创建模拟对象
 const sandbox = sinon.createSandbox();
+const apiKey = "xxx";
+const apiSecret = "xxx";
+
 describe("provider-account-test", () => {
   let account: AccountByBop;
 
@@ -19,7 +22,7 @@ describe("provider-account-test", () => {
   let config: Config;
 
   beforeEach(() => {
-    config = new Config("https://bif-mainnet.bitfactory.cn", "xxx", "xxx");
+    config = new Config("https://bif-mainnet.bitfactory.cn", apiKey, apiSecret);
     bopInterface = new BopInterface(config);
 
     account = new AccountByBop(bopInterface);

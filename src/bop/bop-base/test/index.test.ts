@@ -6,6 +6,8 @@ import { ApplyRequest } from "../../bop-proto/bop";
 
 // 使用 Sinon 创建模拟对象
 const sandbox = sinon.createSandbox();
+const apiKey = "xxx";
+const apiSecret = "xxx";
 
 describe("BopInterface", () => {
   let bopInterface: BopInterface;
@@ -13,7 +15,7 @@ describe("BopInterface", () => {
   let permitServiceMock: sinon.SinonMock; // 假设 PermitService 有一些方法需要模拟
 
   beforeEach(() => {
-    config = new Config("https://bif-mainnet.bitfactory.cn", "xxx", "xxx");
+    config = new Config("https://bif-mainnet.bitfactory.cn", apiKey, apiSecret);
     bopInterface = new BopInterface(config);
 
     // 模拟 PermitService

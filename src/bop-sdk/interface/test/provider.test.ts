@@ -40,6 +40,8 @@ import {
   QueryResponse,
 } from "bop/bop-proto/bop";
 
+const apiKey = "xxx";
+const apiSecret = "xxx";
 describe("provider-test", () => {
   //normal
   let provider: ProviderByBop;
@@ -54,7 +56,7 @@ describe("provider-test", () => {
   let config2: Config;
 
   beforeEach(() => {
-    config = new Config("https://bif-mainnet.bitfactory.cn", "xxx", "xxx");
+    config = new Config("https://bif-mainnet.bitfactory.cn", apiKey, apiSecret);
     bopInterface = new BopInterface(config);
     provider = new ProviderByBop(bopInterface);
 

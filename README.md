@@ -39,7 +39,13 @@ import {
 } from "@caict/bop-typescript-sdk";
 
 (async () => {
-  let config = new Config("https://bif-mainnet.bitfactory.cn", "xxx", "xxx");
+  const apiKey = "xxx";
+  const apiSecret = "xxx";
+  const config = new Config(
+    "https://bif-mainnet.bitfactory.cn",
+    apiKey,
+    apiSecret,
+  );
   let provider = new ProviderByBop(new BopInterface(config));
   console.log(await provider.chain.getChainInfo());
 

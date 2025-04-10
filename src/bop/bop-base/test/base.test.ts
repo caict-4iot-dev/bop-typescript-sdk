@@ -35,6 +35,8 @@ import { success } from "io-ts";
 
 // 使用 Sinon 创建模拟对象
 const sandbox = sinon.createSandbox();
+const apiKey = "xxx";
+const apiSecret = "xxx";
 
 describe("BaseService", () => {
   let config: Config;
@@ -44,7 +46,7 @@ describe("BaseService", () => {
   let baseServiceMock: sinon.SinonMock;
 
   beforeEach(() => {
-    config = new Config("https://bif-mainnet.bitfactory.cn", "xxx", "xxx");
+    config = new Config("https://bif-mainnet.bitfactory.cn", apiKey, apiSecret);
     baseService = new BaseService(config.host, config.apiKey, config.apiSecret);
     baseServiceInvalidApiKey = new BaseService(
       config.host,

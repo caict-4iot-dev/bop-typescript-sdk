@@ -6,7 +6,13 @@ import {
 } from "@caict/bop-typescript-sdk";
 
 // 初始化配置
-const config = new Config("https://bif-mainnet.bitfactory.cn", "xxx", "xxx");
+const apiKey = "xxx";
+const apiSecret = "xxx";
+const config = new Config(
+  "https://bif-mainnet.bitfactory.cn",
+  apiKey,
+  apiSecret,
+);
 
 // 创建 Provider 实例
 const provider = new ProviderByBop(new BopInterface(config));

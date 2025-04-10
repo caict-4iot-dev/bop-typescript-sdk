@@ -15,13 +15,15 @@ import {
 
 // 使用 Sinon 创建模拟对象
 const sandbox = sinon.createSandbox();
+const apiKey = "xxx";
+const apiSecret = "xxx";
 
 describe("PermitService", () => {
   let config: Config;
   let permitService: PermitService;
 
   beforeEach(() => {
-    config = new Config("https://bif-mainnet.bitfactory.cn", "xxx", "xxx");
+    config = new Config("https://bif-mainnet.bitfactory.cn", apiKey, apiSecret);
     permitService = new PermitService(config.host);
   });
 

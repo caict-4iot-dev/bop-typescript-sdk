@@ -20,6 +20,9 @@ import {
 
 // 使用 Sinon 创建模拟对象
 const sandbox = sinon.createSandbox();
+const apiKey = "xxx";
+const apiSecret = "xxx";
+
 describe("provider-bop-test", () => {
   let bop: BopByBop;
   let baseServiceMock: sinon.SinonMock;
@@ -28,7 +31,7 @@ describe("provider-bop-test", () => {
   let config: Config;
 
   beforeEach(() => {
-    config = new Config("https://bif-mainnet.bitfactory.cn", "xxx", "xxx");
+    config = new Config("https://bif-mainnet.bitfactory.cn", apiKey, apiSecret);
     bopInterface = new BopInterface(config);
 
     bop = new BopByBop(bopInterface);

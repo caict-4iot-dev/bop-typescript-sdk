@@ -32,6 +32,9 @@ import { ProviderByBop } from "../provider";
 
 // 使用 Sinon 创建模拟对象
 const sandbox = sinon.createSandbox();
+const apiKey = "xxx";
+const apiSecret = "xxx";
+
 describe("provider-transaction-test", () => {
   let transaction: TransactionByBop;
 
@@ -43,7 +46,7 @@ describe("provider-transaction-test", () => {
   let provider: ProviderByBop;
 
   beforeEach(() => {
-    config = new Config("https://bif-mainnet.bitfactory.cn", "xxx", "xxx");
+    config = new Config("https://bif-mainnet.bitfactory.cn", apiKey, apiSecret);
     bopInterface = new BopInterface(config);
     transaction = new TransactionByBop(bopInterface);
 

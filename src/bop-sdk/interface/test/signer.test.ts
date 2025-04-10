@@ -14,13 +14,16 @@ import {
 } from "../../../bop-sdk/proto/bop-sdk-interface";
 import { BopInterface, Config } from "../../../bop/bop-base";
 
+const apiKey = "xxx";
+const apiSecret = "xxx";
+
 describe("signer-test", () => {
   let bopInterface: BopInterface;
   let config: Config;
   let signer: SignerByBop;
   let provider: ProviderByBop;
   beforeEach(() => {
-    config = new Config("https://bif-mainnet.bitfactory.cn", "xxx", "xxx");
+    config = new Config("https://bif-mainnet.bitfactory.cn", apiKey, apiSecret);
     bopInterface = new BopInterface(config);
     signer = new SignerByBop("your encprivate key");
     provider = new ProviderByBop(bopInterface);

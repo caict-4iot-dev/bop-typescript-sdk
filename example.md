@@ -71,7 +71,14 @@ import {
   ProviderByBop,
   BopInterface,
 } from "@caict/bop-typescript-sdk";
-const config = new Config("https://bif-mainnet.bitfactory.cn", "xxx", "xxx");
+const apiKey = "xxx";
+const apiSecret = "xxx";
+
+const config = new Config(
+  "https://bif-mainnet.bitfactory.cn",
+  apiKey,
+  apiSecret,
+);
 const provider = new ProviderByBop(new BopInterface(config));
 const signer = new SignerByBop("your encprivate key");
 
@@ -143,11 +150,12 @@ signer.getBalance()
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const signer = new SignerByBop("your encprivate key");
@@ -182,11 +190,12 @@ signer.getIncreaseNonce()
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const signer = new SignerByBop("your encprivate key");
@@ -270,11 +279,12 @@ JS合约
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const signer = new SignerByBop("your encprivate key");
@@ -325,11 +335,12 @@ signer.getAccount(address ?: string)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const signer = new SignerByBop("your encprivate key");
@@ -376,11 +387,12 @@ signer.getLedgerNumber()
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const signer = new SignerByBop("your encprivate key");
@@ -435,11 +447,12 @@ provider.chain.getChainInfo()
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = await provider.chain.getChainInfo();
@@ -483,11 +496,12 @@ provider.chain.getNetworkId()
 ```javascript
 //调用代码
 import { Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = await provider.chain.getNetworkId();
@@ -532,11 +546,12 @@ provider.ledger.getLedger(seq ?: number)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = await provider.ledger.getLedger();
@@ -583,11 +598,12 @@ provider.ledger.getLedgerNumber()
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = await provider.ledger.getLedgerNumber();
@@ -621,11 +637,12 @@ provider.ledger.getLedgerLeader(seq?:number)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = await provider.ledger.getLedgerLeader();
@@ -663,11 +680,12 @@ provider.ledger.getLedgerValidators(seq?:number)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = await provider.ledger.getLedgerValidators();
@@ -710,11 +728,12 @@ provider.ledger.getLedgerTxHashes(seq?:number)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = await provider.ledger.getLedgerTxHashes();
@@ -761,11 +780,12 @@ provider.account.getAccount(address:string)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = await provider.account.getAccount("did:bid:efEnXEGWYjHRw1CzK4KpWTdusnaRokk8");
@@ -816,11 +836,12 @@ provider.account.getAccountMetadata(address: string)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = await provider.account.getAccountMetadata("did:bid:efEnXEGWYjHRw1CzK4KpWTdusnaRokk8");
@@ -869,11 +890,12 @@ provider.account.getAccountIncreaseNonce(address: string)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = await provider.account.getAccountIncreaseNonce("did:bid:efEnXEGWYjHRw1CzK4KpWTdusnaRokk8");
@@ -907,11 +929,12 @@ provider.account.getAccountBalance(address:string)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = await provider.account.getAccountBalance("did:bid:efEnXEGWYjHRw1CzK4KpWTdusnaRokk8");
@@ -945,11 +968,12 @@ provider.account.getAccountPriv(address : string)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = await provider.account.getAccountPriv("did:bid:efEnXEGWYjHRw1CzK4KpWTdusnaRokk8");
@@ -991,11 +1015,12 @@ provider.transaction.getTxPoolSize()
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = await provider.transaction.getTxPoolSize();
@@ -1052,11 +1077,12 @@ provider.transaction.getTxPoolTransactions(limit?:number, address?:string, hash?
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = await provider.transaction.getTxPoolTransactions();
@@ -1116,11 +1142,12 @@ provider.transaction.getTransactionHistory(seq?:number, start?:number, limit?:nu
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = await provider.transaction.getTransactionHistory(undefined, undefined, undefined, "b5cef0860f6000cdfb4fa0d2dc95a013632032a49764ade7c1d972a493307315",);
@@ -1217,11 +1244,12 @@ provider.transaction.buildAccountCreateTx(op: OpCreateAccountParams, signer: Sig
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const request = {
@@ -1281,11 +1309,12 @@ provider.transaction.buildContractCreateTx(op: OpCreateContractParams, signer: S
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const signer = new SignerByBop("your encprivate key");
@@ -1351,11 +1380,12 @@ provider.transaction.buildGasSendTx(op: opGasSendParams, signer: Signer)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const signer = new SignerByBop("your encprivate key");
@@ -1419,11 +1449,12 @@ provider.transaction.buildContractInvokeTx(op: opContractInvokeParams, signer: S
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const signer = new SignerByBop("your encprivate key");
@@ -1489,11 +1520,12 @@ provider.transaction.buildSetMetadataTx(op: opSetMetadataParams, signer: Signer)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const signer = new SignerByBop("your encprivate key");
@@ -1561,11 +1593,12 @@ provider.transaction.buildSetPrivilegeTx(op: opSetPrivParams, signer: Signer)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const signer = new SignerByBop("your encprivate key");
@@ -1641,11 +1674,12 @@ provider.transaction.buildBatchGasSend(op: OpBatchGasSend, signer: Signer)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const signer = new SignerByBop("your encprivate key");
@@ -1716,11 +1750,12 @@ provider.transaction.buildBatchContractInvoke(params: OpBatchContractInvoke, sig
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const signer = new SignerByBop("your encprivate key");
@@ -1789,11 +1824,12 @@ provider.transaction.submitTransaction(params: SubmitTransactionParams)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const request = {
@@ -1960,11 +1996,12 @@ provider.transaction.estimateGas(params: TestTransactionRequest)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const request = {
@@ -2054,11 +2091,12 @@ provider.contract.checkContractAccount(address:string)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = await provider.contract.checkContractAccount("did:bid:efEnXEGWYjHRw1CzK4KpWTdusnaRokk8");
@@ -2090,11 +2128,12 @@ provider.contract.getContractInfo(address:string)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = await provider.contract.checkContractAccount("did:bid:efEnXEGWYjHRw1CzK4KpWTdusnaRokk8");
@@ -2135,11 +2174,12 @@ provider.contract.callContract(transaction: CallContractRequest)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = await provider.contract.checkContractAccount("did:bid:efEnXEGWYjHRw1CzK4KpWTdusnaRokk8");
@@ -2189,11 +2229,12 @@ provider.bop.apply(params: ApplyRequest)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const request = {
@@ -2247,11 +2288,12 @@ provider.bop.status(params: ApplyStatusRequest)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const request = {
@@ -2299,11 +2341,12 @@ provider.bop.detail(params: DetailRequest)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const request = {
@@ -2348,11 +2391,12 @@ provider.bop.getTransactionCache(params: GetTransactionCacheRequest)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const request = {};
@@ -2460,11 +2504,12 @@ provider.bop.discard(params: DiscardRequest)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const request = {
@@ -2587,11 +2632,12 @@ provider.bop.query(params: QueryRequest)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const request = {
@@ -2681,11 +2727,12 @@ utils.address.getBidAndKeyPair(chainCode? : string)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = provider.utils.address.getBidAndKeyPair("hello");
@@ -2736,11 +2783,12 @@ utils.address.getBidAndKeyPairBySM2(chainCode ?: string)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = provider.utils.address.getBidAndKeyPairBySM2("hello");
@@ -2792,11 +2840,12 @@ utils.address.privateKeyManager(type: KeyType, chainCode ?: string)
 ```javascript
 //调用代码-正确
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = provider.utils.address.privateKeyManager(KeyType.ED25519, "hello");
@@ -2851,11 +2900,12 @@ utils.address.privateKeyManagerByKey(encPrivatekey : string)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = provider.utils.address.privateKeyManagerByKey("your encprivate key");
@@ -2906,11 +2956,12 @@ utils.address.publicKeyManager(encPublickey : string)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = provider.utils.address.publicKeyManager("b065663bbce79ee9ca5b6e3933f4aa3909832f225dc63ac52415d110c49ddad2c20d14");
@@ -2953,11 +3004,12 @@ utils.address.getEncPublicKey(encPrivatekey : string)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = provider.utils.address.getEncPublicKey("your encprivate key");
@@ -2996,11 +3048,12 @@ utils.address.getEncPublicKeyByRaw(type: KeyType, rawPublicKey: string)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = provider.utils.address.getEncPublicKeyByRaw(KeyType.ED25519,
@@ -3040,11 +3093,12 @@ utils.address.getEncPrivateKeyByRaw(type: KeyType, rawPrivateKey: string)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = provider.utils.address.getEncPrivateKeyByRaw(KeyType.ED25519,
@@ -3083,11 +3137,12 @@ utils.address.parsePrivateKey(encPrivateKey: string)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = provider.utils.address.parsePrivateKey("your encprivate key");
@@ -3125,11 +3180,12 @@ utils.address.parsePublicKey(encPublicKey: string)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = provider.utils.address.parsePublicKey("b0xxx");
@@ -3167,11 +3223,12 @@ utils.address.publicToAddress(encPublicKey: string)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = provider.utils.address.publicToAddress("b0xxx");
@@ -3209,11 +3266,12 @@ utils.address.isPrivateKey(encPrivateKey: string)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = provider.utils.address.isPrivateKey("your encprivate key");
@@ -3247,11 +3305,12 @@ utils.address.isPublicKey(encPublicKey: string)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = provider.utils.address.isPublicKey("b0xxx");
@@ -3285,11 +3344,12 @@ utils.address.encAddressToHex(encAddress: string)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = provider.utils.address.encAddressToHex("b0xxx");
@@ -3327,11 +3387,12 @@ utils.address.hexToEncAddress(hexAddress: string)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = provider.utils.address.hexToEncAddress("0x7a6624286133aa44ac2a24511a5f88131c3c8b11ed609350");
@@ -3372,11 +3433,12 @@ utils.crypto.generateKeyStore(encPrivateKey:string, passwd:string)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = provider.utils.crypto.generateKeyStore("your encprivate key", "123");
@@ -3415,11 +3477,12 @@ utils.crypto.setSkeyStore(encPrivateKey:string, passwd:string)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = provider.utils.crypto.setSkeyStore("your encprivate key", "123");
@@ -3458,11 +3521,12 @@ utils.crypto.decipherKeyStore(keystoreContent:string, passwd:string)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = provider.utils.crypto.decipherKeyStore('{"cypher_text":"xxx","aesctr_iv":"xxx","scrypt_params":{"n":16384,"p":1,"r":8,"salt":"xxx"},"version":2,"address":"did:bid:zfFqez6uWDXzdmfqgmPPy2YYRnFDGtZh"}',
@@ -3507,11 +3571,12 @@ utils.crypto.generateChild(encPrivateKey:string, chainCode:string, serviceType:s
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = provider.utils.crypto.generateChild("xxx",
@@ -3560,11 +3625,12 @@ utils.crypto.sign(encPrivateKey:string, message:string)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = provider.utils.crypto.sign("xxx",
@@ -3605,11 +3671,12 @@ utils.crypto.verify(encPublicKey:string, message:string, signature:string)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = provider.utils.crypto.verify("b065663bbce79ee9ca5b6e3933f4aa3909832f225dc63ac52415d110c49ddad2c20d14",
@@ -3645,11 +3712,12 @@ utils.crypto.getCryptoTypeFromPrivKey(encPrivateKey:string)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = provider.utils.crypto.getCryptoTypeFromPrivKey("xxx",);
@@ -3683,11 +3751,12 @@ utils.crypto.getCryptoTypeFromPubKey(encPublicKey:string)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = provider.utils.crypto.getCryptoTypeFromPubKey("b07a6604d964f18cc1ac9bc73189c46a80934f3e94cc011af1907ede771f61b2c0ae0e55e23e05a2fd00b341afd2eb0927d7588189fdace4b1327e6bb22bc232a772d723",);
@@ -3724,11 +3793,12 @@ utils.mnemonics.privKeyFromMCodeAndCrypto(type: KeyType, mnemonics: string)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = provider.utils.crypto.privKeyFromMCodeAndCrypto(KeyType.SM2,
@@ -3769,11 +3839,12 @@ utils.mnemonics.generateMnemonicCode(type: KeyType, entropy: string, language: s
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 const response = provider.utils.crypto.generateMnemonicCode(KeyType.ED25519,
@@ -3862,11 +3933,12 @@ utils.abi.decode(types: ReadonlyArray<string>, values: ReadonlyArray<any>)
 ```javascript
 //调用代码
 import { SignerByBop, Config, ProviderByBop, BopInterface } from '@caict/bop-typescript-sdk';
-
+const apiKey = "xxx";
+const apiSecret = "xxx";
 const config = new Config(
     "https://bif-mainnet.bitfactory.cn",
-      "xxx",
-      "xxx",
+      apiKey,
+      apiSecret,
     );
 const provider = new ProviderByBop(new BopInterface(config));
 try {
@@ -3908,7 +3980,11 @@ interface Callback {
 SDK通过WsConfig，加载开放平台ws url数据；通过WsProviderByBop构建ws实例。构建完成后，通过waitForReady等待ws连接完成。
 
 ```javascript
-import { WsConfig, WsProviderByBop, bopwsprotocol } from "@caict/bop-typescript-sdk";
+import {
+  WsConfig,
+  WsProviderByBop,
+  bopwsprotocol,
+} from "@caict/bop-typescript-sdk";
 
 // 创建 BopWsInterface 实例，这里假设已经有 bopWs 实例化代码，可根据实际情况修改
 const config = new WsConfig("https://bif-mainnet.bitfactory.cn/bif/subscribe"); // 替换为实际的 WebSocket 地址
@@ -3924,7 +4000,11 @@ provider.bop.subscribe(type: bopwsprotocol.MessageType, callback: Callback)
 ### 示例代码
 
 ```javascript
-import { WsConfig, WsProviderByBop, bopwsprotocol } from "@caict/bop-typescript-sdk";
+import {
+  WsConfig,
+  WsProviderByBop,
+  bopwsprotocol,
+} from "@caict/bop-typescript-sdk";
 
 // 创建 BopWsInterface 实例，这里假设已经有 bopWs 实例化代码，可根据实际情况修改
 const config = new WsConfig("ws://bif-mainnet.bitfactory.cn/bif/subscribe"); // 替换为实际的 WebSocket 地址
@@ -3948,7 +4028,11 @@ provider.bop.subscribe(type: bopwsprotocol.MessageType, callback: Callback, acco
 ### 示例代码
 
 ```javascript
-import { WsConfig, WsProviderByBop, bopwsprotocol } from "@caict/bop-typescript-sdk";
+import {
+  WsConfig,
+  WsProviderByBop,
+  bopwsprotocol,
+} from "@caict/bop-typescript-sdk";
 
 // 创建 BopWsInterface 实例，这里假设已经有 bopWs 实例化代码，可根据实际情况修改
 const config = new WsConfig("ws://bif-mainnet.bitfactory.cn/bif/subscribe"); // 替换为实际的 WebSocket 地址
@@ -3974,7 +4058,11 @@ provider.bop.subscribe(type: bopwsprotocol.MessageType, callback: Callback, acco
 ### 示例代码
 
 ```javascript
-import { WsConfig, WsProviderByBop, bopwsprotocol } from "@caict/bop-typescript-sdk";
+import {
+  WsConfig,
+  WsProviderByBop,
+  bopwsprotocol,
+} from "@caict/bop-typescript-sdk";
 
 // 创建 BopWsInterface 实例，这里假设已经有 bopWs 实例化代码，可根据实际情况修改
 const config = new WsConfig("ws://bif-mainnet.bitfactory.cn/bif/subscribe"); // 替换为实际的 WebSocket 地址
@@ -3999,7 +4087,11 @@ provider.bop.subscribe(type: bopwsprotocol.MessageType, callback: Callback, acco
 ### 示例代码
 
 ```javascript
-import { WsConfig, WsProviderByBop, bopwsprotocol } from "@caict/bop-typescript-sdk";
+import {
+  WsConfig,
+  WsProviderByBop,
+  bopwsprotocol,
+} from "@caict/bop-typescript-sdk";
 
 // 创建 BopWsInterface 实例，这里假设已经有 bopWs 实例化代码，可根据实际情况修改
 const config = new WsConfig("ws://bif-mainnet.bitfactory.cn/bif/subscribe"); // 替换为实际的 WebSocket 地址
